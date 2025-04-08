@@ -147,6 +147,17 @@ img {
     display: inline-block;
 }
 
+
+.fas.fa-shopping-cart {
+    font-size: 2rem; /* Tamaño del icono */
+    color: #D1A03D;  /* Color del icono */
+}
+
+.fas.fa-shopping-cart:hover {
+    font-size: 3rem; /* Tamaño del icono */
+    color: #D1A03D;  /* Color del icono */
+  }
+
 .nav_user button:hover, 
 .nav_shopping_car button:hover {
     background-color: var(--color-text);
@@ -254,6 +265,53 @@ img {
     margin: 0.5rem 0;
 }
 
+/* Estilos para la navegación del footer */
+.footer_nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.footer_nav > div {
+    flex: 1 1 200px;
+    margin: 1rem;
+    text-align: left;
+}
+
+.footer_nav_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_nav_logo img {
+    max-width: 120px;
+    height: auto;
+}
+
+.footer_nav ul {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+}
+
+.footer_nav li {
+    margin: 0.5rem 0;
+    color: var(--color-background);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer_nav li:hover {
+    color: var(--color-border);
+    cursor: pointer;
+}
+
 /* Clases de utilidad para la tipografía del logo */
 .logo-text {
     font-family: var(--font-logo);
@@ -345,6 +403,17 @@ img {
     
     .grid-container {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .footer_nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer_nav > div {
+        width: 100%;
+        margin: 0.8rem 0;
+        text-align: center;
     }
 }
 
