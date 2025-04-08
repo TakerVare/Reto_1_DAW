@@ -281,6 +281,8 @@ img {
     flex: 1 1 200px;
     margin: 1rem;
     text-align: left;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .footer_nav_logo {
