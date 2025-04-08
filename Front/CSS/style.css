@@ -133,7 +133,7 @@ img {
     padding: 0.5rem;
 }
 
-.nav_user button, 
+.nav_user .nav_user_button, 
 .nav_shopping_car button {
     background-color: var(--color-button);
     color: var(--color-text);
@@ -148,6 +148,10 @@ img {
     display: inline-block;
 }
 
+.nav_user #nav_user_icon {
+    width: 2.5rem;
+    height: 2.5rem; 
+}
 
 .fas.fa-shopping-cart {
     font-size: 2rem; /* Tamaño del icono */
@@ -159,11 +163,19 @@ img {
     color: #D1A03D;  /* Color del icono */
   }
 
-.nav_user button:hover, 
+.nav_user .nav_user_button:hover, 
 .nav_shopping_car button:hover {
     background-color: var(--color-text);
     color: var(--color-button);
     cursor: pointer;
+}
+
+.nav_user #nav_user_icon:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem; 
 }
 
 /* Estilos del cuerpo */
@@ -436,7 +448,7 @@ img {
         flex: 1 1 150px;
     }
     
-    .nav_user, 
+    .nav_user, .nav_user_button,
     .nav_shopping_car {
         flex: 0 1 auto;
     }
