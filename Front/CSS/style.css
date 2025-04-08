@@ -13,7 +13,8 @@
     --color-background: #D4E4D3;    /* Verde Pastel */
     --color-text: #3B4C44;          /* Gris oscuro verdoso */
     --color-accent: #D1A03D;        /* Amarillo dorado */
-    --color-button: #6B8B3A;        /* Verde Oliva Oscuro */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    /*--color-button: #6B8B3A;*/
     --color-border: #FFB066;        /* Naranja Cálido */
     --font-main: 'Montserrat', sans-serif;
     --font-logo: 'Bungee', cursive;
