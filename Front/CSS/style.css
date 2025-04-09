@@ -125,6 +125,15 @@ img {
 }
 
 /* Estilos para secciones de usuario y carrito */
+/* Añadir posición relativa al contenedor del usuario */
+.nav_user {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    position: relative; /* Añadido para que sea el punto de referencia para la posición absoluta del menú */
+}
+
 .nav_user, 
 .nav_shopping_car {
     flex: 0 1 auto;
@@ -152,6 +161,108 @@ img {
     width: 2.5rem;
     height: 2.5rem; 
 }
+
+/*Tarjeta nav_user_menu*/
+.card_user_menu {
+    width: 150px;
+    background-color: var(--color-text);
+    background-image: linear-gradient(
+      139deg,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 100%
+    );
+    
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+    padding: 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 100%; /* Justo debajo del icono */
+    right: 0; /* Alineado a la derecha del contenedor del usuario */
+    z-index: 100;
+    min-width: 150px;
+    margin-top: 0px; /* Pequeño margen para separar del icono */
+  }
+  
+  .card_user_menu .separator {
+    border-top: 1.5px solid var(--color-border);
+  }
+  
+  .card_user_menu .list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px 5px;
+  }
+  
+  .card_user_menu .list .element {
+    display: flex;
+    align-items: center;
+    color: var(--color-text); 
+    background-color: var(--color-button);
+    gap: 15px;
+    transition: all 0.3s ease-out;
+    padding: 4px 7px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+    cursor: pointer;
+  }
+  
+  .card_user_menu .list .element svg {
+    width: 19px;
+    height: 19px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .card_user_menu .list .element .label {
+    font-weight: 600;
+  }
+  
+  .card_user_menu .list .element:hover {
+    color: var(--color-button); 
+    background-color: var(--color-text);
+    transform: translate(1px, -1px);
+  }
+  
+  .card_user_menu .list .element:active {
+    transform: scale(0.99);
+  }
+  
+  .card_user_menu .list:not(:last-child) .element:hover svg {
+    stroke: var(--color-button);
+  }
+  
+  .element:hover svg {
+      stroke: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child svg {
+      
+    stroke: var(--color-text);
+  }
+  .card_user_menu .list:last-child .element {
+    color: var(--color-text);
+    background-color: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child .element:hover {
+    color: var(--color-button);
+    background-color: var(--color-text);
+    stroke: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child .element:hover svg{
+    stroke: var(--color-button);
+  }
+/*Fin tarjeta nav_user_menu*/  
 
 .fas.fa-shopping-cart {
     font-size: 2rem; /* Tamaño del icono */
@@ -496,4 +607,8 @@ img {
 
 .hamburger.active div:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.hidden {
+    display: none;
 }

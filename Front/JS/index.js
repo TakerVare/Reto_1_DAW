@@ -3,12 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     //const hamburger = document.querySelector('.hamburger');
     //const navMenu = document.querySelector('.nav_menu');
 
-
+    // Inicializamos estas variables como null en lugar de documentElement
+    var userIcon = null;
+    var NavUserCardMenuDisplay = null;
+    
     //Creo esta variable para dibujar los botones de login y register 
     //o el icono de usuario según corresponda 
-    const navUser = document.querySelector('.nav_user');
+    var navUser = document.querySelector('.nav_user');
     var usuario_estatus = localStorage.getItem("usuario");
-    localStorage.setItem("usuario", "inactivo");
+    localStorage.setItem("usuario", "activo");
     if(navUser) {
         if(usuario_estatus!="activo"){
             //Creo el primer botón de Sing in
@@ -31,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
             //Creo el avatar
             const newNavUser=document.getElementById('nav_user');
             const newNavUserAvatar = document.createElement('div');
-            //newNavUserLogIn.classList.add('nav_user_button');
             newNavUserAvatar.innerHTML=`<svg id="nav_user_icon" xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
                 fill="none" 
@@ -43,26 +45,74 @@ document.addEventListener('DOMContentLoaded', function() {
                 <circle cx="12" cy="8" r="5"/>
                 <path d="M20 21a8 8 0 0 0-16 0"/>
             </svg>`;
-            /*
-            newNavUserAvatar.innerText=`<svg id="nav_user_icon" xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                class="lucide lucide-user-round-icon lucide-user-round">
-                <circle cx="12" cy="8" r="5"/>
-                <path d="M20 21a8 8 0 0 0-16 0"/>
-            </svg>`;*/
             newNavUser.appendChild(newNavUserAvatar);
+            
+            const newNavUserCardMenu = document.createElement('div');
+            newNavUserCardMenu.classList.add('card_user_menu');
+            newNavUserCardMenu.classList.add('hidden');
+            newNavUserCardMenu.innerHTML=`<ul class="list">
+                    <li class="element">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            width="24" 
+                            height="24" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            stroke-width="2" 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            class="lucide lucide-user-round-icon lucide-user-round">
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 0 0-16 0"/>
+                        </svg>
+                    <p class="label">My profile</p>
+                    </li>
+                    <div class="separator"></div>
+                    <li class="element">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        class="lucide lucide-log-out-icon 
+                        lucide-log-out">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16 17 21 12 16 7"/>
+                        <line x1="21" x2="9" y1="12" y2="12"/>
+                    </svg>
+                    <p class="label">Log out</p>
+                    </li>
+                </ul>`;
+            
+            newNavUser.appendChild(newNavUserCardMenu);
+            
+            // Ahora seleccionamos los elementos después de que se han añadido al DOM
+            userIcon = document.getElementById('nav_user_icon');
+            NavUserCardMenuDisplay = document.querySelector('.card_user_menu');
             
             navUser = newNavUser;
             
+            // Sólo configuramos los event listeners si ambos elementos existen
+            if (userIcon && NavUserCardMenuDisplay) {
+                // Alternar visibilidad al hacer clic
+                userIcon.addEventListener("click", () => {
+                    NavUserCardMenuDisplay.classList.toggle("hidden");
+                });
+              
+                // Ocultar el menú de usuario si haces clic fuera
+                document.addEventListener("click", (e) => {
+                    if (!userIcon.contains(e.target) && !NavUserCardMenuDisplay.contains(e.target)) {
+                        NavUserCardMenuDisplay.classList.add("hidden");
+                    }
+                });
+            }
         }
-        
-
     }
+
     /*
     // Si no existe el menú hamburguesa, crearlo
     if (!hamburger) {
