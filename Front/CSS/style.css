@@ -157,6 +157,7 @@ img {
     cursor: pointer;
     transition: all 0.3s ease;
     display: inline-block;
+    cursor: pointer;
 }
 
 .nav_user #nav_user_icon {
@@ -166,7 +167,7 @@ img {
 
 /*Tarjeta nav_user_menu*/
 .card_user_menu {
-    width: 150px;
+    width: 170px;
     background-color: var(--color-text);
     background-image: linear-gradient(
       139deg,
@@ -187,7 +188,7 @@ img {
     top: 100%; /* Justo debajo del icono */
     right: 0; /* Alineado a la derecha del contenedor del usuario */
     z-index: 100;
-    min-width: 150px;
+    min-width: 170px;
     margin-top: 5px; /* Pequeño margen para separar del icono */
   }
   
@@ -269,12 +270,15 @@ img {
 .fas.fa-shopping-cart {
     font-size: 2rem; /* Tamaño del icono */
     color: #D1A03D;  /* Color del icono */
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+/* Ajustes para la animación del carrito */
 
 .fas.fa-shopping-cart:hover {
     font-size: 3rem; /* Tamaño del icono */
     color: #D1A03D;  /* Color del icono */
-  }
+}
 
 .nav_user .nav_user_button:hover, 
 .nav_shopping_car button:hover {
@@ -453,163 +457,7 @@ img {
     padding: 1rem;
 }
 
-/* Media queries para responsividad */
 
-/* Tabletas */
-@media (max-width: 900px) {
-    html {
-        font-size: 15px;
-    }
-    
-    .header {
-        padding: 0.8rem;
-    }
-    
-    .body {
-        padding: 1.2rem;
-    }
-    
-    .nav_menu {
-        order: 3;
-        flex: 1 0 100%;
-    }
-}
-
-/* Móviles grandes */
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-    
-    .header {
-        padding: 0.8rem;
-        position: relative;
-    }
-    
-    .hamburger {
-        display: flex;
-        position: absolute;
-        right: 1rem;
-        top: 1.2rem;
-    }
-    
-    .nav_menu {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 80%;
-        max-width: 300px;
-        background-color: var(--color-text);
-        z-index: 9;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        padding-top: 4rem;
-    }
-    
-    .nav_menu.open {
-        transform: translateX(0);
-    }
-    
-    .nav_menu button, 
-    .nav_menu a {
-        width: 80%;
-        margin: 0.5rem 0;
-        text-align: center;
-    }
-    
-    .body h1 {
-        font-size: 2rem;
-    }
-    
-    .body h2 {
-        font-size: 1.7rem;
-    }
-    
-    .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .footer_nav {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .footer_nav > div {
-        width: 100%;
-        margin: 0.8rem 0;
-        text-align: center;
-    }
-}
-
-/* Móviles pequeños */
-@media (max-width: 480px) {
-    html {
-        font-size: 13px;
-    }
-    
-    .header {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    
-    .nav_logo {
-        flex: 1 1 150px;
-    }
-    
-    .nav_user, .nav_user_button,
-    .nav_shopping_car {
-        flex: 0 1 auto;
-    }
-    
-    .body {
-        padding: 1rem;
-    }
-    
-    .body h1 {
-        font-size: 1.8rem;
-    }
-    
-    .body h2 {
-        font-size: 1.5rem;
-    }
-    
-    .body h3 {
-        font-size: 1.3rem;
-    }
-    
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Para pantallas muy grandes */
-@media (min-width: 1400px) {
-    html {
-        font-size: 18px;
-    }
-    
-    .body {
-        max-width: 1400px;
-    }
-}
-
-/* Clases para el menú hamburguesa animado */
-.hamburger.active div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active div:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
 
 
 /*
@@ -618,16 +466,16 @@ Start Shipping card Styles
 
 .separator {
     border-top: 1.5px solid var(--color-border);
-  }
+}
   
-  .master-container {
+.master-container {
     display: grid;
     grid-template-columns: auto;
     gap: 5px;
     background-color: transparent; /*Pongo el fondo transparente para que sea coherente con el patrón de diseño*/
-  }
+}
   
-  .card {
+.card {
     width: 400px;
     background-color: var(--color-text);
     background-image: linear-gradient(
@@ -637,10 +485,10 @@ Start Shipping card Styles
       rgba(59, 76, 68, 1) 100%
     );
   
-  }
+}
   
-  .title {
-    width: 380px;
+.title {
+    width: 400px;
     height: 40px;
     position: relative;
     display: flex;
@@ -651,24 +499,24 @@ Start Shipping card Styles
     font-size: 14px;
     color: var(--color-accent);
   
-  }
+}
   
   /* cart */
-  .cart {
+.cart {
     border-radius: 19px 19px 7px 7px;
     border-style: solid;
     border-color: var(--color-border);
     border-width: 1.5px;
-  }
+}
   
-  .cart .products {
+.cart .products {
     display: flex;
     flex-direction: column;
     padding: 10px;
     
-  }
+}
   
-  .cart .products .product {
+.cart .products .product {
     display: grid;
     grid-template-columns: 60px 1fr 80px 1fr;
     gap: 10px;
@@ -677,17 +525,17 @@ Start Shipping card Styles
     border-radius: 10px 10px 10px 10px;
     margin-top: 2px;
     margin-bottom: 2px;
-  }
+}
   
-  .cart .products .product span {
+.cart .products .product span {
     font-size: 16px;
     font-weight: 800;
     color: var(--color-text);
     margin-bottom: 8px;
     display: block;
-  }
+}
   
-  .cart .product_quantity {
+.cart .product_quantity {
     height: 30px;
     width: 75px;
     display: flex;          /* Cambiamos a flexbox para mejor control horizontal */
@@ -700,11 +548,12 @@ Start Shipping card Styles
     border-radius: 7px;
     filter: drop-shadow(0px 1px 0px var(--color-text)/* #efefef*/)
       drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
-  }
-  .cart .product_quantity_less{
+}
+
+.cart .product_quantity_less{
     margin-right: 7px;
     
-  }
+}
   
   .cart .product_quantity_less:hover{
     color: var(--color-accent);
@@ -763,6 +612,9 @@ Start Shipping card Styles
   /* Checkout */
   .checkout {
     border-radius: 9px 9px 19px 19px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
   }
   
   .checkout .details {
@@ -859,6 +711,314 @@ Start Shipping card Styles
   /*
   End Shipping card Styles
   */
+
+  /*Start burger menu*/
+/* Estilos para el contenedor del botón hamburguesa */
+.nav_burger_menu {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+/* Hamburger menu - inicialmente oculto */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger div {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: var(--color-border);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+/* Estilos para los elementos del menú dinámico */
+.nav_menu_item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+.nav_menu_item:hover {
+    background-color: rgba(209, 160, 61, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav_menu_item i {
+    font-size: 1.2rem;
+}
+
+.nav_menu_item span {
+    font-weight: 600;
+}
+
+/* Clases para el menú hamburguesa animado */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+  /*End burger menu*/
+
+/* Media queries para responsividad */
+
+/* Tabletas */
+@media (max-width: 900px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .header {
+        padding: 0.8rem;
+    }
+    
+    .body {
+        padding: 1.2rem;
+    }
+    
+    .nav_menu {
+        order: 3;
+        flex: 1 0 100%;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .header {
+        padding: 0.8rem;
+        position: relative;
+    }
+    
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 1rem;
+        top: 1.2rem;
+    }
+    /*
+    .nav_menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background-color: var(--color-text);
+        z-index: 9;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 4rem;
+    }
+    */
+    media .nav_menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background-color: var(--color-text);
+        z-index: 9;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 4rem;
+    }
+
+    /*Start burger menu*/
+    
+    .nav_menu_item {
+        width: 90%;
+        padding: 12px 16px;
+        margin: 6px 0;
+        border-bottom: 1px solid rgba(209, 160, 61, 0.1);
+    }
+    
+    .nav_menu_item:hover {
+        background-color: rgba(209, 160, 61, 0.2);
+    }
+    /*End burger menu*/
+    
+    .nav_menu.open {
+        transform: translateX(0);
+    }
+    
+    .nav_menu button, 
+    .nav_menu a {
+        width: 80%;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .body h1 {
+        font-size: 2rem;
+    }
+    
+    .body h2 {
+        font-size: 1.7rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .footer_nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer_nav > div {
+        width: 100%;
+        margin: 0.8rem 0;
+        text-align: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav_logo {
+        flex: 1 1 150px;
+    }
+    
+    .nav_user, .nav_user_button,
+    .nav_shopping_car {
+        flex: 0 1 auto;
+    }
+    
+    .body {
+        padding: 1rem;
+    }
+    
+    .body h1 {
+        font-size: 1.8rem;
+    }
+    
+    .body h2 {
+        font-size: 1.5rem;
+    }
+    
+    .body h3 {
+        font-size: 1.3rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    /*Start Shopping cart*/
+    .card {
+        width: 320px;
+        
+    }
+
+    .title {
+        width: 320px;
+        height: 40px;        
+    }
+      
+    .shopping_cart_menu {
+        width: 320px; /* Ligeramente más pequeño en móviles */
+    }
+    
+    .cart .product_quantity {
+        height: 30px;
+        width: 75px;        
+    }
+
+    .cart .product_quantity_less{
+        margin-right: 5px;        
+    }
+
+    .cart .product_quantity_plus{
+        margin-left: 5px;
+    }
+
+    .card .small {
+        font-size: 20px;
+        margin: 0 0 auto auto;
+        color: var(--color-text);
+    }
+
+    .cart .products .product span {
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        
+    }
+
+    .shopping_cart_menu .master-container {
+        transform: scale(0.9);
+        transform-origin: top right;
+    }
+    /*End Shopping cart*/
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1400px) {
+    html {
+        font-size: 18px;
+    }
+    
+    .body {
+        max-width: 1400px;
+    }
+}
+
+/* Clases para el menú hamburguesa animado */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
 
 
 .hidden {

@@ -1,14 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar elementos del DOM
-    //const hamburger = document.querySelector('.hamburger');
-    //const navMenu = document.querySelector('.nav_menu');
-
+    var navMenu = document.querySelector('.nav_menu');
+    
     // Inicializamos estas variables como null
     var userIcon = null;
     var NavUserCardMenuDisplay = null;
     // Creo las variables cartIcon y cartMenuDisplay para manejar el icono del carrito y su menú desplegable
     var cartIcon = null;
     var cartMenuDisplay = null;
+    
+    // Creación dinámica de los elementos del menú de navegación
+    function createMenuItems() {
+        // Definir los elementos del menú
+        const menuItems = [
+            { text: 'Menus', url: '#menus', icon: '<i class="fas fa-utensils"></i>' },
+            { text: 'Products', url: '#products', icon: '<i class="fas fa-hamburger"></i>' },
+            { text: 'Deals', url: '#deals', icon: '<i class="fas fa-percent"></i>' },
+            { text: 'Locations', url: '#locations', icon: '<i class="fas fa-map-marker-alt"></i>' }
+        ];
+        
+        // Limpiar el menú existente
+        if (navMenu) {
+            navMenu.innerHTML = '';
+            
+            // Crear y añadir los nuevos elementos
+            menuItems.forEach(item => {
+                const link = document.createElement('a');
+                link.innerHTML = `${item.icon} <span>${item.text}</span>`;
+                link.href = item.url;
+                link.classList.add('nav_menu_item');
+                navMenu.appendChild(link);
+                
+                // Añadir evento click para cerrar el menú móvil cuando se haga clic en un elemento
+                link.addEventListener('click', () => {
+                    if (hamburger && hamburger.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        }
+    }
+    
+    // Llamar a la función para crear los elementos del menú
+    createMenuItems();
     
     //Creo esta variable para dibujar los botones de login y register 
     //o el icono de usuario según corresponda 
@@ -104,6 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Alternar visibilidad al hacer clic
                 userIcon.addEventListener("click", () => {
                     NavUserCardMenuDisplay.classList.toggle("hidden");
+                    // Si el carrito está visible, lo ocultamos
+                    if (cartMenuDisplay && !cartMenuDisplay.classList.contains("hidden")) {
+                        cartMenuDisplay.classList.add("hidden");
+                    }
                 });
               
                 // Ocultar el menú de usuario si haces clic fuera
@@ -118,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //Inicio Manejo del carrito de compras
-
     var navShoppingCart = document.querySelector('.nav_shopping_car');
     if (navShoppingCart) {
         // Obtenemos el icono del carrito
@@ -267,55 +304,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //Fin Manejo del carrito de compras
 
-    /*
-    // Si no existe el menú hamburguesa, crearlo
-    if (!hamburger) {
-        const newHamburger = document.createElement('button');
-        newHamburger.classList.add('hamburger');
-        newHamburger.innerHTML = '<div></div><div></div><div></div>';
-        document.querySelector('.header').appendChild(newHamburger);
+    //Start burger menu
+    // Buscamos el elemento .nav_burger_menu, si no existe, lo creamos
+    
+    var hamburger = document.querySelector('.hamburger');   //Creo la variable hamburguesa
+    
+    if (navBurgerMenu) {
+        hamburger = document.querySelector('.hamburger');
         
-        // Actualizar la referencia
-        hamburger = newHamburger;
+        if (!hamburger) {
+            const newHamburger = document.createElement('button');
+            newHamburger.classList.add('hamburger');
+            newHamburger.innerHTML = '<div></div><div></div><div></div>';
+            navBurgerMenu.appendChild(newHamburger);
+            
+            // Actualizar referencia
+            hamburger = newHamburger;
+        }
     }
     
+    
+    // Si no existe el menú hamburguesa, se crea
+    if (!hamburger && navBurgerMenu) {
+        const newHamburger = document.createElement('button');
+        newHamburger.classList.add('hamburger');
+        newHamburger.innerHTML = '<div></div><div></div><div></div>';   //Estos divs dan la imagen de las tres líneas
+        navBurgerMenu.appendChild(newHamburger);
+        //Actualizar referencia
+        hamburger = newHamburger;
+    }
+
     // Función para alternar el menú
     function toggleMenu() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('open');
         document.body.classList.toggle('menu-open');
     }
-    
+
     // Evento de clic para el botón hamburguesa
-    hamburger.addEventListener('click', toggleMenu);
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMenu);
+    }
     
     // Cerrar menú al hacer clic en un enlace
     const navLinks = document.querySelectorAll('.nav_menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('open');
-            document.body.classList.remove('menu-open');
+            if (hamburger) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('open');
+                document.body.classList.remove('menu-open');
+            }
         });
     });
     
     // Cerrar menú al hacer clic fuera
     document.addEventListener('click', function(event) {
-        const isClickInsideMenu = navMenu.contains(event.target);
-        const isClickOnHamburger = hamburger.contains(event.target);
-        
-        if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('open')) {
-            toggleMenu();
+        if (navMenu && hamburger) {
+            const isClickInsideMenu = navMenu.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('open')) {
+                toggleMenu();
+            }
         }
     });
     
     // Ajustar navegación al cambiar tamaño de ventana
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navMenu.classList.contains('open')) {
+        if (navMenu && hamburger && window.innerWidth > 768 && navMenu.classList.contains('open')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('open');
             document.body.classList.remove('menu-open');
         }
     });
-    */
+    //End Burger menu
 });
