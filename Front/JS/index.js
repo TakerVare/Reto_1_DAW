@@ -3,15 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     //const hamburger = document.querySelector('.hamburger');
     //const navMenu = document.querySelector('.nav_menu');
 
-    // Inicializamos estas variables como null en lugar de documentElement
+    // Inicializamos estas variables como null
     var userIcon = null;
     var NavUserCardMenuDisplay = null;
+    // Creo las variables cartIcon y cartMenuDisplay para manejar el icono del carrito y su menú desplegable
+    var cartIcon = null;
+    var cartMenuDisplay = null;
     
     //Creo esta variable para dibujar los botones de login y register 
     //o el icono de usuario según corresponda 
     var navUser = document.querySelector('.nav_user');
     var usuario_estatus = localStorage.getItem("usuario");
-    localStorage.setItem("usuario", "inactivo");
+    localStorage.setItem("usuario", "activo");
     if(navUser) {
         if(usuario_estatus!="activo"){
             //Creo el primer botón de Sing in
@@ -111,7 +114,158 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
+        
     }
+
+    //Inicio Manejo del carrito de compras
+
+    var navShoppingCart = document.querySelector('.nav_shopping_car');
+    if (navShoppingCart) {
+        // Obtenemos el icono del carrito
+        cartIcon = navShoppingCart.querySelector('.fa-shopping-cart');
+        
+        // Creamos el contenedor del carrito y lo añadimos al DOM
+        const cartContainer = document.createElement('div');
+        cartContainer.classList.add('shopping_cart_menu');
+        cartContainer.classList.add('hidden');
+        
+        // Insertamos el contenido del Carrito.html
+        cartContainer.innerHTML = `
+            <div class="master-container">
+                <div class="card cart">
+                    <label class="title">Your cart</label>
+                    <div class="products">
+                        <div class="product">
+                            <img src="images/Burger_1.png" alt="imagen-producto" height="60" width="60">
+                            <div>
+                                <span class="product_name">Cheese Burger coin queso y bacon</span>
+                            </div>
+                            <div class="product_quantity">
+                                <div class="product_quantity_button product_quantity_less">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-square-minus-icon lucide-square-minus">
+                                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                                        <path d="M8 12h8" /></svg>
+                                </div>
+                                <label>9</label>
+                                <div class="product_quantity_button product_quantity_plus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-square-plus-icon lucide-square-plus">
+                                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                                        <path d="M8 12h8" />
+                                        <path d="M12 8v8" /></svg>
+                                    
+                                </div>
+                                
+                                <div class="product_quantity_button product_quantity_delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
+                                        <path d="M3 6h18" />
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                        <line x1="10" x2="10" y1="11" y2="17" />
+                                        <line x1="14" x2="14" y1="11" y2="17" /></svg>
+                                </div> 
+                            </div>
+                            <label class="price small">$23.99</label>
+
+                        </div>
+                        <div class="separator"></div>
+                        
+                        <div class="product">
+                            <img src="images/Burger_1.png" alt="imagen-producto" height="60" width="60">
+                            <div>
+                                <span class="product_name">Cheese Burger coin queso y bacon</span>
+                            </div>
+                            <div class="product_quantity">
+                                <div class="product_quantity_button product_quantity_less">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-square-minus-icon lucide-square-minus">
+                                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                                        <path d="M8 12h8" /></svg>
+                                </div>
+                                <label>9</label>
+                                <div class="product_quantity_button product_quantity_plus">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-square-plus-icon lucide-square-plus">
+                                        <rect width="18" height="18" x="3" y="3" rx="2" />
+                                        <path d="M8 12h8" />
+                                        <path d="M12 8v8" /></svg>
+                                    
+                                </div>
+                                
+                                <div class="product_quantity_button product_quantity_delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
+                                        <path d="M3 6h18" />
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                        <line x1="10" x2="10" y1="11" y2="17" />
+                                        <line x1="14" x2="14" y1="11" y2="17" /></svg>
+                                </div> 
+                            </div>
+                            <label class="price small">$23.99</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card checkout">
+                    <label class="title">Checkout</label>
+                    <div class="details">
+                        <span>Your cart subtotal:</span>
+                        <span>47.99$</span>
+                        <span>Discount through applied coupons:</span>
+                        <span>3.99$</span>
+                        <span>Shipping fees:</span>
+                        <span>4.99$</span>
+                    </div>
+                    <div class="checkout--footer">
+                        <label class="price"><sup>$</sup>57.99</label>
+                        <button class="checkout-btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Añadimos el carrito al DOM, justo después del icono
+        navShoppingCart.appendChild(cartContainer);
+        
+        // Guardamos la referencia al carrito para usarla después
+        cartMenuDisplay = cartContainer;
+        
+        // Configuramos el event listener para el icono del carrito
+        if (cartIcon && cartMenuDisplay) {
+            cartIcon.addEventListener("click", (e) => {
+                e.stopPropagation(); // Evitamos que el clic se propague
+                cartMenuDisplay.classList.toggle("hidden");
+                
+                // Si el menú de usuario está visible, lo ocultamos
+                if (NavUserCardMenuDisplay && !NavUserCardMenuDisplay.classList.contains("hidden")) {
+                    NavUserCardMenuDisplay.classList.add("hidden");
+                }
+            });
+            
+            // Ocultar el carrito si haces clic fuera
+            document.addEventListener("click", (e) => {
+                if (!cartIcon.contains(e.target) && !cartMenuDisplay.contains(e.target)) {
+                    cartMenuDisplay.classList.add("hidden");
+                }
+            });
+            
+            // Evitar que los clics dentro del carrito lo cierren
+            cartMenuDisplay.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        }
+    }
+
+    //Fin Manejo del carrito de compras
 
     /*
     // Si no existe el menú hamburguesa, crearlo

@@ -126,20 +126,22 @@ img {
 
 /* Estilos para secciones de usuario y carrito */
 /* Añadir posición relativa al contenedor del usuario */
-.nav_user {
+.nav_user, .nav_shopping_car {
     flex: 0 1 auto;
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    position: relative; /* Añadido para que sea el punto de referencia para la posición absoluta del menú */
+    position: relative; /* Añadido para que sea el punto de referencia para la posición absoluta del menú de usuario y del carrito*/
 }
 
-.nav_user, 
-.nav_shopping_car {
-    flex: 0 1 auto;
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
+.shopping_cart_menu {
+    position: absolute;
+    top: 100%; /* Posiciona justo debajo del icono */
+    right: 0;
+    z-index: 100;
+    margin-top: 5px; /* Pequeño margen para separar del icono */
+    width: 400px; /* Ancho del menú del carrito */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .nav_user .nav_user_button, 
@@ -609,6 +611,257 @@ img {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
+
+/*
+Start Shipping card Styles
+*/
+
+.separator {
+    border-top: 1.5px solid var(--color-border);
+  }
+  
+  .master-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+    background-color: transparent; /*Pongo el fondo transparente para que sea coherente con el patrón de diseño*/
+  }
+  
+  .card {
+    width: 400px;
+    background-color: var(--color-text);
+    background-image: linear-gradient(
+      139deg,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 100%
+    );
+  
+  }
+  
+  .title {
+    width: 380px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-accent);
+  
+  }
+  
+  /* cart */
+  .cart {
+    border-radius: 19px 19px 7px 7px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+  }
+  
+  .cart .products {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+  }
+  
+  .cart .products .product {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px 1fr;
+    gap: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+  
+  .cart .products .product span {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .cart .product_quantity {
+    height: 30px;
+    width: 75px;
+    display: flex;          /* Cambiamos a flexbox para mejor control horizontal */
+    flex-direction: row;    /* Asegura que los elementos se muestren en fila */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center;    /* Centra los elementos verticalmente */
+    margin: auto;
+    background-color: var(--color-border);
+    border: 1px solid var(--color-text);
+    border-radius: 7px;
+    filter: drop-shadow(0px 1px 0px var(--color-text)/* #efefef*/)
+      drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  }
+  .cart .product_quantity_less{
+    margin-right: 7px;
+    
+  }
+  
+  .cart .product_quantity_less:hover{
+    color: var(--color-accent);
+  }
+  
+  .cart .product_quantity_plus{
+    margin-left: 7px;
+  }
+  
+  .cart .product_quantity_plus:hover{
+    color: var(--color-accent);
+  }
+  
+  .cart .product_quantity_delete{
+    margin-left: 15px;
+  }
+  
+  .cart .product_quantity_delete:hover{
+    color: red;
+  }
+  
+  .cart .product_quantity label {
+    width: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  
+  .cart .product_quantity button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    padding-bottom: 2px;
+  }
+  
+  .card .small {
+    font-size: 23px;
+    margin: 0 0 auto auto;
+    color: var(--color-text);
+  }
+  
+  .card .small sup {
+    font-size: px;
+  }
+  
+  /* Checkout */
+  .checkout {
+    border-radius: 9px 9px 19px 19px;
+  }
+  
+  .checkout .details {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 10px;
+    gap: 5px;
+    border-bottom: 1px solid var(--color-border);
+    
+  }
+  
+  .checkout .details span {
+    font-size: 13px;
+    font-weight: 600;
+    
+  }
+  
+  .checkout .details span:nth-child(odd) {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: auto auto auto 0;
+  }
+  
+  .checkout .details span:nth-child(even) {
+    font-size: 14px;
+    font-weight: 600;
+    color:var(--color-accent);
+    margin: auto 0 auto auto;
+  }
+  
+  .checkout .checkout--footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 20px;
+  }
+  
+  .price {
+    position: relative;
+    font-size: 22px;
+    color: var(--color-accent);
+    font-weight: 900;
+  }
+  
+  .price sup {
+    font-size: 13px;
+  }
+  
+  .price sub {
+    width: fit-content;
+    position: absolute;
+    font-size: 11px;
+    bottom: 5px;
+    display: inline-block;
+  }
+  
+  .checkout .checkout-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 36px;
+    background: linear-gradient(180deg, var(--color-button) 0%, var(--color-border), var(--color-button) 100%);
+    box-shadow: 0px 0.5px 0.5px var(--color-text), 0px 1px 0.5px var(--color-background);
+    border-radius: 7px;
+    border: 0;
+    outline: none;
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  .checkout .checkout-btn:hover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    height: 36px;
+    background: linear-gradient(180deg, var(--color-button) 0%, var(--color-border), var(--color-background) 100%);
+    box-shadow: 0px 0.5px 0.5px var(--color-text), 0px 1px 0.5px var(--color-background);
+    border-radius: 7px;
+    border: 0;
+    outline: none;
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  /*
+  End Shipping card Styles
+  */
+
+
 .hidden {
     display: none;
 }
+
