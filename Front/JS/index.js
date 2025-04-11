@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <label class="title">Your cart</label>
                     <div class="products">
                         <div class="product">
-                            <img src="images/Burger_1.png" alt="imagen-producto" height="60" width="60">
+                            <img src="images/MainFood/Burger_1.png" alt="imagen-producto" height="60" width="60">
                             <div>
                                 <span class="product_name">Cheese Burger coin queso y bacon</span>
                             </div>
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="separator"></div>
                         
                         <div class="product">
-                            <img src="images/Burger_1.png" alt="imagen-producto" height="60" width="60">
+                            <img src="images/Drinks/CocaCola_Original.jpg" alt="imagen-producto" height="60" width="60">
                             <div>
                                 <span class="product_name">Cheese Burger coin queso y bacon</span>
                             </div>
