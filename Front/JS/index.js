@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //o el icono de usuario según corresponda 
     var navUser = document.querySelector('.nav_user');
     var usuario_estatus = localStorage.getItem("usuario");
-    localStorage.setItem("usuario", "activo");
+    localStorage.setItem("usuario", "inactivo");
     if(navUser) {
         if(usuario_estatus!="activo"){
             //Creo el primer botón de Sing in

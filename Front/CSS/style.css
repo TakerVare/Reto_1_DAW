@@ -186,7 +186,7 @@ img {
     right: 0; /* Alineado a la derecha del contenedor del usuario */
     z-index: 100;
     min-width: 150px;
-    margin-top: 0px; /* Pequeño margen para separar del icono */
+    margin-top: 5px; /* Pequeño margen para separar del icono */
   }
   
   .card_user_menu .separator {
