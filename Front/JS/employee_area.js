@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar elementos del DOM
     var navMenu = document.querySelector('.nav_menu');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Creo las variables cartIcon y cartMenuDisplay para manejar el icono del carrito y su menú desplegable
     var cartIcon = null;
     var cartMenuDisplay = null;
+    
     // Creación dinámica de los elementos del menú de navegación
     var userRole = "employee";
     function createMenuItems() {
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { text: 'Deals', url: 'deals.html', icon: '<i class="fas fa-percent"></i>' }
             ];
         }
-    
+        
         // Limpiar el menú existente
         if (navMenu) {
             navMenu.innerHTML = '';
@@ -394,4 +396,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     //End Burger menu
-});
+});*/

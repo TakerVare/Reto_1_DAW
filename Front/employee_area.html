@@ -8,10 +8,12 @@
     <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/employee_area.css">
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
     <script src="js/Plantilla.js"></script>
+    <script src="Js/employee_area.js"></script>
 </head>
 <body>
     <div class="header">
@@ -33,7 +35,27 @@
         </div>
     </div>
     <div class="body">
-        <p>Esto es el body</p>
+        
+        <div class="body_employee_area">
+            <div class="body_employee_area_bunner">
+                <i class="fas fa-user-tie"> Employee Area</i>
+            </div>
+            <div class="body_employee_area_navigation_menu">
+                <ul>
+                    <li><a href="#edit-products"><i class="fas fa-hamburger"> Edit Products</i></a></li>
+                    <li><a href="#edit-roles"><i class="fa-solid fa-shield"> Edit Roles</i></a></li>
+                    <li><a href="#edit-employees"><i class="fas fa-user-tie"> Edit Roles</i></a></li>
+                    <li><a href="#pos-area"><i class="fa-solid fa-dollar-sign"> POS Area</i></a></li>
+                </ul>
+            </div>
+            <div class="body_employee_area_content">
+                <div class="body_employee_area_content_products"></div>
+                <div class="body_employee_area_content_roles"></div>
+                <div class="body_employee_area_content_employees"></div>
+                <div class="body_employee_area_content_products"></div>
+            </div>
+        </div>
+        <p>Esto es el body del área de empleado</p>
     </div>
     <div class="footer">
         

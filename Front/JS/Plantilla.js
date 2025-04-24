@@ -10,15 +10,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Creo las variables cartIcon y cartMenuDisplay para manejar el icono del carrito y su menú desplegable
     var cartIcon = null;
     var cartMenuDisplay = null;
-    
     // Creación dinámica de los elementos del menú de navegación
+    var userRole = "employee";    
     function createMenuItems() {
         // Definir los elementos del menú
-        const menuItems = [
-            { text: 'Menus', url: '#menus', icon: '<i class="fas fa-utensils"></i>' },
-            { text: 'Products', url: '#products', icon: '<i class="fas fa-hamburger"></i>' },
-            { text: 'Deals', url: '#deals', icon: '<i class="fas fa-percent"></i>' }
-        ];
+        var menuItems = [];
+        if (userRole === "employee")
+        {
+            menuItems = [
+                { text: 'Menus', url: 'menus.html', icon: '<i class="fas fa-utensils"></i>' },
+                { text: 'Products', url: 'products.html', icon: '<i class="fas fa-hamburger"></i>' },
+                { text: 'Deals', url: 'deals.html', icon: '<i class="fas fa-percent"></i>' },
+                { text: 'Employee Area', url: 'employee_area.html', icon: '<i class="fas fa-user-tie"></i>' }
+            ];
+        }
+        if (userRole != "employee")
+        {
+            menuItems = [
+                { text: 'Menus', url: 'menus.html', icon: '<i class="fas fa-utensils"></i>' },
+                { text: 'Products', url: 'products.html', icon: '<i class="fas fa-hamburger"></i>' },
+                { text: 'Deals', url: 'deals.html', icon: '<i class="fas fa-percent"></i>' }
+            ];
+        }
         
         // Limpiar el menú existente
         if (navMenu) {
