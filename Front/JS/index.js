@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Seleccionar elementos del DOM
     var navMenu = document.querySelector('.nav_menu');
+    // Añadimos esta línea para definir navBurgerMenu
+    var navBurgerMenu = document.querySelector('.nav_burger_menu');
     
     // Inicializamos estas variables como null
     var userIcon = null;
@@ -305,7 +307,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //Fin Manejo del carrito de compras
 
     //Start burger menu
-    // Buscamos el elemento .nav_burger_menu, si no existe, lo creamos
+    // Buscamos el elemento .nav_burger_menu
+    // Ya definimos navBurgerMenu al inicio del script
     
     var hamburger = document.querySelector('.hamburger');   //Creo la variable hamburguesa
     
