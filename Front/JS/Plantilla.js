@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             menuItems = [
                 { text: 'Menus', url: 'menus.html', icon: '<i class="fas fa-utensils"></i>' },
                 { text: 'Products', url: 'products.html', icon: '<i class="fas fa-hamburger"></i>' },
-                { text: 'Deals', url: 'deals.html', icon: '<i class="fas fa-percent"></i>' },
+                { text: 'Offers', url: 'offers.html', icon: '<i class="fas fa-percent"></i>' },
                 { text: 'Employee Area', url: 'employee_area.html', icon: '<i class="fas fa-user-tie"></i>' }
             ];
         }
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             menuItems = [
                 { text: 'Menus', url: 'menus.html', icon: '<i class="fas fa-utensils"></i>' },
                 { text: 'Products', url: 'products.html', icon: '<i class="fas fa-hamburger"></i>' },
-                { text: 'Deals', url: 'deals.html', icon: '<i class="fas fa-percent"></i>' }
+                { text: 'Offers', url: 'offers.html', icon: '<i class="fas fa-percent"></i>' }
             ];
         }
         

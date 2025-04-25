@@ -12,8 +12,8 @@
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
-    <script src="js/Plantilla.js"></script>
-    <script src="Js/employee_area.js"></script>
+    <script src="JS/index.js"></script>
+    <script src="JS/employee_area.js"></script>
 </head>
 <body>
     <div class="header">
@@ -34,25 +34,99 @@
             <!-- El menú del carrito se generará dinámicamente con JavaScript -->
         </div>
     </div>
-    <div class="body">
+    <div class="main">
         
-        <div class="body_employee_area">
-            <div class="body_employee_area_bunner">
+        <div class="main_employee_area">
+            <div class="main_employee_area_bunner">
                 <i class="fas fa-user-tie"> Employee Area</i>
             </div>
-            <div class="body_employee_area_navigation_menu">
-                <ul>
-                    <li><a href="#edit-products"><i class="fas fa-hamburger"> Edit Products</i></a></li>
-                    <li><a href="#edit-roles"><i class="fa-solid fa-shield"> Edit Roles</i></a></li>
-                    <li><a href="#edit-employees"><i class="fas fa-user-tie"> Edit Roles</i></a></li>
-                    <li><a href="#pos-area"><i class="fa-solid fa-dollar-sign"> POS Area</i></a></li>
-                </ul>
-            </div>
-            <div class="body_employee_area_content">
-                <div class="body_employee_area_content_products"></div>
-                <div class="body_employee_area_content_roles"></div>
-                <div class="body_employee_area_content_employees"></div>
-                <div class="body_employee_area_content_products"></div>
+            
+            <div class="main_employee_area_container">
+                <div class="main_employee_area_navigation_menu">
+                    <ul>
+                        <li><a href="#edit-products"><i class="fas fa-hamburger"> Edit Products</i></a></li>
+                        <li><a href="#edit-roles"><i class="fa-solid fa-shield"> Edit Roles</i></a></li>
+                        <li><a href="#edit-employees"><i class="fas fa-user-tie"> Edit Roles</i></a></li>
+                        <li><a href="#pos-area"><i class="fa-solid fa-dollar-sign"> POS Area</i></a></li>
+                    </ul>
+                </div>
+                <div class="main_employee_area_content">
+                    <!--Estas clases se pintarán por JS-->
+                    <!--hidden-->
+                    <div class="main_employee_area_content_products">
+                        <div class="employee_area_content_action_selection_nav">
+                            <div class="add_selection action_selection_button"> add</div>
+                            <div class="edit_selection action_selection_button"> edit</div>
+                            <div class="delete_selection action_selection_button"> delete</div>
+                        </div>
+                        <div class="employee_area_content_products_form">
+                            <form action="#" method="post" enctype="multipart/form-data">
+                                <div class="employee_area_content_products_form_image">
+                                    <!-- Área para arrastrar y soltar -->
+                                    <div class="drag-drop-area" id="dragDropArea">
+                                        <!-- Imagen de previsualización (inicialmente oculta) -->
+                                        <img id="imagePreview" class="image-preview hidden" alt="Vista previa de la imagen" />
+                                        <!-- Texto e iconos para cuando no hay imagen seleccionada -->
+                                        <div class="upload-prompt" id="uploadPrompt">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                            <p>Arrastra y suelta una imagen aquí<br>o</p>
+                                            <label for="imageInput" class="file-select-button">Seleccionar archivo</label>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="imageInput" name="imageInput" accept="image/*" class="file-input" />
+                                </div>
+                                <div class="employee_area_content_products_first_row">
+                                    <div class="product_id_container">
+                                        <label for="product_id" class="form_input_label">ID: </label>
+                                        <input type="text" id="product_id" name="product_id" class="form_input" disabled="true" value="5">
+                                    </div>
+                                    <div class="product_tax_container">
+                                        <label for="product_tax" class="form_input_label">Product tax: </label>
+                                        <select name="product_tax" id="product_tax" class="form_input">
+                                            <option value="10">10%</option>
+                                            <option value="20">20%</option>
+                                        </select>
+                                    </div>
+                                    <div class="product_category_container">
+                                        <label for="product_category" class="form_input_label">Product category: </label>
+                                        <select name="product_category" id="product_category" class="form_input">
+                                            <option value="1">Hamburgers</option>
+                                            <option value="2">Drinks</option>
+                                            <option value="3">Desserts</option>
+                                            <option value="4">Extras</option>
+                                            <option value="5">Menu</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="employee_area_content_products_second_row">
+                                    <div class="product_name_container">
+                                        <label for="product_name" class="form_input_label">Name: </label>
+                                        <input type="text" id="product_name" name="product_name" class="form_input" value="cheeseBurger" size="100">
+                                    </div>
+                                    <div class="product_price_container">
+                                        <label for="product_price" class="form_input_label">$ </label>
+                                        <input type="number" id="product_price" name="product_price" class="form_input" value="80.25" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="employee_area_content_products_third_row">
+                                    <div class="product_description_container">
+                                        <label for="product_description" class="form_input_label">Description: </label>
+                                        <textarea name="product_description" id="product_description"  class="form_input" size="1000"></textarea>
+                                    </div>
+                                </div>
+                                <div class="employee_area_content_products_quarter_row">
+                                    <div class="selected_action_submit">
+                                        <input type="button" value="Enviar">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="main_employee_area_content_roles"></div>
+                    <div class="main_employee_area_content_employees"></div>
+                    <div class="main_employee_area_pos"></div>
+                </div>
             </div>
         </div>
         <p>Esto es el body del área de empleado</p>

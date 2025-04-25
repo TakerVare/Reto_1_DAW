@@ -275,37 +275,37 @@ img {
 }
 
 /* Estilos del cuerpo */
-.body {
+.main {
     flex: 1;
     padding: 1.5rem;
     font-size: 1rem;
     line-height: 1.6;
     width: 100%;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
 }
 
-.body h1, 
-.body h2, 
-.body h3 {
+.main h1, 
+.main h2, 
+.main h3 {
     color: var(--color-text);
     margin-bottom: 1.2rem;
     font-weight: 700;
 }
 
-.body h1 {
+.main h1 {
     font-size: 2.5rem;
 }
 
-.body h2 {
+.main h2 {
     font-size: 2rem;
 }
 
-.body h3 {
+.main h3 {
     font-size: 1.5rem;
 }
 
-.body p {
+.main p {
     margin-bottom: 1rem;
 }
 
@@ -340,8 +340,8 @@ img {
 }
 
 /* Estilos para botones generales */
-.body button,
-.body .btn {
+.main button,
+.main .btn {
     background-color: var(--color-button);
     color: var(--color-text);
     border: 2px solid var(--color-border);
@@ -355,8 +355,8 @@ img {
     display: inline-block;
 }
 
-.body button:hover,
-.body .btn:hover {
+.main button:hover,
+.main .btn:hover {
     background-color: var(--color-text);
     color: var(--color-button);
 }
@@ -380,7 +380,7 @@ img {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
     padding: 1rem 0;
 }
@@ -774,7 +774,7 @@ Start Shipping card Styles
         padding: 0.8rem;
     }
     
-    .body {
+    .main {
         padding: 1.2rem;
     }
     
@@ -847,11 +847,11 @@ Start Shipping card Styles
         text-align: center;
     }
     
-    .body h1 {
+    .main h1 {
         font-size: 2rem;
     }
     
-    .body h2 {
+    .main h2 {
         font-size: 1.7rem;
     }
     
@@ -892,19 +892,19 @@ Start Shipping card Styles
         flex: 0 1 auto;
     }
     
-    .body {
+    .main {
         padding: 1rem;
     }
     
-    .body h1 {
+    .main h1 {
         font-size: 1.8rem;
     }
     
-    .body h2 {
+    .main h2 {
         font-size: 1.5rem;
     }
     
-    .body h3 {
+    .main h3 {
         font-size: 1.3rem;
     }
     
@@ -966,8 +966,9 @@ Start Shipping card Styles
         font-size: 18px;
     }
     
-    .body {
-        max-width: 1400px;
+    .main {
+        /*max-width: 1400px;*/
+        width: 100%;
     }
 }
 
