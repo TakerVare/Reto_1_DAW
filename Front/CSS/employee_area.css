@@ -446,17 +446,23 @@ input[type="number"] {
     height: 150px;
 }
 
+/* Products quarter row */
+
+.employee_area_content_products_quarter_row{
+    border-bottom: 3px solid var(--color-border);
+    
+}
+
 .employee_area_content_products_quarter_row .selected_action_submit {
     text-align: right;
     padding-top: 1%;
     padding-right: 5%;
+    padding-bottom: 2%;
     
 }
 
 .employee_area_content_products_quarter_row .selected_action_submit input{
-    
     font-size: 18px;
-    
     background-color: var(--color-accent);
     color: var(--color-text);
     padding: 8px 16px;
@@ -476,5 +482,102 @@ input[type="number"] {
     color: var(--color-accent);
 }
 
+/* Products fifth row */
+.employee_area_content_products_fifth_row{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    border-bottom: 3px solid var(--color-border);
+    align-items: left;
+    align-content: left;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_fifth_row .product_card{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    align-items: left;
+    align-content: left;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    justify-content: left;
+    column-gap: 20px;
+}
+.employee_area_content_products_fifth_row .product_card .product_list_item {
+    display: grid; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    border: 3px solid var(--color-border);
+    align-items: left;
+    align-content: left;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+
+.employee_area_content_products_fifth_row .product_card .product_list_item .product_list_item_first_row{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    align-items: left;
+    align-content: left;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_fifth_row .product_card .product_list_item .product_list_item_first_row .product_list_item_first_row_first_colum{
+    width: 80%;
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: left;
+    align-content: left;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_fifth_row .product_card .product_list_item .product_list_item_first_row .product_list_item_first_row_second_colum{
+    width: 20%;
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: right;
+    align-items: right;
+    align-content: right;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_fifth_row .product_card .product_list_item .product_list_item_second_row{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: column; /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: left;
+    align-content: left;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    justify-content: left;
+    column-gap: 20px;
+}
 
 /* Fin área de edición de productos */

@@ -117,7 +117,7 @@ img {
     position: absolute;
     top: 100%; /* Posiciona justo debajo del icono */
     right: 0;
-    z-index: 100;
+    z-index: 500;
     margin-top: 5px; /* Pequeño margen para separar del icono */
     width: 400px; /* Ancho del menú del carrito */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
