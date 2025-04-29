@@ -1,0 +1,992 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Reseteo de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables CSS para facilitar mantenimiento */
+:root {
+    --color-background: #D4E4D3;    /* Verde Pastel */
+    --color-text: #3B4C44;          /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;        /* Amarillo dorado */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    /*--color-button: #6B8B3A;*/
+    --color-border: #FFB066;        /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+/* Estilos generales */
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevenir scroll horizontal */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos del encabezado */
+.header {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav_logo {
+    flex: 1 1 200px;
+    max-width: 400px;
+    padding: 0.5rem;
+}
+
+.nav_logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+/* Contenedor para los elementos de navegación */
+.nav_menu {
+    flex: 2 1 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+
+
+/* Estilos para botones del menú */
+.nav_menu button, 
+.nav_menu a {
+    background-color: transparent;
+    border: none;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav_menu svg {
+    fill: var(--color-border);
+    width: 24px;
+    height: 24px;
+}
+
+.nav_menu button:hover, 
+.nav_menu a:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+}
+
+/* Estilos para secciones de usuario y carrito */
+/* Añadir posición relativa al contenedor del usuario */
+.nav_user, .nav_shopping_car {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    position: relative; /* Añadido para que sea el punto de referencia para la posición absoluta del menú de usuario y del carrito*/
+}
+
+.shopping_cart_menu {
+    position: absolute;
+    top: 100%; /* Posiciona justo debajo del icono */
+    right: 0;
+    z-index: 100;
+    margin-top: 5px; /* Pequeño margen para separar del icono */
+    width: 400px; /* Ancho del menú del carrito */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav_user .nav_user_button, 
+.nav_shopping_car button {
+    background-color: var(--color-button);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nav_user #nav_user_icon {
+    width: 2.5rem;
+    height: 2.5rem; 
+}
+
+/*Tarjeta nav_user_menu*/
+.card_user_menu {
+    width: 170px;
+    background-color: var(--color-text);
+    background-image: linear-gradient(
+      139deg,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 100%
+    );
+    
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+    padding: 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 100%; /* Justo debajo del icono */
+    right: 0; /* Alineado a la derecha del contenedor del usuario */
+    z-index: 100;
+    min-width: 170px;
+    margin-top: 5px; /* Pequeño margen para separar del icono */
+  }
+  
+  .card_user_menu .separator {
+    border-top: 1.5px solid var(--color-border);
+  }
+  
+  .card_user_menu .list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px 5px;
+  }
+  
+  .card_user_menu .list .element {
+    display: flex;
+    align-items: center;
+    color: var(--color-text); 
+    background-color: var(--color-button);
+    gap: 15px;
+    transition: all 0.3s ease-out;
+    padding: 4px 7px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+    cursor: pointer;
+  }
+  
+  .card_user_menu .list .element svg {
+    width: 19px;
+    height: 19px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .card_user_menu .list .element .label {
+    font-weight: 600;
+  }
+  
+  .card_user_menu .list .element:hover {
+    color: var(--color-button); 
+    background-color: var(--color-text);
+    transform: translate(1px, -1px);
+  }
+  
+  .card_user_menu .list .element:active {
+    transform: scale(0.99);
+  }
+  
+  .card_user_menu .list:not(:last-child) .element:hover svg {
+    stroke: var(--color-button);
+  }
+  
+  .element:hover svg {
+      stroke: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child svg {
+      
+    stroke: var(--color-text);
+  }
+  .card_user_menu .list:last-child .element {
+    color: var(--color-text);
+    background-color: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child .element:hover {
+    color: var(--color-button);
+    background-color: var(--color-text);
+    stroke: var(--color-button);
+  }
+  
+  .card_user_menu .list:last-child .element:hover svg{
+    stroke: var(--color-button);
+  }
+/*Fin tarjeta nav_user_menu*/  
+
+.fas.fa-shopping-cart {
+    font-size: 2rem; /* Tamaño del icono */
+    color: #D1A03D;  /* Color del icono */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+/* Ajustes para la animación del carrito */
+
+.fas.fa-shopping-cart:hover {
+    font-size: 3rem; /* Tamaño del icono */
+    color: #D1A03D;  /* Color del icono */
+}
+
+.nav_user .nav_user_button:hover, 
+.nav_shopping_car button:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+}
+
+.nav_user #nav_user_icon:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem; 
+}
+
+/* Estilos del cuerpo */
+.main {
+    flex: 1;
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    width: 100%;
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+}
+
+.main h1, 
+.main h2, 
+.main h3 {
+    color: var(--color-text);
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+}
+
+.main h1 {
+    font-size: 2.5rem;
+}
+
+.main h2 {
+    font-size: 2rem;
+}
+
+.main h3 {
+    font-size: 1.5rem;
+}
+
+.main p {
+    margin-bottom: 1rem;
+}
+
+/* Contenedor de grid para elementos flexibles */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+/* Estilos para tarjetas y elementos de contenido */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 1.2rem;
+}
+
+/* Estilos para botones generales */
+.main button,
+.main .btn {
+    background-color: var(--color-button);
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    padding: 0.7rem 1.2rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.main button:hover,
+.main .btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+}
+
+/* Estilos del pie de página */
+.footer {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 3px solid var(--color-border);
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+/* Estilos para la navegación del footer */
+.footer_nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    /*max-width: 1200px;*/
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+.footer_nav > div {
+    flex: 1 1 200px;
+    margin: 1rem;
+    text-align: left;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.footer_nav_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer_nav_logo img {
+    max-width: 120px;
+    height: auto;
+}
+
+.footer_nav ul {
+    list-style-type: none;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+}
+
+.footer_nav li {
+    margin: 0.5rem 0;
+    color: var(--color-background);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer_nav li:hover {
+    color: var(--color-border);
+    cursor: pointer;
+}
+
+/* Clases de utilidad para la tipografía del logo */
+.logo-text {
+    font-family: var(--font-logo);
+    color: var(--color-accent);
+}
+
+/* Estilos para bordes */
+.border-accent {
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+
+/*
+Start Shipping card Styles
+*/
+
+.separator {
+    border-top: 1.5px solid var(--color-border);
+}
+  
+.master-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+    background-color: transparent; /*Pongo el fondo transparente para que sea coherente con el patrón de diseño*/
+}
+  
+.card {
+    width: 400px;
+    background-color: var(--color-text);
+    background-image: linear-gradient(
+      139deg,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 0%,
+      rgba(59, 76, 68, 1) 100%
+    );
+  
+}
+  
+.title {
+    width: 400px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-accent);
+  
+}
+  
+  /* cart */
+.cart {
+    border-radius: 19px 19px 7px 7px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+}
+  
+.cart .products {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+}
+  
+.cart .products .product {
+    display: grid;
+    grid-template-columns: 60px 1fr 80px 1fr;
+    gap: 10px;
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border-radius: 10px 10px 10px 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+  
+.cart .products .product span {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 8px;
+    display: block;
+}
+  
+.cart .product_quantity {
+    height: 30px;
+    width: 75px;
+    display: flex;          /* Cambiamos a flexbox para mejor control horizontal */
+    flex-direction: row;    /* Asegura que los elementos se muestren en fila */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    align-items: center;    /* Centra los elementos verticalmente */
+    margin: auto;
+    background-color: var(--color-border);
+    border: 1px solid var(--color-text);
+    border-radius: 7px;
+    filter: drop-shadow(0px 1px 0px var(--color-text)/* #efefef*/)
+      drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+}
+
+.cart .product_quantity_less{
+    margin-right: 7px;
+    
+}
+  
+  .cart .product_quantity_less:hover{
+    color: var(--color-accent);
+  }
+  
+  .cart .product_quantity_plus{
+    margin-left: 7px;
+  }
+  
+  .cart .product_quantity_plus:hover{
+    color: var(--color-accent);
+  }
+  
+  .cart .product_quantity_delete{
+    margin-left: 15px;
+  }
+  
+  .cart .product_quantity_delete:hover{
+    color: red;
+  }
+  
+  .cart .product_quantity label {
+    width: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  
+  .cart .product_quantity button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    padding-bottom: 2px;
+  }
+  
+  .card .small {
+    font-size: 23px;
+    margin: 0 0 auto auto;
+    color: var(--color-text);
+  }
+  
+  .card .small sup {
+    font-size: px;
+  }
+  
+  /* Checkout */
+  .checkout {
+    border-radius: 9px 9px 19px 19px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+  }
+  
+  .checkout .details {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 10px;
+    gap: 5px;
+    border-bottom: 1px solid var(--color-border);
+    
+  }
+  
+  .checkout .details span {
+    font-size: 13px;
+    font-weight: 600;
+    
+  }
+  
+  .checkout .details span:nth-child(odd) {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: auto auto auto 0;
+  }
+  
+  .checkout .details span:nth-child(even) {
+    font-size: 14px;
+    font-weight: 600;
+    color:var(--color-accent);
+    margin: auto 0 auto auto;
+  }
+  
+  .checkout .checkout--footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 20px;
+  }
+  
+  .price {
+    position: relative;
+    font-size: 22px;
+    color: var(--color-accent);
+    font-weight: 900;
+  }
+  
+  .price sup {
+    font-size: 13px;
+  }
+  
+  .price sub {
+    width: fit-content;
+    position: absolute;
+    font-size: 11px;
+    bottom: 5px;
+    display: inline-block;
+  }
+  
+  .checkout .checkout-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 36px;
+    background: linear-gradient(180deg, var(--color-button) 0%, var(--color-border), var(--color-button) 100%);
+    box-shadow: 0px 0.5px 0.5px var(--color-text), 0px 1px 0.5px var(--color-background);
+    border-radius: 7px;
+    border: 0;
+    outline: none;
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  .checkout .checkout-btn:hover {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 165px;
+    height: 36px;
+    background: linear-gradient(180deg, var(--color-button) 0%, var(--color-border), var(--color-background) 100%);
+    box-shadow: 0px 0.5px 0.5px var(--color-text), 0px 1px 0.5px var(--color-background);
+    border-radius: 7px;
+    border: 0;
+    outline: none;
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  }
+  
+  /*
+  End Shipping card Styles
+  */
+
+  /*Start burger menu*/
+/* Estilos para el contenedor del botón hamburguesa */
+.nav_burger_menu {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+/* Hamburger menu para móviles - inicialmente oculto */
+
+.hamburger {
+    /*display: none;*/
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger div {
+    width: 2rem;
+    height: 0.25rem;
+    background-color: var(--color-border);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+}
+
+/* Estilos para los elementos del menú dinámico */
+.nav_menu_item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+.nav_menu_item:hover {
+    background-color: rgba(209, 160, 61, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav_menu_item i {
+    font-size: 1.2rem;
+}
+
+.nav_menu_item span {
+    font-weight: 600;
+}
+
+/* Clases para el menú hamburguesa animado */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+  /*End burger menu*/
+
+/* Media queries para responsividad */
+
+/* Tabletas */
+@media (max-width: 900px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .header {
+        padding: 0.8rem;
+    }
+    
+    .main {
+        padding: 1.2rem;
+    }
+    
+    .nav_menu {
+        order: 3;
+        flex: 1 0 100%;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .header {
+        padding: 0.8rem;
+        position: relative;
+    }
+    
+    /* Mostrar el botón hamburguesa en móviles */
+    .nav_burger_menu {
+        display: flex; /* Hacemos visible el contenedor del botón hamburguesa */
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    /* Estilo del menú desplegable */
+    .nav_menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background-color: var(--color-text);
+        z-index: 9;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 4rem;
+    }
+
+    /*Start burger menu*/
+    
+    .nav_menu_item {
+        width: 90%;
+        padding: 12px 16px;
+        margin: 6px 0;
+        border-bottom: 1px solid rgba(209, 160, 61, 0.1);
+    }
+    
+    .nav_menu_item:hover {
+        background-color: rgba(209, 160, 61, 0.2);
+    }
+    /*End burger menu*/
+    
+    .nav_menu.open {
+        transform: translateX(0);
+    }
+    
+    .nav_menu button, 
+    .nav_menu a {
+        width: 80%;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+    
+    .main h1 {
+        font-size: 2rem;
+    }
+    
+    .main h2 {
+        font-size: 1.7rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .footer_nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer_nav > div {
+        width: 100%;
+        margin: 0.8rem 0;
+        text-align: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+    
+    .header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav_logo {
+        flex: 1 1 150px;
+    }
+    
+    .nav_user, .nav_user_button,
+    .nav_shopping_car {
+        flex: 0 1 auto;
+    }
+    
+    .main {
+        padding: 1rem;
+    }
+    
+    .main h1 {
+        font-size: 1.8rem;
+    }
+    
+    .main h2 {
+        font-size: 1.5rem;
+    }
+    
+    .main h3 {
+        font-size: 1.3rem;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    /*Start Shopping cart*/
+    .card {
+        width: 320px;
+        
+    }
+
+    .title {
+        width: 320px;
+        height: 40px;        
+    }
+      
+    .shopping_cart_menu {
+        width: 320px; /* Ligeramente más pequeño en móviles */
+    }
+    
+    .cart .product_quantity {
+        height: 30px;
+        width: 75px;        
+    }
+
+    .cart .product_quantity_less{
+        margin-right: 5px;        
+    }
+
+    .cart .product_quantity_plus{
+        margin-left: 5px;
+    }
+
+    .card .small {
+        font-size: 20px;
+        margin: 0 0 auto auto;
+        color: var(--color-text);
+    }
+
+    .cart .products .product span {
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        
+    }
+
+    .shopping_cart_menu .master-container {
+        transform: scale(0.9);
+        transform-origin: top right;
+    }
+    /*End Shopping cart*/
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1400px) {
+    html {
+        font-size: 18px;
+    }
+    
+    .main {
+        /*max-width: 1400px;*/
+        width: 100%;
+    }
+}
+
+/* Clases para el menú hamburguesa animado */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+.hidden {
+    display: none;
+}
+

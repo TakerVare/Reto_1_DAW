@@ -1,0 +1,337 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Variables CSS para facilitar mantenimiento */
+:root {
+    --color-background: #D4E4D3;    /* Verde Pastel */
+    --color-text: #3B4C44;          /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;        /* Amarillo dorado */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    /*--color-button: #6B8B3A;*/
+    --color-border: #FFB066;        /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    margin: 0;
+    padding: 0;
+    box-sizing:content-box;
+    width: 100%;
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main_employee_area {
+    font-family: var(--font-main);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevenir scroll horizontal */
+    border: 3px;
+}
+
+/* Estilos del encabezado */
+.main_employee_area_bunner {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    border-color: var(--color-border);
+    padding: 1rem;
+    /*display: flex;*/
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 2.5rem;
+    border-style: solid;
+    /*border-left: 1px;
+    border-right: 1px;*/
+    border-top: 3px solid var(--color-border);
+}
+
+/* Contenedor de la navegación y el contenido */
+.main_employee_area_container {
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+}
+
+.main_employee_area_navigation_menu {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* En lugar de max-width para asegurar que ocupe exactamente el 30% */
+    border-style: solid;
+    border-top: 0px;
+    border-color: var(--color-border);
+}
+
+.main_employee_area_navigation_menu a, 
+.main_employee_area_navigation_menu ul li {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding: 0.2rem;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.main_employee_area_navigation_menu button:hover, 
+.main_employee_area_navigation_menu ul li a:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+}
+
+.main_employee_area_content {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 70%; /* Complemento al 100% junto con el menú de navegación */
+    border-style: solid;
+    border-top: 0px;
+    border-color: var(--color-border);
+}
+
+.main_employee_area_content a, 
+.main_employee_area_content ul li {
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    padding: 0.2rem;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.main_employee_area_content button:hover, 
+.main_employee_area_content ul li a:hover {
+    background-color: var(--color-text);
+    color: var(--color-button);
+    cursor: pointer;
+}
+
+.employee_area_content_action_selection_nav {
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    border-bottom: 3px solid var(--color-border);
+    align-items: center;
+    align-content: center;
+    padding: 2%;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.action_selection_button{
+    background-color: var(--color-text);
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    min-width: 50px;
+    padding: 2%;
+    background-color: var(--color-button);
+    color: var(--color-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: var(--font-main);
+}
+
+.action_selection_button:hover{
+    background-color: var(--color-text);
+    color: var(--color-button);
+}
+
+.employee_area_content_action_selection_nav .add_selection{
+    width: 30%;
+}
+.employee_area_content_action_selection_nav .edit_selection{
+    width: 30%;    
+}
+.employee_area_content_action_selection_nav .delete_selection{
+    width: 30%;    
+}
+
+.delete_selection{
+    background-color: red;
+    color: yellow;
+}
+
+.delete_selection:hover{
+    background-color: yellow;
+    color: red;
+}
+
+
+/* Media queries para responsividad */
+/* Para dispositivos móviles, el menú y contenido se apilan verticalmente */
+@media (max-width: 768px) {
+    .main_employee_area_container {
+        flex-direction: column;
+    }
+    
+    .main_employee_area_navigation_menu,
+    .main_employee_area_content {
+        width: 100%;
+    }
+}
+/*
+.hidden {
+    display: none;
+}*/
+
+/* Estilos para el área de arrastrar y soltar */
+.employee_area_content_products_form_image {
+    margin-bottom: 20px;
+}
+
+.drag-drop-area {
+    width: 100%;
+    height: 250px;
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.drag-drop-area.dragover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--color-accent);
+}
+
+.upload-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--color-accent);
+}
+
+.upload-prompt i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.file-select-button {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.file-select-button:hover {
+    background-color: var(--color-button);
+    transform: translateY(-2px);
+}
+
+.file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Estilos para la previsualización de la imagen */
+.image-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Mensaje para eliminar la imagen */
+.remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.drag-drop-area:hover .remove-image {
+    opacity: 1;
+}
+
+.employee_area_content_products_first_row{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    border-bottom: 3px solid var(--color-border);
+    align-items: left;
+    align-content: left;
+    padding: 5%;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_first_row .product_id_container input{
+    width: 25px;
+}
+.employee_area_content_products_second_row{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: center;
+    border-bottom: 3px solid var(--color-border);
+    align-items: left;
+    align-content: left;
+    padding: 5%;
+    justify-content: left;
+    column-gap: 20px;
+}
+
+.employee_area_content_products_second_row .product_name_container input{
+    width: 80%;
+}
