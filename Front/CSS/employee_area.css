@@ -72,7 +72,7 @@
     color: var(--color-accent);
     padding-bottom: 1rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 30%; /* En lugar de max-width para asegurar que ocupe exactamente el 30% */
+    width: 20%; /* En lugar de max-width para asegurar que ocupe exactamente el 30% */
     border-style: solid;
     border-top: 0px;
     border-color: var(--color-border);
@@ -107,7 +107,7 @@
     color: var(--color-accent);
     padding-bottom: 1rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 70%; /* Complemento al 100% junto con el menú de navegación */
+    width: 80%; /* Complemento al 100% junto con el menú de navegación */
     border-style: solid;
     border-top: 0px;
     border-color: var(--color-border);
@@ -173,14 +173,8 @@
     color: var(--color-button);
 }
 
-.employee_area_content_action_selection_nav .add_selection{
+.employee_area_content_action_selection_nav div{
     width: 30%;
-}
-.employee_area_content_action_selection_nav .edit_selection{
-    width: 30%;    
-}
-.employee_area_content_action_selection_nav .delete_selection{
-    width: 30%;    
 }
 
 .delete_selection{
@@ -206,11 +200,7 @@
         width: 100%;
     }
 }
-/*
-.hidden {
-    display: none;
-}*/
-
+/* Inicio área de edición de productos */
 /* Estilos para el área de arrastrar y soltar */
 .employee_area_content_products_form_image {
     margin-bottom: 20px;
@@ -256,11 +246,16 @@
     cursor: pointer;
     margin-top: 10px;
     transition: all 0.3s ease;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
 }
 
 .file-select-button:hover {
-    background-color: var(--color-button);
-    transform: translateY(-2px);
+    background-color: var(--color-text);
+    color: var(--color-accent);
+    
 }
 
 .file-input {
@@ -303,22 +298,72 @@
     opacity: 1;
 }
 
+/* Products first row */
+
 .employee_area_content_products_first_row{
     display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
     width: 100%;
     flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
     text-align: center;
     border-bottom: 3px solid var(--color-border);
-    align-items: left;
-    align-content: left;
-    padding: 5%;
-    justify-content: left;
-    column-gap: 20px;
+    align-items: center;
+    align-content: center;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-right: 2%;
+    column-gap: 5px;
+    
+}
+.employee_area_content_products_first_row div label{
+    padding-right: 5px;
 }
 
-.employee_area_content_products_first_row .product_id_container input{
-    width: 25px;
+.employee_area_content_products_first_row .product_id_container{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 20%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: left;
 }
+
+.employee_area_content_products_first_row .product_tax_container{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 30%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: center;
+}
+
+.employee_area_content_products_first_row .product_category_container{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 50%;
+    flex-direction:row-reverse;  /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: center;
+    align-content:flex-end;
+}
+
+.employee_area_content_products_first_row div{
+   font-size: 18px;
+}
+
+
+.employee_area_content_products_first_row .product_id_container input{
+    width: 35px;
+    font-size: 18px;
+}
+
+.employee_area_content_products_first_row .product_tax_container #product_tax{
+    width: 60px;
+    font-size: 18px;
+}
+
+.employee_area_content_products_first_row .product_category_container #product_category{
+    width: 160px;
+    font-size: 18px;
+}
+
+/* Products second row */
 .employee_area_content_products_second_row{
     display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
     width: 100%;
@@ -327,11 +372,109 @@
     border-bottom: 3px solid var(--color-border);
     align-items: left;
     align-content: left;
-    padding: 5%;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
     justify-content: left;
     column-gap: 20px;
 }
 
+
 .employee_area_content_products_second_row .product_name_container input{
+    width: 100%;
+}
+
+.employee_area_content_products_second_row div{
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 80%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align: left;
+    align-items: center;
+    font-size: 18px;
+    column-gap: 5px;
+}
+
+.employee_area_content_products_second_row .product_price_container{
+    flex-direction: row-reverse;
+    width: 20%;
+}
+
+.employee_area_content_products_second_row div input,
+select{
+    font-size: 18px;
     width: 80%;
 }
+
+.employee_area_content_products_second_row div #product_price{
+    width: 80px;
+
+}
+
+/* Oculta los botones para navegadores basados en Webkit (Chrome, Safari, etc.) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Oculta los botones para Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Products third row */
+
+.employee_area_content_products_third_row .product_description_container{
+    align-items:initial;
+    font-size: 18px;
+    display: flex; /* Cambiado de grid a flex para alinear horizontalmente */
+    width: 100%;
+    flex-direction: row; /* Asegura que el menú y el contenido estén en fila */
+    text-align:left;
+    border-bottom: 3px solid var(--color-border);
+    padding-left: 2%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-right: 2%;
+    column-gap: 5px;
+    font-size: 18px;
+}
+
+.employee_area_content_products_third_row .product_description_container #product_description{
+    width: 90%;
+    height: 150px;
+}
+
+.employee_area_content_products_quarter_row .selected_action_submit {
+    text-align: right;
+    padding-top: 1%;
+    padding-right: 5%;
+    
+}
+
+.employee_area_content_products_quarter_row .selected_action_submit input{
+    
+    font-size: 18px;
+    
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 1.5px;
+
+}
+
+.employee_area_content_products_quarter_row .selected_action_submit input:hover{
+    background-color: var(--color-text);
+    color: var(--color-accent);
+}
+
+
+/* Fin área de edición de productos */
