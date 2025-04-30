@@ -1,0 +1,5 @@
+[
+    { "id_rol": 1, "name": "Head Chef", "description": "Responsible for supervising the kitchen and coordinating the kitchen team", "permissions": "VIEW_KITCHEN_ORDERS,UPDATE_ORDER_STATUS,MANAGE_KITCHEN_TEAM" },
+    { "id_rol": 2, "name": "Cook", "description": "Prepares dishes according to received orders", "permissions": "VIEW_KITCHEN_ORDERS,UPDATE_ORDER_STATUS" },
+    { "id_rol": 3, "name": "Kitchen Assistant", "description": "Assists the cooks in food preparation", "permissions": "VIEW_KITCHEN_ORDERS" }
+]

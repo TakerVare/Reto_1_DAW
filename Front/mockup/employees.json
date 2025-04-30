@@ -1,0 +1,8 @@
+[
+    { "id_employee": 0, "id_rol": 1, "first_name": "Roberto", "last_name": "Martínez", "email": "roberto.martinez@hamburgueseria.com", "password": "Cambiame2025" },
+    { "id_employee": 1, "id_rol": 1, "first_name": "Laura", "last_name": "Pérez", "email": "laura.perez@hamburgueseria.com", "password": "Cambiame2025" },
+    { "id_employee": 2, "id_rol": 0, "first_name": "Sergio", "last_name": "Fernández", "email": "sergio.fernandez@hamburgueseria.com", "password": "Cambiame2025" },
+    { "id_employee": 3, "id_rol": 0, "first_name": "Ana", "last_name": "López", "email": "ana.lopez@hamburgueseria.com", "password": "Cambiame2025" },
+    { "id_employee": 4, "id_rol": 2, "first_name": "Mario", "last_name": "González", "email": "mario.gonzalez@hamburgueseria.com", "password": "Cambiame2025" },
+    { "id_employee": 5, "id_rol": 2, "first_name": "Carmen", "last_name": "Ramírez", "email": "carmen.ramirez@hamburgueseria.com", "password": "Cambiame2025" }
+]

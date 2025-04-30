@@ -1,0 +1,4 @@
+[
+    { "id_shop": 0, "id_city": 0, "phone_number": "+1 (713) 555-0101", "email": "houston@burweb.com" },
+    { "id_shop": 1, "id_city": 1, "phone_number": "+1 (512) 555-0202", "email": "austin@burweb.com" }
+]

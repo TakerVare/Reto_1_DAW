@@ -1,0 +1,4 @@
+[
+    { "id_payment": 0, "name": "Cash" },
+    { "id_payment": 1, "name": "Credit Card" }
+]

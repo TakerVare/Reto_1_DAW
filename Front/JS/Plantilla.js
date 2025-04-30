@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createMenuItems() {
         // Definir los elementos del menú
         var menuItems = [];
+        /*
         if (userRole === "employee")
         {
             menuItems = [
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { text: 'Offers', url: 'offers.html', icon: '<i class="fas fa-percent"></i>' }
             ];
         }
-        
+        */
         // Limpiar el menú existente
         if (navMenu) {
             navMenu.innerHTML = '';

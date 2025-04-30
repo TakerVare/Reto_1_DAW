@@ -1,0 +1,4 @@
+[
+    { "id_offer": 0, "name": "10% Discount on Orders Over €35", "discount": 10.00, "start_date": "2025-04-01", "end_date": "2025-04-01" },
+    { "id_offer": 1, "name": "15% Discount on Orders Over €50", "discount": 15.00, "start_date": "2025-04-01", "end_date": "2025-04-01" }
+]
