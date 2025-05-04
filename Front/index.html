@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +9,18 @@
     <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
     <script src="js/index.js"></script>
+
 </head>
+
 <body>
     <div class="header">
         <div class="nav_burger_menu">
@@ -33,10 +41,143 @@
         </div>
     </div>
     <div class="main">
+        <!-- Carrusel de imágenes con Swiper -->
+        <div class="swiper mySwiper carrusel-principal">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="images/Menus/Iberico_menu.png" alt="Slide 1" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/MainFood/burger_2.png" alt="Slide 2" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/MainFood/burger_3.png" alt="Slide 3" />
+                </div>
+            </div>
+            <!-- Controles -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+
+        <div class="text-slider-container new-slider">
+            <div class="text-slider">
+                <div class="text-slider-content">
+                    <span>"NEW"</span>
+                    <span class="separator">•</span>
+                    <span>TORREZNATOR</span>
+                    <span class="separator">•</span>
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="text-slider-content">
+                    <span>"NEW"</span>
+                    <span class="separator">•</span>
+                    <span>TORREZNATOR</span>
+                    <span class="separator">•</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Promotional Banner Section -->
+        <div class="promo-banner">
+            <div class="promo-container">
+                <div class="promo-image">
+                    <img src="images/Menus/Torreznator_promo.png" alt="TORREZNEITOR Burger">
+                </div>
+                <div class="promo-content">
+                    <div class="promo-text">
+                        <h2>NEW ARRIVAL!</h2>
+                        <h3>'TORREZNATOR'</h3>
+                        <p>Discover our new burger with crispy pork scratchings, fried egg and our 'Smoky Torrezno'
+                            sauce</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- SLIDER TEXT 1. Add this after your main carousel in the HTML body section -->
+        <div class="text-slider-container">
+            <div class="text-slider">
+                <div class="text-slider-content">
+                    <span>DELICIOUS BURGERS</span>
+                    <span class="separator">•</span>
+                    <span>FRESH INGREDIENTS</span>
+                    <span class="separator">•</span>
+                    <span>AMERICAN STYLE</span>
+                    <span class="separator">•</span>
+                    <span>FAMILY FRIENDLY</span>
+                    <span class="separator">•</span>
+                    <span>BEST QUALITY</span>
+                    <span class="separator">•</span>
+                </div>
+                <!-- Duplicate for seamless scrolling -->
+                <div class="text-slider-content">
+                    <span>DELICIOUS BURGERS</span>
+                    <span class="separator">•</span>
+                    <span>FRESH INGREDIENTS</span>
+                    <span class="separator">•</span>
+                    <span>AMERICAN STYLE</span>
+                    <span class="separator">•</span>
+                    <span>FAMILY FRIENDLY</span>
+                    <span class="separator">•</span>
+                    <span>BEST QUALITY</span>
+                    <span class="separator">•</span>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="category-grid-container">
+            <div class="category-grid">
+                <!-- First Row -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>MENU</h3>
+                        <img src="/api/placeholder/100/100" alt="Menu icon" class="category-icon">
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>BURGERS</h3>
+                        <img src="/api/placeholder/100/100" alt="Burgers icon" class="category-icon">
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>DRINKS</h3>
+                        <img src="images/Drinks/CocaCola_Original.jpg" alt="Drinks icon" class="category-icon">
+                    </div>
+                </div>
+                <!-- Second Row -->
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>SIDES</h3>
+                        <img src="/api/placeholder/100/100" alt="Sides icon" class="category-icon">
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>DESSERTS</h3>
+                        <img src="/api/placeholder/100/100" alt="Desserts icon" class="category-icon">
+                    </div>
+                </div>
+                <div class="category-item">
+                    <div class="category-content">
+                        <h3>DEALS</h3>
+                        <img src="/api/placeholder/100/100" alt="Deals icon" class="category-icon">
+                    </div>
+                </div>
+            </div>
+        </div>
         <p>Esto es el body</p>
     </div>
     <div class="footer">
-        
+
         <div class="footer_nav">
             <div class="footer_nav_logo">
                 <img src="images/Logos/Logo_vertical_256.ico" alt="logo BurWeb.Sa">
@@ -59,6 +200,7 @@
             </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>

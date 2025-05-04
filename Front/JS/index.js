@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var cartIcon = null;
     var cartMenuDisplay = null;
     // Creación dinámica de los elementos del menú de navegación
-    var userRole = "employee";
+    var userRole = "employee";    
     function createMenuItems() {
         // Definir los elementos del menú
         var menuItems = [];
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { text: 'Offers', url: 'offers.html', icon: '<i class="fas fa-percent"></i>' }
             ];
         }
-    
+        
         // Limpiar el menú existente
         if (navMenu) {
             navMenu.innerHTML = '';
@@ -394,4 +394,66 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     //End Burger menu
+
+    //Swiper de texto
+    new Swiper(".mySwiper", {
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        speed: 1000, // 1 segundo (igual que la transición CSS)
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
+    const categoryItems = document.querySelectorAll('.category-item');
+    
+   if (categoryItems.length > 0) {
+       categoryItems.forEach(item => {
+           item.addEventListener('click', function() {
+               // Get the category name
+               const categoryName = this.querySelector('h3').innerText.toLowerCase();
+               
+               // Handle category click
+               console.log(`Category clicked: ${categoryName}`);
+               
+               // Here you can add navigation to the specific category page
+               // For example:
+               // window.location.href = `/${categoryName}.html`;
+               
+               // Or you can use custom routing if you're using a single page application
+               // For now, we'll just add a visual feedback
+               this.classList.add('active');
+               
+               // Remove active class after animation completes
+               setTimeout(() => {
+                   this.classList.remove('active');
+               }, 300);
+           });
+       });
+   }
+   
+   // Additional CSS for the active state
+   const styleSheet = document.createElement('style');
+   styleSheet.type = 'text/css';
+   styleSheet.innerText = `
+       .category-item.active {
+           background-color: var(--color-accent);
+       }
+       .category-item.active .category-content h3 {
+           color: var(--color-text);
+       }
+   `;
+   document.head.appendChild(styleSheet);
 });
