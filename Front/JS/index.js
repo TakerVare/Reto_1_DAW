@@ -61,8 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //Creo esta variable para dibujar los botones de login y register 
     //o el icono de usuario según corresponda 
     var navUser = document.querySelector('.nav_user');
+    localStorage.setItem("usuario", "noactivo");
     var usuario_estatus = localStorage.getItem("usuario");
-    localStorage.setItem("usuario", "activo");
+    
     if(navUser) {
         if(usuario_estatus!="activo"){
             //Creo el primer botón de Sing in
