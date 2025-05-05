@@ -1,6 +1,6 @@
 [
     { "text": "Menus", "url": "menus.html", "icon": "fas fa-utensils" },
-    { "text": "Products", "url": "products.html", "icon": "fas fa-hamburger'" },
+    { "text": "Products", "url": "products.html", "icon": "fas fa-hamburger" },
     { "text": "Offers", "url": "offers.html", "icon": "fas fa-percent" },
     { "text": "Employee Area", "url": "employee_area.html", "icon": "fas fa-user-tie" }
     

@@ -18,6 +18,8 @@ async function getProductDetails(id){
 }
 
 
-function getDetails(id) {
-
+async function getProducts(){
+    let products =  (await fetch('./mockup/products.json')).json()
+    
+    return products
 }

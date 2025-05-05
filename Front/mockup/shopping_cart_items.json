@@ -1,5 +1,6 @@
 [
     { "id_product": 1, "amount": 1},
     { "id_product": 5, "amount": 5},
+    { "id_product": 7, "amount": 2},
     { "id_product": 10, "amount": 1}
 ]
