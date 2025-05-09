@@ -1,0 +1,224 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Reseteo de estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables CSS para facilitar mantenimiento */
+:root {
+    --color-background: #D4E4D3;
+    /* Verde Pastel */
+    --color-text: #3B4C44;
+    /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;
+    /* Amarillo dorado */
+    --color-button: #D1A03D;
+    /* Verde Oliva Oscuro */
+    /*--color-button: #6B8B3A;*/
+    --color-border: #FFB066;
+    /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+/* Estilos para sliders de texto */
+.text-slider-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    padding: 0.8rem 0;
+}
+
+.text-slider {
+    display: flex;
+    white-space: nowrap;
+}
+
+/* Diferentes velocidades para cada slider */
+.text-slider.speed-1 {
+    animation: slide 25s linear infinite;
+}
+
+.text-slider.speed-2 {
+    animation: slide 20s linear infinite reverse;
+}
+
+.text-slider.speed-3 {
+    animation: slide 18s linear infinite;
+}
+
+.text-slider.speed-4 {
+    animation: slide 22s linear infinite reverse;
+}
+
+.text-slider.speed-5 {
+    animation: slide 16s linear infinite;
+}
+
+.text-slider-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.text-slider-item span {
+    color: var(--color-accent);
+    font-family: var(--font-logo);
+    font-size: 5rem;
+    padding: 0 1rem;
+    font-weight: 600;
+}
+
+.text-slider-item .separator {
+    color: var(--color-border);
+    font-size: 5rem;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+    background: transparent;
+    vertical-align: middle;
+    line-height: 1;
+    display: inline-block;
+    margin: 0 0.5rem;
+    position: relative;
+    padding: 0 5px;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Estilos para grids de productos - SOLUCIÓN CORREGIDA */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(209, 160, 61, 0.2);
+    height: 100%; /* Asegura altura consistente */
+    display: flex; /* Estructura flex para distribución vertical */
+    flex-direction: column;
+    text-align: center;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(209, 160, 61, 0.3);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+
+.product-info {
+    padding: 18px;
+    background-color: rgba(212, 228, 211, 0.3);
+    display: flex; /* Estructura flex para contenido */
+    flex-direction: column;
+    flex: 1; /* Ocupa el espacio disponible */
+}
+
+.product-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    color: var(--color-text);
+    font-family: var(--font-logo);
+}
+
+.product-description {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-family: var(--font-main);
+    /* Sin flex-grow para evitar espacios inconsistentes */
+}
+
+.product-price-container {
+    margin-top: auto; /* Empuja el precio al fondo */
+}
+
+.product-price {
+    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgba(209, 160, 61, 0.1);
+}
+
+/* Estilos específicos para cada tipo de producto */
+.drinks-grid .product-image {
+    aspect-ratio: 3 / 4; /* Más vertical para bebidas */
+}
+
+
+.desserts-grid .product-image {
+    aspect-ratio: 1 / 1; /* Cuadrado para postres */
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .text-slider-item span {
+        font-size: 3.5rem;
+    }
+    
+    .text-slider-item .separator {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-title {
+        font-size: 1.2rem;
+    }
+    
+    .product-description {
+        font-size: 0.9rem;
+    }
+    
+    .text-slider-item span {
+        font-size: 2rem;
+    }
+    
+    .text-slider-item .separator {
+        font-size: 2rem;
+    }
+}

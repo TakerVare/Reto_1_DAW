@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,13 @@
     <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
     <script src="js/api.js"></script>
     <!--<script src="js/plantilla.js"></script>-->
@@ -17,8 +23,19 @@
     <script src="js/navUser.js"></script>
     <script src="js/shoppingCart.js"></script>
     <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+
+    <!-- Script específico para esta página -->
     <script src="js/index.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/sliderNewProduct.js"></script>
+    <script src="js/sliderFeatures.js"></script>
+    <script src="js/bannerPromo.js"></script>
+    <script src="js/gridCategory.js"></script>
 </head>
+
 <body>
     <div class="header">
         <div class="nav_burger_menu">
@@ -39,32 +56,27 @@
         </div>
     </div>
     <div class="main">
+        <!-- Contenedor para el carrusel -->
+        <div id="carousel-container"></div>
+
+        <!-- Contenedor para el slider de nuevos productos (NEW) -->
+        <div id="slider-new-product-container"></div>
+
+        <!-- Contenedor para el banner promocional -->
+        <div id="banner-promo-container"></div>
+
+        <!-- Contenedor para el slider de características -->
+        <div id="slider-features-container"></div>
+
+        <!-- Contenedor para la cuadrícula de categorías -->
+        <div id="grid-category-container"></div>
+
         <p>Esto es el body</p>
+
     </div>
     <div class="footer">
-        
-        <div class="footer_nav">
-            <div class="footer_nav_logo">
-                <img src="images/Logos/Logo_vertical_256.ico" alt="logo BurWeb.Sa">
-            </div>
-            <div class="footer_nav_about_us">
-                <ul><strong>ABOUT US</strong></ul>
-                <li>About BurWeb</li>
-                <li>Locations</li>
-            </div>
-            <div class="footer_nav_explore">
-                <ul><strong>WORK WITH US</strong></ul>
-                <li>Career</li>
-                <li>Our Philosophy</li>
-            </div>
-            <div class="footer_nav_contact">
-                <ul><strong>CONTACT US</strong></ul>
-                <li>Contact</li>
-                <li>Our team</li>
-
-            </div>
-        </div>
+        <!-- El contenido del footer se generará dinámicamente con JS -->
     </div>
-    
 </body>
+
 </html>

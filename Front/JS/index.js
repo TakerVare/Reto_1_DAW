@@ -1,8 +1,7 @@
-
-
 window.onload = function() {
-    initNavMenu();
-    initNavUser();
-    initBurgerMenu();
-    initShoppingCart();
+    initCarousel();
+    initSliderNewProduct();
+    initSliderFeatures();
+    initBannerPromo();
+    initGridCategory();
 }
