@@ -1,0 +1,5 @@
+[
+    { "id_customer": 0, "first_name": "Larry", "last_name": "Capija", "email": "lcapija@gmail.com", "password": "Cambiame2025" },
+    { "id_customer": 1, "first_name": "Armando", "last_name": "Casitas", "email": "acasas@gmail.com", "password": "Cambiame2025" },
+    { "id_customer": 2, "first_name": "Dolores", "last_name": "Debarriga", "email": "dd@gmail.com", "password": "Cambiame2025" }
+]

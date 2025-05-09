@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,20 @@
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
-    <script src="JS/index.js"></script>
-    <script src="JS/employee_area.js"></script>
+    <script src="js/api.js"></script>
+    <!--<script src="js/plantilla.js"></script>-->
+    <script src="js/navMenu.js"></script>
+    <script src="js/navUser.js"></script>
+    <script src="js/shoppingCart.js"></script>
+    <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+
+    <!-- Scripts específicos para esta página -->
+    <script src="js/employee_area_crud_products.js"></script>
+    
+    
 </head>
 <body>
     <div class="header">
@@ -46,7 +59,7 @@
                     <ul>
                         <li><a href="#edit-products"><i class="fas fa-hamburger"> Edit Products</i></a></li>
                         <li><a href="#edit-roles"><i class="fa-solid fa-shield"> Edit Roles</i></a></li>
-                        <li><a href="#edit-employees"><i class="fas fa-user-tie"> Edit Roles</i></a></li>
+                        <li><a href="#edit-employees"><i class="fas fa-user-tie"> Edit Employees</i></a></li>
                         <li><a href="#pos-area"><i class="fa-solid fa-dollar-sign"> POS Area</i></a></li>
                     </ul>
                 </div>
@@ -88,7 +101,6 @@
                                         </select>
                                     </div>
                                     <div class="product_category_container">
-                                        <label for="product_category" class="form_input_label">Product category: </label>
                                         <select name="product_category" id="product_category" class="form_input">
                                             <option value="1">Hamburgers</option>
                                             <option value="2">Drinks</option>
@@ -96,6 +108,8 @@
                                             <option value="4">Extras</option>
                                             <option value="5">Menu</option>
                                         </select>
+                                        <label for="product_category" class="form_input_label">Product category: </label>
+                                        
                                     </div>
                                     
                                 </div>
@@ -120,6 +134,34 @@
                                         <input type="button" value="Enviar">
                                     </div>
                                 </div>
+                                <div class="employee_area_content_products_fifth_row">
+                                    <div class="product_card">
+                                        <div class="product_list_item">
+                                            <div class="product_list_item_first_row">
+                                                <div class="product_list_item_first_row_first_colum">
+                                                    <img src="images/MainFood/Burger_1.png" alt="imagen-producto" height="60" width="60">
+                                                    <div class="product_name">
+                                                        Cheese Burger con queso y bacon
+                                                    </div>
+                                                    <div class="price small">
+                                                        <label>$23.99</label>
+                                                    </div>
+                                                </div>
+                                                <div class="product_list_item_first_row_second_colum">
+                                                    <div class="product_select_button">
+                                                        <button type="button">seleccionar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product_list_item_second_row">
+                                                <div class="product_description">
+                                                    Perfecta para los amantes del queso y el bacon que buscan una experiencia culinaria satisfactoria y llena de sabor.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                     </div>
@@ -132,28 +174,7 @@
         <p>Esto es el body del área de empleado</p>
     </div>
     <div class="footer">
-        
-        <div class="footer_nav">
-            <div class="footer_nav_logo">
-                <img src="images/Logos/Logo_vertical_256.ico" alt="logo BurWeb.Sa">
-            </div>
-            <div class="footer_nav_about_us">
-                <ul><strong>ABOUT US</strong></ul>
-                <li>About BurWeb</li>
-                <li>Locations</li>
-            </div>
-            <div class="footer_nav_explore">
-                <ul><strong>WORK WITH US</strong></ul>
-                <li>Career</li>
-                <li>Our Philosophy</li>
-            </div>
-            <div class="footer_nav_contact">
-                <ul><strong>CONTACT US</strong></ul>
-                <li>Contact</li>
-                <li>Our team</li>
-
-            </div>
-        </div>
+        <!-- El contenido del footer se generará dinámicamente con JS -->
     </div>
     
 </body>
