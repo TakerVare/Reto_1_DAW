@@ -1,7 +1,7 @@
 [
-    { "id_catedory": 0, "name": "Hamburgers" },
-    { "id_catedory": 1, "name": "Drinks" },
-    { "id_catedory": 2, "name": "Desserts" },
-    { "id_catedory": 3, "name": "Extras" },
-    { "id_catedory": 4, "name": "Menus" }
+    { "id_category": 0, "name": "Burgers" },
+    { "id_category": 1, "name": "Drinks" },
+    { "id_category": 2, "name": "Desserts" },
+    { "id_category": 3, "name": "Extras" },
+    { "id_category": 4, "name": "Menus" }
 ]

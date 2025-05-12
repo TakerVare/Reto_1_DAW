@@ -25,6 +25,19 @@
     --font-logo: 'Bungee', cursive;
 }
 
+/* Contenedor principal de menus */
+.product-menus-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Sección de menú */
+.menu-section {
+    margin-bottom: 50px;
+}
+
 /* Estilos para sliders de texto */
 .text-slider-container {
     width: 100%;
@@ -98,7 +111,7 @@
     }
 }
 
-/* Estilos para grids de productos - SOLUCIÓN CORREGIDA */
+/* Estilos para grids de productos */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -127,7 +140,7 @@
 
 .product-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    height: 250px; 
     background-color: #f5f5f5;
     display: flex;
     align-items: center;
@@ -135,6 +148,64 @@
     color: #999;
     font-size: 1rem;
     font-family: sans-serif;
+    overflow: hidden;
+    position: relative;
+    padding: 5px;
+}
+
+.product-image img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+/* Ajustes específicos con menús aún más grandes */
+.burgers-grid .product-image {
+    height: 260px;
+    padding: 8px;
+}
+
+.menus-grid .product-image {
+    height: 350px; /* Aumentado a 350px para hacer los menús mucho más grandes */
+    padding: 2px; /* Padding mínimo para maximizar espacio */
+}
+
+.drinks-grid .product-image {
+    height: 320px;
+    padding: 3px; 
+}
+
+.sides-grid .product-image {
+    height: 240px;
+    padding: 5px;
+}
+
+.desserts-grid .product-image {
+    height: 280px;
+    padding: 3px; 
+}
+
+/* Especial para maximizar espacio en menús */
+.menus-grid .product-image img {
+    max-width: 99%; /* Prácticamente todo el espacio disponible */
+    max-height: 99%;
+}
+
+/* Mantener configuración para drinks y desserts */
+.drinks-grid .product-image img,
+.desserts-grid .product-image img {
+    max-width: 98%;
+    max-height: 98%;
+}
+
+/* Ajuste en hover para ampliar la imagen */
+.product-card:hover .product-image img {
+    transform: scale(1.08);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
 }
 
 .product-info {
@@ -159,11 +230,20 @@
     margin-bottom: 15px;
     line-height: 1.5;
     font-family: var(--font-main);
-    /* Sin flex-grow para evitar espacios inconsistentes */
+    /* Control de altura para descripciones */
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
 
 .product-price-container {
     margin-top: auto; /* Empuja el precio al fondo */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .product-price {
@@ -176,14 +256,250 @@
     background-color: rgba(209, 160, 61, 0.1);
 }
 
+/* Botón de añadir al carrito - MODIFICADO */
+.add-to-cart-btn {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn i.fas.fa-cart-plus {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #b38934;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.add-to-cart-btn:active {
+    transform: scale(0.95);
+}
+
 /* Estilos específicos para cada tipo de producto */
 .drinks-grid .product-image {
     aspect-ratio: 3 / 4; /* Más vertical para bebidas */
 }
 
-
 .desserts-grid .product-image {
     aspect-ratio: 1 / 1; /* Cuadrado para postres */
+}
+
+/* Banner de productos */
+.products-banner {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(209, 160, 61, 0.1);
+    margin-bottom: 30px;
+}
+
+.products-banner h1 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+}
+
+.products-banner p {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.quantity-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.quantity-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.quantity-popup-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.quantity-popup-header {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantity-popup-header h3 {
+    margin: 0;
+    font-family: var(--font-logo);
+    font-size: 1.2rem;
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.quantity-popup-body {
+    padding: 20px;
+}
+
+.quantity-product-info {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.quantity-product-info img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.quantity-product-info h4 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.quantity-product-info p {
+    margin: 0;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.quantity-selector button {
+    background-color: var(--color-accent);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity-selector input {
+    width: 50px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 10px;
+    font-size: 1rem;
+    font-family: var(--font-main);
+}
+
+.quantity-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: var(--font-main);
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.quantity-total span:last-child {
+    color: var(--color-accent);
+}
+
+.add-to-cart-confirm {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-confirm:hover {
+    background-color: #b38934;
+}
+
+/* Toast de confirmación */
+.cart-confirmation {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-accent);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-confirmation.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cart-confirmation i {
+    margin-right: 10px;
 }
 
 /* Responsive adjustments */
@@ -221,4 +537,73 @@
     .text-slider-item .separator {
         font-size: 2rem;
     }
+}
+
+/* Ajustes para navegación por anclas */
+
+/* Espacio para el encabezado fijo */
+.menu-section {
+    scroll-margin-top: 80px; /* Ajusta este valor según la altura de tu encabezado */
+}
+
+/* Estilo para la sección activa */
+.menu-section.active {
+    animation: highlight 2s ease-out;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: rgba(209, 160, 61, 0.2);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+/* Estilos para los enlaces de categoría */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón para volver arriba */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px; /* Tamaño aumentado */
+    height: 50px; /* Tamaño aumentado */
+    border-radius: 50%;
+    background-color: var(--color-accent, #D1A03D);
+    color: white;
+    display: flex; /* Centrar el icono */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top i {
+    font-size: 24px; /* Tamaño del icono */
+}
+
+.back-to-top.visible {
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    background-color: var(--color-border, #FFB066);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:active {
+    transform: scale(0.95);
 }

@@ -1,294 +1,466 @@
-async function initShoppingCart() {
-    // Seleccionamos el contenedor del carrito
-    const navShoppingCart = document.querySelector('.nav_shopping_car');
-    
-    if (!navShoppingCart) return;
-    
-    // Verificamos si ya existe el icono del carrito, si no, lo creamos
-    let cartIcon = navShoppingCart.querySelector('.fa-shopping-cart');
-    if (!cartIcon) {
-        const iconElement = document.createElement('i');
-        iconElement.className = 'fas fa-shopping-cart';
-        navShoppingCart.appendChild(iconElement);
-        cartIcon = iconElement;
-    }
-    
-    // Creamos el contenedor del menú del carrito
-    const cartContainer = document.createElement('div');
-    cartContainer.classList.add('shopping_cart_menu', 'hidden');
-    
-    // Estructura básica del carrito
-    cartContainer.innerHTML = `
-        <div class="master-container">
-            <div class="card cart">
-                <label class="title">Your cart</label>
-                <div class="products">
-                    <!-- Los productos se generarán dinámicamente -->
-                </div>
-            </div>
+/**
+ * BurWeb - Shopping Cart Component
+ * Maneja la lógica del carrito de compras y checkout
+ */
 
-            <div class="card checkout">
-                <label class="title">Checkout</label>
-                <div class="details">
-                    <span>Your cart subtotal:</span>
-                    <span>0.00$</span>
-                    <span>Discount through applied coupons:</span>
-                    <span>0.00$</span>
-                    <span>Shipping fees:</span>
-                    <span>0.00$</span>
-                </div>
-                <div class="checkout--footer">
-                    <label class="price"><sup>$</sup>0.00</label>
-                    <button class="checkout-btn">Checkout</button>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Añadimos el carrito al DOM
-    navShoppingCart.appendChild(cartContainer);
-    
-    // Obtenemos los elementos del carrito y los añadimos
-    await updateShoppingCartContent();
-    
-    // Añadimos el event listener para mostrar/ocultar el carrito
-    cartIcon.addEventListener('click', function(e) {
-        e.stopPropagation(); // Evitar que el clic se propague
-        cartContainer.classList.toggle('hidden');
-        
-        // Si el menú de usuario está visible, lo ocultamos
-        const userMenu = document.querySelector('.card_user_menu');
-        if (userMenu && !userMenu.classList.contains('hidden')) {
-            userMenu.classList.add('hidden');
-        }
-    });
-    
-    // Evitar que los clics dentro del carrito lo cierren
-    cartContainer.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-    
-    // Configurar eventos para los botones del carrito
-    setupCartEventListeners(cartContainer);
-}
+// Inicializar carrito desde localStorage o crear uno vacío
+let cart = JSON.parse(localStorage.getItem('burwebCart')) || [];
+let offers = []; // Se cargará desde offers.json
+let taxRate = 0.0625; // Valor por defecto (6.25%)
 
-// Función para actualizar el contenido del carrito
-async function updateShoppingCartContent() {
+// Cargar ofertas y tasas de impuestos al iniciar
+async function loadConfigData() {
     try {
-        // Obtenemos los elementos del carrito usando la función de api.js
-        const cartItems = await getShoppingCartItems();
-        
-        // Seleccionamos el contenedor de productos
-        const productsContainer = document.querySelector('.shopping_cart_menu .products');
-        
-        if (!productsContainer) return;
-        
-        // Limpiamos el contenedor
-        productsContainer.innerHTML = '';
-        
-        // Si el carrito está vacío, mostramos un mensaje
-        if (!cartItems || cartItems.length === 0) {
-            productsContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-            updateCartTotals(0, 0, 0);
-            return;
-        }
-        
-        // Calculamos los totales
-        let subtotal = 0;
-        let discount = 0;
-        let shipping = cartItems.length > 0 ? 4.99 : 0;
-        
-        // Creamos los elementos del carrito
-        for (let i = 0; i < cartItems.length; i++) {
-            const cartItem = cartItems[i];
-            
-            try {
-                // Obtenemos el producto usando la función del api.js (corregida)
-                const product = await getProductDetails(cartItem.id_product);
+        // Cargar ofertas
+        try {
+            const offersResponse = await fetch('./mockup/offers.json');
+            if (offersResponse.ok) {
+                const loadedOffers = await offersResponse.json();
+                console.log('Offers loaded successfully:', loadedOffers);
                 
-                if (product) {
-                    // Creamos el elemento del producto
-                    const productElement = createCartItemElement(product, cartItem.amount);
-                    productsContainer.appendChild(productElement);
-                    
-                    // Si no es el último elemento, añadimos un separador
-                    if (i < cartItems.length - 1) {
-                        const separator = document.createElement('div');
-                        separator.className = 'separator';
-                        productsContainer.appendChild(separator);
-                    }
-                    
-                    // Calculamos el subtotal
-                    subtotal += product.price * cartItem.amount;
-                }
-            } catch (error) {
-                console.error(`Error al obtener detalles del producto ${cartItem.id_product}:`, error);
+                // Procesar las ofertas para extraer los montos mínimos
+                offers = loadedOffers.map(offer => {
+                    const match = offer.name.match(/Over €(\d+)/);
+                    return {
+                        ...offer,
+                        minAmount: match && match[1] ? parseFloat(match[1]) : 0
+                    };
+                });
+            } else {
+                console.warn('No se pudieron cargar las ofertas');
             }
+        } catch (error) {
+            console.warn('Error al cargar las ofertas:', error);
         }
-        
-        // Actualizamos los totales en el carrito
-        updateCartTotals(subtotal, discount, shipping);
-        
+
+        // Cargar impuestos
+        try {
+            const taxesResponse = await fetch('./mockup/taxes.json');
+            if (taxesResponse.ok) {
+                const taxes = await taxesResponse.json();
+                console.log('Taxes loaded successfully:', taxes);
+                
+                // Si hay impuestos configurados, usar el primero (asumiendo que solo hay uno)
+                if (taxes && taxes.length > 0) {
+                    taxRate = taxes[0].percentage / 100; // Convertir porcentaje a decimal
+                    console.log(`Tax rate set to ${taxRate * 100}%`);
+                }
+            } else {
+                console.warn('No se pudieron cargar los impuestos, usando valor por defecto');
+            }
+        } catch (error) {
+            console.warn('Error al cargar los impuestos, usando valor por defecto:', error);
+        }
     } catch (error) {
-        console.error('Error al actualizar el carrito:', error);
-        // En caso de error, mostramos un mensaje en el carrito
-        const productsContainer = document.querySelector('.shopping_cart_menu .products');
-        if (productsContainer) {
-            productsContainer.innerHTML = '<div class="error-cart">Error al cargar el carrito. Inténtalo de nuevo más tarde.</div>';
+        console.error('Error al cargar datos de configuración:', error);
+    }
+}
+
+// Actualizar carrito en localStorage
+function updateCartStorage() {
+    localStorage.setItem('burwebCart', JSON.stringify(cart));
+}
+
+// Añadir un producto al carrito
+function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
+    // Verificar si el producto ya está en el carrito
+    const existingItemIndex = cart.findIndex(item => item.id === productId);
+    
+    if (existingItemIndex !== -1) {
+        // Si el producto ya está en el carrito, aumentar la cantidad
+        cart[existingItemIndex].quantity += quantity;
+    } else {
+        // Si es un producto nuevo, añadirlo al carrito
+        cart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: quantity
+        });
+    }
+    
+    // Actualizar localStorage
+    updateCartStorage();
+    
+    // Actualizar contador del carrito
+    updateCartCounter();
+    
+    console.log(`Product added to cart:`, cart);
+    return true;
+}
+
+// Mostrar confirmación de producto añadido
+function showAddToCartConfirmation() {
+    // Crear el elemento de confirmación si no existe
+    if (!document.getElementById('cart-confirmation')) {
+        const confirmationHTML = `
+            <div id="cart-confirmation" class="cart-confirmation">
+                <i class="fas fa-check-circle"></i>
+                <span>Product added to cart</span>
+            </div>
+        `;
+        
+        const confirmationContainer = document.createElement('div');
+        confirmationContainer.innerHTML = confirmationHTML;
+        document.body.appendChild(confirmationContainer.firstElementChild);
+    }
+    
+    const confirmation = document.getElementById('cart-confirmation');
+    
+    // Mostrar confirmación
+    confirmation.classList.add('show');
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        confirmation.classList.remove('show');
+    }, 3000);
+}
+
+// Eliminar un producto del carrito
+function removeFromCart(productId) {
+    // Filtrar el carrito para eliminar el producto
+    cart = cart.filter(item => item.id !== productId);
+    
+    // Actualizar localStorage
+    updateCartStorage();
+    
+    // Actualizar contador del carrito
+    updateCartCounter();
+    
+    // Si estamos en la página de checkout, actualizar la UI
+    if (document.getElementById('cart-items')) {
+        renderCartItems();
+    }
+}
+
+// Cambiar la cantidad de un producto en el carrito
+function updateCartItemQuantity(productId, newQuantity) {
+    // Encontrar el producto en el carrito
+    const itemIndex = cart.findIndex(item => item.id === productId);
+    
+    if (itemIndex !== -1) {
+        if (newQuantity <= 0) {
+            // Si la cantidad es 0 o menos, eliminar el producto
+            removeFromCart(productId);
+        } else {
+            // Actualizar la cantidad
+            cart[itemIndex].quantity = newQuantity;
+            
+            // Actualizar localStorage
+            updateCartStorage();
+            
+            // Si estamos en la página de checkout, actualizar la UI
+            if (document.getElementById('cart-items')) {
+                renderCartItems();
+            }
         }
     }
 }
 
-// Función para crear un elemento de producto del carrito
-function createCartItemElement(product, quantity) {
-    const productDiv = document.createElement('div');
-    productDiv.className = 'product';
-    productDiv.dataset.productId = product.id_product;
+// Calcular el total del carrito
+function calculateCartTotal() {
+    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+}
+
+// Verificar si se aplica alguna oferta y calcular el descuento
+function getApplicableOffer() {
+    if (!offers || offers.length === 0) return null;
     
-    productDiv.innerHTML = `
-        <img src="${product.image}" alt="${product.name}" height="60" width="60">
-        <div>
-            <span class="product_name">${product.name}</span>
-        </div>
-        <div class="product_quantity">
-            <div class="product_quantity_button product_quantity_less">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-square-minus-icon lucide-square-minus">
-                    <rect width="18" height="18" x="3" y="3" rx="2" />
-                    <path d="M8 12h8" /></svg>
+    const subtotal = calculateCartTotal();
+    console.log(`Checking offers for subtotal: ${subtotal} €`);
+    
+    // Buscar ofertas aplicables basadas en el monto mínimo
+    const validOffers = offers
+        .filter(offer => {
+            // Verificar monto mínimo para el descuento usando la propiedad que extrajimos
+            const applicable = subtotal >= offer.minAmount;
+            console.log(`Offer: ${offer.name}, min: ${offer.minAmount}€, applicable: ${applicable}`);
+            return applicable;
+        })
+        .sort((a, b) => b.discount - a.discount); // Ordenar por mayor descuento primero
+    
+    // Retornar la oferta más ventajosa si hay alguna válida
+    if (validOffers.length > 0) {
+        console.log(`Best applicable offer: ${validOffers[0].name} with ${validOffers[0].discount}% discount`);
+        return validOffers[0];
+    }
+    
+    console.log('No applicable offers found');
+    return null;
+}
+
+// Calcular el descuento basado en la oferta aplicable
+function calculateDiscount() {
+    const applicableOffer = getApplicableOffer();
+    if (!applicableOffer) return 0;
+    
+    const subtotal = calculateCartTotal();
+    const discountAmount = subtotal * (applicableOffer.discount / 100);
+    console.log(`Discount amount: ${discountAmount.toFixed(2)} €`);
+    return discountAmount;
+}
+
+// Actualizar contador de productos en el carrito
+function updateCartCounter() {
+    // Calcular total de productos
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    // Buscar el contador en el menú del carrito
+    const counter = document.querySelector('.cart-counter');
+    
+    if (counter) {
+        // Si hay productos, mostrar el contador con el número
+        if (totalItems > 0) {
+            counter.textContent = totalItems;
+            counter.style.display = 'flex';
+        } else {
+            // Si no hay productos, ocultar el contador
+            counter.style.display = 'none';
+        }
+    }
+}
+
+// Inicializar el menú del carrito en la barra de navegación
+function initShoppingCartMenu() {
+    const cartContainer = document.querySelector('.nav_shopping_car');
+    
+    if (cartContainer) {
+        const cartHTML = `
+            <div class="cart-menu-container">
+                <a href="shoppingCartCheckout.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter">0</span>
+                </a>
             </div>
-            <label>${quantity}</label>
-            <div class="product_quantity_button product_quantity_plus">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-square-plus-icon lucide-square-plus">
-                    <rect width="18" height="18" x="3" y="3" rx="2" />
-                    <path d="M8 12h8" />
-                    <path d="M12 8v8" /></svg>
-            </div>
-            <div class="product_quantity_button product_quantity_delete">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
-                    <path d="M3 6h18" />
-                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                    <line x1="10" x2="10" y1="11" y2="17" />
-                    <line x1="14" x2="14" y1="11" y2="17" /></svg>
-            </div> 
-        </div>
-        <label class="price small">$${(product.price * quantity).toFixed(2)}</label>
+        `;
+        
+        cartContainer.innerHTML = cartHTML;
+        
+        // Actualizar contador
+        updateCartCounter();
+    }
+}
+
+// Renderizar los productos en la página de checkout
+function renderCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    
+    if (cartItemsContainer) {
+        if (cart.length > 0) {
+            // Si hay productos en el carrito, mostrarlos
+            let cartItemsHTML = '';
+            
+            cart.forEach(item => {
+                const itemTotal = (item.price * item.quantity).toFixed(2);
+                
+                cartItemsHTML += `
+                    <div class="cart-item" data-product-id="${item.id}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-image">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div>
+                                <h3 class="cart-item-name">${item.name}</h3>
+                                <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button onclick="updateCartItemQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                            <input type="number" value="${item.quantity}" min="1" max="99" 
+                                onchange="updateCartItemQuantity(${item.id}, parseInt(this.value))" readonly>
+                            <button onclick="updateCartItemQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                        </div>
+                        <div class="cart-item-total">${itemTotal} €</div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+            
+            cartItemsContainer.innerHTML = cartItemsHTML;
+            
+            // Actualizar el resumen
+            updateCartSummary();
+        } else {
+            // Si el carrito está vacío, mostrar mensaje
+            cartItemsContainer.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <a href="products.html" class="continue-shopping">Continue Shopping</a>
+                </div>
+            `;
+            
+            // Actualizar el resumen
+            updateCartSummary();
+        }
+    }
+}
+
+// Actualizar el resumen del carrito
+function updateCartSummary() {
+    const summaryContainer = document.getElementById('cart-summary');
+    
+    if (summaryContainer) {
+        if (cart.length > 0) {
+            // Calcular subtotal
+            const subtotal = calculateCartTotal();
+            
+            // Verificar si se aplica alguna oferta
+            const applicableOffer = getApplicableOffer();
+            const discountAmount = applicableOffer ? parseFloat(calculateDiscount()) : 0;
+            
+            // Calcular impuestos (sobre el monto después del descuento)
+            const discountedSubtotal = subtotal - discountAmount;
+            const tax = discountedSubtotal * taxRate;
+            
+            // Calcular total
+            const total = discountedSubtotal + tax;
+            
+            // Mostrar resumen
+            let summaryHTML = `
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>${subtotal.toFixed(2)} €</span>
+                </div>
+            `;
+            
+            // Añadir fila de descuento si hay una oferta aplicable
+            if (applicableOffer) {
+                summaryHTML += `
+                    <div class="summary-row discount">
+                        <span>Discount (${applicableOffer.name})</span>
+                        <span>-${discountAmount.toFixed(2)} €</span>
+                    </div>
+                `;
+            }
+            
+            // Mostrar el impuesto con el porcentaje cargado desde el JSON
+            summaryHTML += `
+                <div class="summary-row">
+                    <span>Tax (${(taxRate * 100).toFixed(2)}%)</span>
+                    <span>${tax.toFixed(2)} €</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>${total.toFixed(2)} €</span>
+                </div>
+            `;
+            
+            summaryContainer.innerHTML = summaryHTML;
+            
+            // Habilitar el botón de checkout
+            document.getElementById('checkout-section').style.display = 'block';
+        } else {
+            // Si el carrito está vacío, ocultar resumen
+            summaryContainer.innerHTML = '';
+            document.getElementById('checkout-section').style.display = 'none';
+        }
+    }
+}
+
+// Proceder al checkout
+function proceedToCheckout() {
+    // Obtener el método de pago seleccionado
+    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+    const paymentMethodName = paymentMethod === "0" ? "Cash" : "Credit Card";
+    
+    // Validar que se haya seleccionado un método de pago
+    if (!paymentMethod) {
+        alert('Please select a payment method');
+        return;
+    }
+    
+    // Calcular totales para mostrar en el resumen
+    const subtotal = calculateCartTotal();
+    
+    // Verificar si se aplica alguna oferta
+    const applicableOffer = getApplicableOffer();
+    const discountAmount = applicableOffer ? parseFloat(calculateDiscount()) : 0;
+    
+    // Calcular impuestos (sobre el monto después del descuento)
+    const discountedSubtotal = subtotal - discountAmount;
+    const tax = discountedSubtotal * taxRate;
+    
+    // Calcular total
+    const total = discountedSubtotal + tax;
+    
+    // Crear resumen del pedido
+    let orderSummary = `
+        Order Summary:
+        --------------
+        Subtotal: ${subtotal.toFixed(2)} €
     `;
     
-    return productDiv;
+    // Añadir línea de descuento si hay una oferta aplicable
+    if (applicableOffer) {
+        orderSummary += `
+        Discount (${applicableOffer.name}): -${discountAmount.toFixed(2)} €
+        `;
+    }
+    
+    orderSummary += `
+        Tax (${(taxRate * 100).toFixed(2)}%): ${tax.toFixed(2)} €
+        Total: ${total.toFixed(2)} €
+        
+        Payment Method: ${paymentMethodName}
+        
+        Thank you for your purchase!
+    `;
+    
+    // Mostrar resumen y confirmación
+    alert(orderSummary);
+    
+    // Vaciar carrito
+    cart = [];
+    updateCartStorage();
+    
+    // Redirigir a la página de productos
+    window.location.href = 'products.html';
 }
 
-// Función para actualizar los totales del carrito
-function updateCartTotals(subtotal, discount, shipping) {
-    const subtotalElement = document.querySelector('.shopping_cart_menu .details span:nth-child(2)');
-    const discountElement = document.querySelector('.shopping_cart_menu .details span:nth-child(4)');
-    const shippingElement = document.querySelector('.shopping_cart_menu .details span:nth-child(6)');
-    const totalElement = document.querySelector('.shopping_cart_menu .price');
+// Inicializar el carrito cuando se cargue la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar datos de configuración (ofertas e impuestos)
+    loadConfigData();
     
-    if (subtotalElement) subtotalElement.textContent = `${subtotal.toFixed(2)}$`;
-    if (discountElement) discountElement.textContent = `${discount.toFixed(2)}$`;
-    if (shippingElement) shippingElement.textContent = `${shipping.toFixed(2)}$`;
+    // Inicializar menú del carrito
+    initShoppingCartMenu();
     
-    const total = subtotal - discount + shipping;
-    if (totalElement) totalElement.innerHTML = `<sup>$</sup>${total.toFixed(2)}`;
-}
+    // Si estamos en la página de checkout, renderizar los productos
+    if (document.getElementById('cart-items')) {
+        renderCartItems();
+        
+        // Inicializar selección de método de pago
+        initPaymentMethods();
+    }
+});
 
-// Función para configurar los event listeners de los botones del carrito
-function setupCartEventListeners(cartContainer) {
-    // Event delegation para los botones del carrito
-    cartContainer.addEventListener('click', async function(e) {
-        // Encuentra el elemento más cercano con la clase .product
-        const productElement = e.target.closest('.product');
-        if (!productElement) return;
-        
-        const productId = parseInt(productElement.dataset.productId);
-        const quantityLabel = productElement.querySelector('.product_quantity label');
-        
-        // Botón de restar cantidad
-        if (e.target.closest('.product_quantity_less')) {
-            let quantity = parseInt(quantityLabel.textContent);
-            if (quantity > 1) {
-                quantity--;
-                quantityLabel.textContent = quantity;
-                await updateCartItemQuantity(productId, quantity);
-                updateShoppingCartContent();
-            }
-        }
-        
-        // Botón de añadir cantidad
-        if (e.target.closest('.product_quantity_plus')) {
-            let quantity = parseInt(quantityLabel.textContent);
-            quantity++;
-            quantityLabel.textContent = quantity;
-            await updateCartItemQuantity(productId, quantity);
-            updateShoppingCartContent();
-        }
-        
-        // Botón de eliminar
-        if (e.target.closest('.product_quantity_delete')) {
-            await removeCartItem(productId);
-            updateShoppingCartContent();
-        }
+// Inicializar métodos de pago
+function initPaymentMethods() {
+    const paymentOptions = document.querySelectorAll('.payment-option');
+    
+    // Añadir eventos de clic para mejorar la experiencia de usuario
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            // Obtener el input dentro de esta opción
+            const radio = this.querySelector('input[type="radio"]');
+            
+            // Marcar este radio y desmarcar los demás
+            radio.checked = true;
+            
+            // Actualizar las clases para el estilo visual
+            paymentOptions.forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.classList.add('selected');
+        });
     });
     
-    // Event listener para el botón de checkout
-    const checkoutBtn = cartContainer.querySelector('.checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
-            window.location.href = 'checkout.html';
-        });
-    }
-}
-
-// Función para actualizar la cantidad de un producto en el carrito
-async function updateCartItemQuantity(productId, quantity) {
-    try {
-        console.log(`Actualizando cantidad del producto ${productId} a ${quantity}`);
-        // En una aplicación real, aquí enviaríamos los datos al servidor
-        // Por ahora, simplemente mostramos un mensaje en la consola
-        
-        // Simulamos la actualización en localStorage para efectos de demostración
-        const cartItems = await getShoppingCartItems();
-        const updatedCartItems = cartItems.map(item => {
-            if (item.id_product === productId) {
-                return { ...item, amount: quantity };
-            }
-            return item;
-        });
-        
-        // En una aplicación real, guardaríamos estos datos en el servidor
-        console.log('Carrito actualizado:', updatedCartItems);
-        
-        return true;
-    } catch (error) {
-        console.error('Error al actualizar la cantidad:', error);
-        return false;
-    }
-}
-
-// Función para eliminar un producto del carrito
-async function removeCartItem(productId) {
-    try {
-        console.log(`Eliminando producto ${productId} del carrito`);
-        // En una aplicación real, aquí enviaríamos los datos al servidor
-        // Por ahora, simplemente mostramos un mensaje en la consola
-        
-        // Simulamos la eliminación en localStorage para efectos de demostración
-        const cartItems = await getShoppingCartItems();
-        const updatedCartItems = cartItems.filter(item => item.id_product !== productId);
-        
-        // En una aplicación real, guardaríamos estos datos en el servidor
-        console.log('Carrito actualizado:', updatedCartItems);
-        
-        return true;
-    } catch (error) {
-        console.error('Error al eliminar el producto:', error);
-        return false;
+    // Marcar la primera opción como seleccionada por defecto
+    if (paymentOptions.length > 0) {
+        paymentOptions[0].classList.add('selected');
     }
 }

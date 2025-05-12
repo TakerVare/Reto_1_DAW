@@ -4,51 +4,71 @@
  */
 window.initGridCategory = initGridCategory;
 
-function initGridCategory() {
+async function initGridCategory() {
     console.log("Initializing category grid...");
     
     // Obtener el contenedor de la cuadrícula
     const container = document.getElementById('grid-category-container');
     if (!container) return;
     
-    // Definir las categorías
-    // Esto podría venir de una API en el futuro
-    const categories = [
-        { name: "MENU", iconSrc: "/api/placeholder/100/100", altText: "Menu icon" },
-        { name: "BURGERS", iconSrc: "/api/placeholder/100/100", altText: "Burgers icon" },
-        { name: "DRINKS", iconSrc: "images/Drinks/CocaCola_Original.jpg", altText: "Drinks icon" },
-        { name: "SIDES", iconSrc: "/api/placeholder/100/100", altText: "Sides icon" },
-        { name: "DESSERTS", iconSrc: "/api/placeholder/100/100", altText: "Desserts icon" },
-        { name: "DEALS", iconSrc: "/api/placeholder/100/100", altText: "Deals icon" }
-    ];
-    
-    // Generar el HTML de la cuadrícula
-    let html = `
-        <div class="category-grid-container">
-            <div class="category-grid">`;
-    
-    // Añadir cada categoría
-    categories.forEach(category => {
-        html += `
-                <div class="category-item">
+    try {
+        // Obtener categorías desde la API
+        let categories = await getCategories();
+        
+        if (!categories || categories.length === 0) {
+            // Si no se pueden obtener categorías, usar datos de fallback
+            categories = [
+                { id_category: 0, name: "BURGERS" },
+                { id_category: 1, name: "DRINKS" },
+                { id_category: 2, name: "DESSERTS" },
+                { id_category: 3, name: "EXTRAS" },
+                { id_category: 4, name: "MENUS" }
+            ];
+        }
+        
+        // Mapeo de categorías a iconos
+        const categoryIcons = {
+            "BURGERS": "images/category_icons/burger_icon.png",
+            "DRINKS": "images/category_icons/drink_icon.png",
+            "DESSERTS": "images/category_icons/dessert_icon.png",
+            "EXTRAS": "images/category_icons/sides_icon.png",
+            "MENUS": "images/category_icons/menu_icon.png"
+        };
+        
+        // Generar el HTML de la cuadrícula
+        let html = `
+            <div class="category-grid-container">
+                <div class="category-grid">`;
+        
+        // Añadir cada categoría
+        categories.forEach(category => {
+            const categoryName = category.name.toUpperCase();
+            const iconSrc = categoryIcons[categoryName] || "/api/placeholder/100/100";
+            
+            html += `
+                <div class="category-item" data-category-id="${category.id_category}">
                     <div class="category-content">
-                        <h3>${category.name}</h3>
-                        <img src="${category.iconSrc}" alt="${category.altText}" class="category-icon">
+                        <h3>${categoryName}</h3>
+                        <img src="${iconSrc}" alt="${categoryName} icon" class="category-icon">
                     </div>
                 </div>`;
-    });
-    
-    html += `
-            </div>
-        </div>`;
-    
-    // Insertar el HTML
-    container.innerHTML = html;
-    
-    // Añadir eventos de clic a las categorías
-    addClickEvents();
-    
-    console.log("Category grid initialized successfully");
+        });
+        
+        html += `
+                </div>
+            </div>`;
+        
+        // Insertar el HTML
+        container.innerHTML = html;
+        
+        // Añadir eventos de clic a las categorías
+        addClickEvents();
+        
+        console.log("Category grid initialized successfully");
+    } catch (error) {
+        console.error("Error initializing category grid:", error);
+        container.innerHTML = '<p>Error loading categories. Please try again later.</p>';
+    }
 }
 
 /* Añade eventos de clic a los elementos de la cuadrícula */
@@ -58,24 +78,59 @@ function addClickEvents() {
     if (categoryItems.length > 0) {
         categoryItems.forEach(item => {
             item.addEventListener('click', function() {
-                // Obtener el nombre de la categoría
+                // Obtener el nombre y ID de la categoría
                 const categoryName = this.querySelector('h3').innerText.toLowerCase();
+                const categoryId = this.dataset.categoryId;
                 
                 // Registrar el clic en la categoría
-                console.log(`Category clicked: ${categoryName}`);
+                console.log(`Category clicked: ${categoryName} (ID: ${categoryId})`);
                 
-                // Aquí puedes añadir la navegación a la página específica de la categoría
-                // Por ejemplo:
-                // window.location.href = `/${categoryName}.html`;
+                // Comprobar si estamos en la página de índice o de productos
+                if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
+                    // Redireccionar a la página de productos con el ID de categoría
+                    window.location.href = `products.html?category=${categoryId}`;
+                } else {
+                    // Ya estamos en la página de productos, desplazarse a la sección
+                    scrollToProductSection(categoryId);
+                }
                 
-                // Por ahora, solo añadimos un feedback visual
+                // Feedback visual
                 this.classList.add('active');
                 
                 // Quitar la clase 'active' después de que se complete la animación
-                setTimeout(() => {
-                    this.classList.remove('active');
-                }, 300);
+                // (solo si estamos en la página de productos)
+                if (!window.location.pathname.includes('index.html')) {
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 300);
+                }
             });
         });
+    }
+}
+
+/* Función para desplazarse a la sección de productos correspondiente */
+function scrollToProductSection(categoryId) {
+    // Buscar la sección correspondiente al ID de categoría
+    const sections = document.querySelectorAll('.menu-section');
+    
+    for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+        const sectionKey = Object.keys(categoryMapping).find(
+            key => categoryMapping[key].sectionKey === section.querySelector('.product-grid').className.split(' ')[1].replace('-grid', '')
+        );
+        
+        if (sectionKey === categoryId) {
+            // Desplazarse a la sección encontrada
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Resaltar brevemente la sección para mejor UX
+            section.classList.add('active');
+            setTimeout(() => {
+                section.classList.remove('active');
+            }, 2000);
+            
+            break;
+        }
     }
 }

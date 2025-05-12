@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BurWeb.Sa</title>
+    <title>Nuestros Productos - BurWeb.Sa</title>
     <!--Ponemos el logo por duplicado para mejorar la compatibilidad del logo con navegadores antiguos como IExplorer-->
     <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
@@ -14,19 +14,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
     <script src="js/api.js"></script>
-    <!--<script src="js/plantilla.js"></script>-->
     <script src="js/navMenu.js"></script>
     <script src="js/navUser.js"></script>
     <script src="js/shoppingCart.js"></script>
     <script src="js/burgerMenu.js"></script>
     <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
     <!-- Script de inicialización de componentes comunes -->
     <script src="js/common.js"></script>
 
+    <!-- Scripts específicos para la página de productos -->
+    <script src="js/gridCategory.js"></script>
     <script src="js/gridProducts.js"></script>
+    <script src="js/backToTop.js"></script>
     <script src="js/product_area_init.js"></script>
-
-
 </head>
 
 <body>
@@ -44,19 +45,24 @@
             <!-- Este contenido se generará dinámicamente con JavaScript -->
         </div>
         <div class="nav_shopping_car">
-            <!--<i class="fas fa-shopping-cart"></i>-->
             <!-- El menú del carrito se generará dinámicamente con JavaScript -->
         </div>
     </div>
     <div class="main">
-         <!-- El contenido del products se generará dinámicamente con JS -->
+        <div class="products-banner">
+            <h1>Our Products</h1>
+            <p>Discover our selection of gourmet burgers and side dishes</p>
+        </div>
+
+        <!-- Contenedor donde se cargarán dinámicamente los productos -->
         <div id="product-menus-container"></div>
-        <p>Esto es el body</p>
+    </div>
+    <!-- Contenedor donde se cargarán dinámicamente los productos -->
+    <div id="product-menus-container"></div>
     </div>
     <div class="footer">
         <!-- El contenido del footer se generará dinámicamente con JS -->
     </div>
-
 </body>
 
 </html>

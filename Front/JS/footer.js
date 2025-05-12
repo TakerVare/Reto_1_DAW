@@ -16,7 +16,7 @@ function initFooter() {
     ];
     
     const workWithUsLinks = [
-        { text: 'Career', url: 'careers.html' },
+        { text: 'Career', url: 'career.html' }, // Cambiado de 'careers.html' a 'career.html'
         { text: 'Our Philosophy', url: 'philosophy.html' }
     ];
     

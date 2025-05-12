@@ -1,0 +1,39 @@
+{
+  "job_offers": [
+    {
+      "id_job_offer": 1,
+      "id_rol": 2,
+      "id_shop": 1,
+      "name": "Cook",
+      "description": "We are looking for a passionate cook with experience in preparing high-quality dishes. You will be responsible for preparing our burgers and sides according to recipes and quality standards, ensuring every plate reaches our customers with the best taste and presentation. You must be able to work in a fast-paced environment under pressure while maintaining high hygiene and organization standards in the kitchen. Requirements: Minimum 1 year of experience as a cook in a restaurant or similar establishment. Knowledge of cooking techniques and food handling. Ability to work in a team and under pressure. Positive attitude and commitment to quality and hygiene."
+    },
+    {
+      "id_job_offer": 2,
+      "id_rol": 3,
+      "id_shop": 1,
+      "name": "Kitchen Assistant",
+      "description": "We are looking for a kitchen assistant to support our kitchen team in preparing ingredients, organizing workstations, and cleaning the kitchen. This position is ideal for those eager to learn about professional cooking and grow in the culinary industry. You will work closely with experienced cooks, assisting in dish preparation and keeping the workspace tidy. Requirements: Willingness to learn and grow in the culinary field. Ability to work in a team. Basic knowledge of food hygiene and safety. Positive attitude and responsibility."
+    },
+    {
+      "id_job_offer": 3,
+      "id_rol": 4,
+      "id_shop": 1,
+      "name": "Cashier",
+      "description": "We are seeking a friendly and responsible cashier to join our team. You will be the first point of contact for our customers, providing excellent customer service and efficiently managing payments. You must be organized, have cash handling skills, and a positive attitude to ensure a pleasant experience for our customers. Requirements: Previous experience in cashier or customer service roles (preferred). Communication and customer service skills. Ability to work in a dynamic, fast-paced environment. Proactive and responsible attitude."
+    },
+    {
+      "id_job_offer": 4,
+      "id_rol": 7,
+      "id_shop": 1,
+      "name": "Cleaning Staff",
+      "description": "Cleaning staff play a vital role in keeping our burger restaurant in top condition. You will be responsible for keeping all areas clean and tidy, including restrooms, kitchen areas, and the dining room. Ensure that all surfaces are sanitized and that the environment is pleasant for both customers and staff. Requirements: Experience in cleaning commercial spaces or restaurants (preferred). Proactive attitude and good organizational skills. Knowledge of cleaning products and hygiene standards. Ability to work in a team and dynamic environment."
+    },
+    {
+      "id_job_offer": 5,
+      "id_rol": 16,
+      "id_shop": 1,
+      "name": "Web Developer",
+      "description": "We are looking for a talented web developer to join our digital team and help us build and maintain the online ordering platform for our burger restaurant. You will be responsible for designing and optimizing our website, ensuring the customer experience is fast, user-friendly, and secure. You will also collaborate with the marketing and customer service teams to implement new features and continually improve the platform. Requirements: Experience in web development, especially in building and maintaining e-commerce websites. Knowledge of programming languages such as HTML, CSS, JavaScript, and PHP. Familiarity with content management systems (CMS) and online ordering platforms. Problem-solving ability and teamwork skills. Innovative mindset and focus on user experience."
+    }
+  ]
+}

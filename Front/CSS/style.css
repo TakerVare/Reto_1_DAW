@@ -990,3 +990,32 @@ Start Shipping card Styles
     display: none;
 }
 
+/* Estilos para el contador del carrito */
+.cart-menu-container {
+    position: relative;
+}
+
+.cart-icon {
+    color: var(--color-text);
+    font-size: 1.4rem;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--color-accent, #D1A03D);
+    color: white;
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-main, 'Montserrat', sans-serif);
+    font-weight: 600;
+}
