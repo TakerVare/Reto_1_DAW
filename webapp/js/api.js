@@ -17,7 +17,50 @@ async function getProductDetails(id){
     return productDetails.find(product => product.id_product === id)
 }
 
+async function getProducts() {
+    try {
+        const response = await fetch('Controller?ACTION=PRODUCT.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
 
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log(responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedProducts = [];
+
+        for (var i in responseText) {
+            formattedProducts.push({
+                "id_product": responseText[i]['id_product'],
+                "id_tax": responseText[i]['id_tax'],
+                "id_category": responseText[i]['id_category'],
+                "name": responseText[i]['name'],
+                "description": responseText[i]['description'],
+                "price": responseText[i]['price'],
+                "image": responseText[i]['image']
+            });
+        }
+
+        // Para depuración
+        console.log(formattedProducts);
+
+        // Devolver el array de productos con el formato deseado
+        return formattedProducts;
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+        throw error; // Re-lanzar el error para manejarlo en la función que llama
+    }
+}
+
+
+/*
 async function getProducts(){
     try {
         let productsResponse = await fetch('./mockup/products.json');
@@ -36,11 +79,12 @@ async function getProducts(){
         return [];
     }
 }
-
+*/
 /**
  * Obtiene las categorías de productos desde el archivo JSON
  * @returns {Promise<Array>} Promesa que resuelve a un array de categorías
  */
+ /*
 async function getCategories() {
     try {
         const response = await fetch('./mockup/categories.json');
@@ -60,6 +104,49 @@ async function getCategories() {
         ];
     }
 }
+*/
+
+/* EMPIEZA EDICIÓN GUILLERMO */
+//var categories = null;
+
+async function getCategories() {
+    try {
+        const response = await fetch('Controller?ACTION=CATEGORY.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        //console.log(responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedCategories = [];
+
+        for (var i in responseText) {
+            formattedCategories.push({
+                "id_category": responseText[i]['id_category'],
+                "name": responseText[i]['name']
+            });
+        }
+
+        // Para depuración
+        //console.log(formattedCategories);
+
+        // Devolver el array de categorías con el formato deseado
+        return formattedCategories;
+    } catch (error) {
+        console.error('Error al obtener las categorías:', error);
+        return []; // Devolver array vacío en caso de error
+    }
+}
+
+/* FIN EDICIÓN GUILLERMO */
 
 /**
  * Obtiene los roles desde el archivo JSON

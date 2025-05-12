@@ -5,16 +5,18 @@
 
 // Mapeo de id_category a nombres de sección y configuración de sliders
 const categoryMapping = {
-    0: { sectionKey: 'burgers', sliderConfig: { id: "slider-burgers", content: "BURGERS", speed: "2" } },
-    1: { sectionKey: 'drinks', sliderConfig: { id: "slider-drinks", content: "DRINKS", speed: "3" } },
-    2: { sectionKey: 'desserts', sliderConfig: { id: "slider-desserts", content: "DESSERTS", speed: "5" } },
-    3: { sectionKey: 'sides', sliderConfig: { id: "slider-sides", content: "SIDES", speed: "4" } },
-    4: { sectionKey: 'menus', sliderConfig: { id: "slider-menus", content: "MENUS", speed: "1" } }
+    1: { sectionKey: 'burgers', sliderConfig: { id: "slider-burgers", content: "BURGERS", speed: "2" } },
+    2: { sectionKey: 'drinks', sliderConfig: { id: "slider-drinks", content: "DRINKS", speed: "3" } },
+    3: { sectionKey: 'desserts', sliderConfig: { id: "slider-desserts", content: "DESSERTS", speed: "5" } },
+    4: { sectionKey: 'sides', sliderConfig: { id: "slider-sides", content: "SIDES", speed: "4" } },
+    5: { sectionKey: 'menus', sliderConfig: { id: "slider-menus", content: "MENUS", speed: "1" } }
 };
 
 // Función principal para inicializar el grid de productos
 async function initGridProducts() {
     try {
+        //getCategories();
+
         // Obtener los datos de productos desde la API
         const products = await getProducts();
         

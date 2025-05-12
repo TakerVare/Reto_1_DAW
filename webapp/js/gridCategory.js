@@ -5,7 +5,7 @@
 window.initGridCategory = initGridCategory;
 
 async function initGridCategory() {
-    console.log("Initializing category grid...");
+    //console.log("Initializing category grid...");
     
     // Obtener el contenedor de la cuadrícula
     const container = document.getElementById('grid-category-container');
@@ -14,25 +14,26 @@ async function initGridCategory() {
     try {
         // Obtener categorías desde la API
         let categories = await getCategories();
-        
+
+        //En caso de error de carga de categorías, las metemos a pedal
         if (!categories || categories.length === 0) {
             // Si no se pueden obtener categorías, usar datos de fallback
             categories = [
-                { id_category: 0, name: "BURGERS" },
-                { id_category: 1, name: "DRINKS" },
-                { id_category: 2, name: "DESSERTS" },
-                { id_category: 3, name: "EXTRAS" },
-                { id_category: 4, name: "MENUS" }
+                { id_category: 1, name: "BURGERS" },
+                { id_category: 2, name: "DRINKS" },
+                { id_category: 3, name: "DESSERTS" },
+                { id_category: 4, name: "EXTRAS" },
+                { id_category: 5, name: "MENUS" }
             ];
         }
-        
+
         // Mapeo de categorías a iconos
         const categoryIcons = {
-            "BURGERS": "images/category_icons/burger_icon.png",
-            "DRINKS": "images/category_icons/drink_icon.png",
-            "DESSERTS": "images/category_icons/dessert_icon.png",
-            "EXTRAS": "images/category_icons/sides_icon.png",
-            "MENUS": "images/category_icons/menu_icon.png"
+            "BURGERS": "./images/category_icons/burger_icon.png",
+            "DRINKS": "./images/category_icons/drink_icon.png",
+            "DESSERTS": "./images/category_icons/dessert_icon.png",
+            "EXTRAS": "./images/category_icons/sides_icon.png",
+            "MENUS": "./images/category_icons/menu_icon.png"
         };
         
         // Generar el HTML de la cuadrícula
@@ -64,7 +65,7 @@ async function initGridCategory() {
         // Añadir eventos de clic a las categorías
         addClickEvents();
         
-        console.log("Category grid initialized successfully");
+        //console.log("Category grid initialized successfully");
     } catch (error) {
         console.error("Error initializing category grid:", error);
         container.innerHTML = '<p>Error loading categories. Please try again later.</p>';
