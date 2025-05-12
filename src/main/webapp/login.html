@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - BurWeb.Sa</title>
+    <!--Ponemos el logo por duplicado para mejorar la compatibilidad del logo con navegadores antiguos como IExplorer-->
+    <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <!--Añadimos esta fuente para el carrito-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Cargamos el script después del CSS pero antes del cierre del head -->
+    <script src="js/api.js"></script>
+    <script src="js/navMenu.js"></script>
+    <script src="js/navUser.js"></script>
+    <script src="js/shoppingCart.js"></script>
+    <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+    
+    <!-- Script específico para esta página -->
+    <script src="js/login.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav_burger_menu">
+            <!-- El botón hamburguesa se generará dinámicamente aquí -->
+        </div>
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
+        </div>
+        <div class="nav_menu">
+            <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_user" id="nav_user">
+            <!-- Este contenido se generará dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_shopping_car">
+            <!-- El menú del carrito se generará dinámicamente con JavaScript -->
+        </div>
+    </div>
+    <div class="main">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
+            
+            <div class="auth-content">
+                <!-- Formulario de inicio de sesión -->
+                <div class="auth-form active" id="login-form">
+                    <h1>Sign In</h1>
+                    <p>Welcome back! Please sign in to your account.</p>
+                    
+                    <div class="auth-user-type">
+                        <label class="auth-radio">
+                            <input type="radio" name="login-user-type" value="customer" checked>
+                            <span class="radio-label">Customer</span>
+                        </label>
+                        <label class="auth-radio">
+                            <input type="radio" name="login-user-type" value="employee">
+                            <span class="radio-label">Employee</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    
+                    <div class="auth-message" id="login-message"></div>
+                    
+                    <button class="auth-button" id="login-button">Sign In</button>
+                    
+                    <p class="auth-note">Don't have an account? <a href="#" class="tab-link" data-tab="register">Register here</a></p>
+                </div>
+                
+                <!-- Formulario de registro -->
+                <div class="auth-form" id="register-form">
+                    <h1>Register</h1>
+                    <p>Create a new account to enjoy our delicious food!</p>
+                    
+                    <div class="form-group">
+                        <label for="register-first-name">First Name</label>
+                        <input type="text" id="register-first-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-last-name">Last Name</label>
+                        <input type="text" id="register-last-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required>
+                        <small>Password must be at least 8 characters long</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password-confirm">Confirm Password</label>
+                        <input type="password" id="register-password-confirm" required>
+                    </div>
+                    
+                    <div class="auth-message" id="register-message"></div>
+                    
+                    <button class="auth-button" id="register-button">Register</button>
+                    
+                    <p class="auth-note">Already have an account? <a href="#" class="tab-link" data-tab="login">Sign in here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <!-- El contenido del footer se generará dinámicamente con JS -->
+    </div>
+</body>
+
+</html>

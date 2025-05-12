@@ -1,0 +1,38 @@
+Trabajar en equipo siguiendo la metodología Gitflow implica que cada miembro se especialice en tareas específicas y colabore de forma coordinada para mantener el código organizado y estable. A continuación, se explica cómo se gestiona este esquema de trabajo:
+
+Organización de las Tareas y Roles
+Definición de Tareas:
+El equipo divide el proyecto en funcionalidades, correcciones y mejoras. Cada tarea se asigna a un desarrollador o a un pequeño grupo, definiendo claramente el alcance y los objetivos.
+
+Roles y Responsabilidades:
+Se establecen roles específicos, como responsables de la integración continua, revisión de código (code review) y despliegue. Esto facilita el seguimiento y la colaboración durante todo el ciclo de desarrollo.
+
+Uso de las Ramas de Gitflow
+Feature Branches:
+Cada desarrollador trabaja en una nueva funcionalidad en una rama independiente creada a partir de develop. De esta forma, se minimizan los conflictos y se puede trabajar en paralelo sin afectar la base estable.
+
+Release y Hotfix Branches:
+Una vez completadas las funcionalidades, se crea una rama de release para realizar los ajustes finales y pruebas integrales. En caso de errores críticos en producción, se crea una rama hotfix desde master, permitiendo corregir el problema sin interrumpir el desarrollo en develop.
+
+Integración y Revisión del Código
+Pull Requests y Code Reviews:
+Cuando una funcionalidad está lista, se abre un pull request para solicitar la revisión del código. Este proceso garantiza que otros miembros del equipo validen la calidad del código, propongan mejoras y verifiquen la coherencia con el resto del proyecto.
+
+Resolución de Conflictos:
+Durante el merge, es fundamental la comunicación y colaboración para resolver cualquier conflicto que surja entre ramas. Se recomienda mantener la rama develop actualizada y realizar integraciones frecuentes para facilitar la fusión de cambios.
+
+Herramientas de Colaboración
+Sistemas de Gestión de Proyectos:
+Se suelen utilizar herramientas como Trello, Jira o GitHub Projects para asignar tareas, hacer seguimiento y establecer plazos. Esto ayuda a coordinar el trabajo en equipo y priorizar las tareas críticas.
+
+Integración Continua (CI):
+Al integrar automáticamente pruebas y validaciones en cada merge, se garantiza que la calidad del código se mantiene en cada etapa del proceso. Herramientas como Jenkins, Travis CI o GitHub Actions permiten detectar errores tempranamente.
+
+Comunicación y Coordinación
+Reuniones Periódicas:
+El equipo debe realizar reuniones de seguimiento (daily stand-ups o reuniones semanales) para revisar el progreso, compartir avances y discutir bloqueos. Esto favorece la transparencia y la colaboración.
+
+Documentación y Feedback:
+Es fundamental documentar tanto el proceso de desarrollo como las decisiones tomadas. Además, el feedback continuo durante las revisiones de código y las reuniones de equipo ayuda a mejorar el flujo de trabajo y la calidad del producto final.
+
+En resumen, trabajar en equipo siguiendo Gitflow fomenta una estructura clara de ramas y roles, lo que permite desarrollar de forma paralela, integrar y revisar cambios de manera controlada y mantener un proceso de desarrollo colaborativo y eficiente.

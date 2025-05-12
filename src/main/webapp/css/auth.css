@@ -1,0 +1,205 @@
+/**
+ * BurWeb - Authentication Styles
+ */
+
+:root {
+    --color-background: #D4E4D3;    /* Verde Pastel */
+    --color-text: #3B4C44;          /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;        /* Amarillo dorado */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    --color-border: #FFB066;        /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+.auth-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.auth-tabs {
+    display: flex;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #eee;
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+    color: var(--color-accent);
+    box-shadow: inset 0 -3px 0 var(--color-accent);
+}
+
+.auth-tab:hover {
+    background-color: #f0f0f0;
+}
+
+.auth-content {
+    padding: 30px;
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.auth-form h1 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+}
+
+.auth-form p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--color-accent);
+    outline: none;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.auth-user-type {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.auth-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.auth-radio input {
+    margin-right: 8px;
+}
+
+.radio-label {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.auth-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #b58a2e;
+}
+
+.auth-note {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.auth-note a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-note a:hover {
+    text-decoration: underline;
+}
+
+.auth-message {
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.auth-message.error {
+    background-color: #ffeeee;
+    color: #cc0000;
+    border: 1px solid #ffcccc;
+}
+
+.auth-message.success {
+    background-color: #eeffee;
+    color: #008800;
+    border: 1px solid #ccffcc;
+}
+
+.auth-message.info {
+    background-color: #eeeeff;
+    color: #0000cc;
+    border: 1px solid #ccccff;
+}
+
+@media (max-width: 600px) {
+    .auth-container {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .auth-content {
+        padding: 20px;
+    }
+}

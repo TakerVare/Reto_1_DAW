@@ -1,0 +1,7 @@
+[
+    { "id_category": 0, "name": "Burgers" },
+    { "id_category": 1, "name": "Drinks" },
+    { "id_category": 2, "name": "Desserts" },
+    { "id_category": 3, "name": "Extras" },
+    { "id_category": 4, "name": "Menus" }
+]

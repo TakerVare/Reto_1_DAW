@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Opportunities - BurWeb.Sa</title>
+    <!--Ponemos el logo por duplicado para mejorar la compatibilidad del logo con navegadores antiguos como IExplorer-->
+    <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/career.css">
+    <!--Añadimos esta fuente para el carrito-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Cargamos el script después del CSS pero antes del cierre del head -->
+    <script src="js/api.js"></script>
+    <script src="js/navMenu.js"></script>
+    <script src="js/navUser.js"></script>
+    <script src="js/shoppingCart.js"></script>
+    <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+    
+    <!-- Script específico para esta página -->
+    <script src="js/career.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav_burger_menu">
+            <!-- El botón hamburguesa se generará dinámicamente aquí -->
+        </div>
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
+        </div>
+        <div class="nav_menu">
+            <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_user" id="nav_user">
+            <!-- Este contenido se generará dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_shopping_car">
+            <!-- El menú del carrito se generará dinámicamente con JavaScript -->
+        </div>
+    </div>
+    <div class="main">
+        <div class="career-banner">
+            <h1>Join Our Team</h1>
+            <p>Discover exciting opportunities to grow with BurWeb</p>
+        </div>
+
+        <div class="career-intro">
+            <div class="career-intro-content">
+                <h2>Why Work With Us?</h2>
+                <p>At BurWeb, we believe that our team is the key to our success. We are committed to creating a positive and inclusive workplace where everyone can thrive and develop their skills.</p>
+                <div class="career-benefits">
+                    <div class="benefit-item">
+                        <i class="fas fa-star"></i>
+                        <h3>Competitive Salary</h3>
+                        <p>We offer competitive compensation packages that recognize your skills and experience.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Career Growth</h3>
+                        <p>We provide training and development opportunities to help you reach your full potential.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <h3>Great Team</h3>
+                        <p>Join a diverse and passionate team that values collaboration and innovation.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-heart"></i>
+                        <h3>Employee Discounts</h3>
+                        <p>Enjoy special discounts on our delicious food and beverages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="job-openings-container">
+            <h2>Current Job Openings</h2>
+            <div id="job-openings-list" class="job-openings-list">
+                <!-- Las ofertas de trabajo se cargarán aquí dinámicamente -->
+                <div class="loading-jobs">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading job opportunities...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="application-process">
+            <h2>Application Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Online Application</h3>
+                    <p>Submit your application through our online form for the position you're interested in.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Initial Review</h3>
+                    <p>Our HR team will review your application and contact you if your profile matches our requirements.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Interview</h3>
+                    <p>You'll be invited for an interview with our team to discuss your experience and our expectations.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Job Offer</h3>
+                    <p>If you're the right fit, we'll extend a job offer and welcome you to the BurWeb family!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="career-cta">
+            <h2>Don't See a Position That Fits?</h2>
+            <p>We're always looking for talented individuals to join our team. Send your resume to <a href="mailto:careers@burweb.sa">careers@burweb.sa</a> and we'll keep you in mind for future opportunities.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <!-- El contenido del footer se generará dinámicamente con JS -->
+    </div>
+
+    <!-- Modal para detalles de trabajo -->
+    <div id="job-modal" class="job-modal">
+        <div class="job-modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="job-modal-body">
+                <!-- El contenido del modal se cargará dinámicamente -->
+            </div>
+            <div class="job-modal-footer">
+                <button id="apply-button" class="apply-button">Apply Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
