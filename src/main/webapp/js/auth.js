@@ -303,12 +303,9 @@ function updateProfilePage(user) {
     const profileContainer = document.getElementById('profile-container');
     if (!profileContainer) return;
     
-    // Mostrar información del perfil
+    // Mostrar información del perfil sin incluir la sección de avatar
     profileContainer.innerHTML = `
         <div class="profile-header">
-            <div class="profile-avatar">
-                <img src="images/Icons/user_profile.png" alt="Profile Avatar">
-            </div>
             <div class="profile-info">
                 <h2>${user.first_name} ${user.last_name}</h2>
                 <p class="profile-email">${user.email}</p>
