@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BurWeb.Sa</title>
+    <!--Ponemos el logo por duplicado para mejorar la compatibilidad del logo con navegadores antiguos como IExplorer-->
+    <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <!--Añadimos esta fuente para el carrito-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Cargamos el script después del CSS pero antes del cierre del head -->
+    <script src="js/api.js"></script>
+    <script src="js/navMenu.js"></script>
+    <script src="js/navUser.js"></script>
+    <script src="js/shoppingCart.js"></script>
+    <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+    
+    <!-- Script específico para esta página -->
+    <script src="js/contact.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav_burger_menu">
+            <!-- El botón hamburguesa se generará dinámicamente aquí -->
+        </div>
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
+        </div>
+        <div class="nav_menu">
+            <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_user" id="nav_user">
+            <!-- Este contenido se generará dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_shopping_car">
+            <!-- El menú del carrito se generará dinámicamente con JavaScript -->
+        </div>
+    </div>
+    <div class="main">
+        <div class="contact-banner">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-options">
+                <div class="contact-option">
+                    <i class="fas fa-question-circle"></i>
+                    <h2>Customer Service</h2>
+                    <p>Questions about your order, our menu, or general inquiries? Our customer service team is ready to help.</p>
+                    <div id="customer-service-contacts" class="option-contacts">
+                        <!-- Placeholder until data is loaded -->
+                        <p><i class="fas fa-spinner fa-spin"></i> Loading contact information...</p>
+                    </div>
+                </div>
+                
+                <div class="contact-option">
+                    <i class="fas fa-briefcase"></i>
+                    <h2>Business Inquiries</h2>
+                    <p>For partnership opportunities, franchising information, or supplier relations.</p>
+                    <div id="business-contacts" class="option-contacts">
+                        <!-- Placeholder until data is loaded -->
+                        <p><i class="fas fa-spinner fa-spin"></i> Loading contact information...</p>
+                    </div>
+                </div>
+                
+                <div class="contact-option">
+                    <i class="fas fa-bullhorn"></i>
+                    <h2>Feedback & Suggestions</h2>
+                    <p>Your input helps us improve! Share your experience or suggestions with us.</p>
+                    <div id="feedback-contacts" class="option-contacts">
+                        <!-- Placeholder until data is loaded -->
+                        <p><i class="fas fa-spinner fa-spin"></i> Loading contact information...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="locations-link">
+                <h2>Find a Restaurant</h2>
+                <p>Looking for a BurWeb restaurant near you? View our locations and plan your visit.</p>
+                <a href="locations.html" class="locations-button">View All Locations</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <!-- El contenido del footer se generará dinámicamente con JS -->
+    </div>
+</body>
+
+</html>
