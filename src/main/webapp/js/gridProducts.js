@@ -12,6 +12,30 @@ const categoryMapping = {
     5: { sectionKey: 'menus', sliderConfig: { id: "slider-menus", content: "MENUS", speed: "1" } }
 };
 
+// Función para alternar entre descripción corta y completa (disponible globalmente)
+window.toggleDescription = function(event, productId) {
+    // Evitar que el clic se propague a la tarjeta del producto
+    event.stopPropagation();
+    
+    // Obtener los elementos
+    const shortDesc = document.getElementById(`desc-short-${productId}`);
+    const fullDesc = document.getElementById(`desc-full-${productId}`);
+    const toggleBtn = event.currentTarget;
+    
+    // Alternar visibilidad
+    if (shortDesc.classList.contains('hidden')) {
+        // Mostrar descripción corta, ocultar descripción completa
+        shortDesc.classList.remove('hidden');
+        fullDesc.classList.add('hidden');
+        toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Ver más';
+    } else {
+        // Ocultar descripción corta, mostrar descripción completa
+        shortDesc.classList.add('hidden');
+        fullDesc.classList.remove('hidden');
+        toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Ver menos';
+    }
+};
+
 // Función principal para inicializar el grid de productos
 async function initGridProducts() {
     try {
@@ -107,10 +131,18 @@ function createProductSection(products, sectionKey, sliderConfig) {
     `;
 }
 
-// Función para crear una card de producto
+// Función para crear una card de producto con descripción expandible
 function createProductCard(product) {
     // Formatear el precio con 2 decimales y el símbolo €
     const formattedPrice = product.price.toFixed(2) + ' €';
+    
+    // Usar una versión más corta de la descripción inicialmente
+    const shortDescription = product.description.length > 100 ? 
+        product.description.substring(0, 100) + '...' : 
+        product.description;
+    
+    // Comprobar si la descripción necesita el botón "Ver más"
+    const needsExpand = product.description.length > 100;
     
     return `
         <div class="product-card" data-product-id="${product.id_product}">
@@ -119,7 +151,15 @@ function createProductCard(product) {
             </div>
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
-                <p class="product-description">${product.description}</p>
+                <div class="product-description-container">
+                    <p class="product-description" id="desc-short-${product.id_product}">${shortDescription}</p>
+                    <p class="product-description product-description-full hidden" id="desc-full-${product.id_product}">${product.description}</p>
+                    ${needsExpand ? 
+                        `<button class="description-toggle" data-product-id="${product.id_product}" onclick="toggleDescription(event, ${product.id_product})">
+                            <i class="fas fa-chevron-down"></i> Ver más
+                        </button>` : 
+                        ''}
+                </div>
                 <div class="product-price-container">
                     <div class="product-price">${formattedPrice}</div>
                     <button class="add-to-cart-btn" onclick="showQuantityPopup(${product.id_product}, '${product.name}', ${product.price}, '${product.image}')">
@@ -173,7 +213,7 @@ function createQuantityPopup() {
         <div id="quantity-popup" class="quantity-popup">
             <div class="quantity-popup-content">
                 <div class="quantity-popup-header">
-                    <h3>Add to Cart</h3>
+                    <h3>Añadir al Carrito</h3>
                     <button class="close-popup" onclick="closeQuantityPopup()">&times;</button>
                 </div>
                 <div class="quantity-popup-body">
@@ -194,7 +234,7 @@ function createQuantityPopup() {
                         <span id="popup-total-price"></span>
                     </div>
                     <button class="add-to-cart-confirm" onclick="confirmAddToCart()">
-                        Add to Cart
+                        Añadir al Carrito
                     </button>
                 </div>
             </div>
@@ -280,7 +320,7 @@ function showAddToCartConfirmation() {
         const confirmationHTML = `
             <div id="cart-confirmation" class="cart-confirmation">
                 <i class="fas fa-check-circle"></i>
-                <span>Product added to cart</span>
+                <span>Producto añadido al carrito</span>
             </div>
         `;
         
