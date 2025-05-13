@@ -8,6 +8,8 @@ package Controller;
 import Controller.Actions.CategoryAction;
 import Controller.Actions.PeliculaAction;
 import Controller.Actions.ProductAction;
+import Controller.Actions.CustomerAction;
+import Controller.Actions.EmployeeAction;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,6 +51,16 @@ public class Controller extends HttpServlet {
             case "CATEGORY":
             {
                 out.print(new CategoryAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "CUSTOMER":
+            {
+                out.print(new CustomerAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "EMPLOYEE":
+            {
+                out.print(new EmployeeAction().execute(request,response, arrayAction[1]));
                 break;
             }
             default:
