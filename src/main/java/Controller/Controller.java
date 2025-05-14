@@ -69,6 +69,31 @@ public class Controller extends HttpServlet {
                 out.print(new AddressAction().execute(request,response, arrayAction[1]));
                 break;
             }
+            case "EMPLOYEE_SHOP":
+            {
+                out.print(new Employee_ShopAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "JOB_OFFER":
+            {
+                out.print(new Job_OfferAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "OFFER":
+            {
+                out.print(new OfferAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "ORDER":
+            {
+                out.print(new OrderAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "ORDER_DETAIL":
+            {
+                out.print(new Order_DetailAction().execute(request,response, arrayAction[1]));
+                break;
+            }
             default:
             {                
                 System.out.println(action); 

@@ -1,14 +1,14 @@
 package Controller.Actions;
 
-import Model.Employee_Shop;
-import Model.Employee_ShopDao;
+import Model.Offer;
+import Model.OfferDao;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Employee_ShopAction implements IAction {
+public class OfferAction implements IAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, String action) {
@@ -24,9 +24,9 @@ public class Employee_ShopAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        Employee_ShopDao employee_shopDao = new Employee_ShopDao();
-        ArrayList<Employee_Shop> employee_shops = employee_shopDao.findAll(null);
-        return Employee_Shop.toArrayJSon(employee_shops);
+        OfferDao offerDao = new OfferDao();
+        ArrayList<Offer> offers = offerDao.findAll(null);
+        return Offer.toArrayJSon(offers);
 
 
     }
