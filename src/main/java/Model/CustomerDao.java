@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class CustomerDao implements IDao {
     private final String SQL_FINDALL = "SELECT * FROM CUSTOMERS WHERE 1=1 ";
+    private final String SQL_INSERT = "INSERT INTO CUSTOMERS (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+    private final String SQL_DELETE = "DELETE FROM CUSTOMERS WHERE ID_CUSTOMER = ?";
+    private final String SQL_UPDATE = "UPDATE CUSTOMERS SET first_name = ?, last_name = ?, email = ?, password = ? WHERE ID_CUSTOMER = ?";
 
     private IMotorSql motorSql;
 
@@ -18,17 +21,85 @@ public class CustomerDao implements IDao {
 
     @Override
     public int add(Object bean) {
-        return 0;
+        int result = 0;
+        Customer customer = (Customer) bean;
+
+        try {
+            motorSql.connect();
+            PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_INSERT);
+            stmt.setString(1, customer.getFirstName());
+            stmt.setString(2, customer.getLastName());
+            stmt.setString(3, customer.getEmail());
+            stmt.setString(4, customer.getPassword());
+
+            motorSql.setPreparedStatement(stmt);
+            motorSql.execute();
+            result = 1; // Asumimos que la operación fue exitosa
+        } catch (SQLException e) {
+            System.out.println("Error al añadir cliente: " + e.getMessage());
+        } finally {
+            motorSql.disconnect();
+        }
+
+        return result;
     }
 
     @Override
     public int delete(Object e) {
-        return 0;
+        int result = 0;
+        Integer idCustomer = -1;
+
+        if (e instanceof Integer) {
+            idCustomer = (Integer) e;
+        } else if (e instanceof Customer) {
+            idCustomer = ((Customer) e).getiIdCustomer();
+        }
+
+        if (idCustomer > 0) {
+            try {
+                motorSql.connect();
+                PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_DELETE);
+                stmt.setInt(1, idCustomer);
+
+                motorSql.setPreparedStatement(stmt);
+                motorSql.execute();
+                result = 1; // Asumimos que la operación fue exitosa
+            } catch (SQLException ex) {
+                System.out.println("Error al eliminar cliente: " + ex.getMessage());
+            } finally {
+                motorSql.disconnect();
+            }
+        }
+
+        return result;
     }
 
     @Override
     public int update(Object bean) {
-        return 0;
+        int result = 0;
+        Customer customer = (Customer) bean;
+
+        if (customer.getiIdCustomer() > 0) {
+            try {
+                motorSql.connect();
+                PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_UPDATE);
+                stmt.setString(1, customer.getFirstName());
+                stmt.setString(2, customer.getLastName());
+                stmt.setString(3, customer.getEmail());
+                stmt.setString(4, customer.getPassword());
+                stmt.setInt(5, customer.getiIdCustomer());
+
+                motorSql.setPreparedStatement(stmt);
+                motorSql.execute();
+                result = 1; // Asumimos que la operación fue exitosa
+            } catch (SQLException ex) {
+                System.out.println("Error al actualizar cliente: " + ex.getMessage());
+            } finally {
+                motorSql.disconnect();
+            }
+        }
+
+        return result;
     }
 
     @Override

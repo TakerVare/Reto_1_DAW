@@ -1,13 +1,13 @@
 package Controller.Actions;
 
-import Model.Category;
-import Model.CategoryDao;
+import Model.City;
+import Model.CityDao;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CategoryAction implements IAction {
+public class CityAction implements IAction {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, String action) {
         String cadDestino = "";
@@ -32,43 +32,40 @@ public class CategoryAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        CategoryDao categoryDao = new CategoryDao();
-        ArrayList<Category> categories = categoryDao.findAll(new Category());
-        return Category.toArrayJSon(categories);
+        CityDao cityDao = new CityDao();
+        ArrayList<City> cities = cityDao.findAll(new City());
+        return City.toArrayJSon(cities);
 
     }
 
-
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        int idCategory = Integer.parseInt(request.getParameter("id_category"));
+        int idCity = Integer.parseInt(request.getParameter("id_city"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.delete(idCategory);
+        CityDao cityDao = new CityDao();
+        int result = cityDao.delete(idCity);
 
         return "{\"result\":" + result + "}";
     }
 
     private String add(HttpServletRequest request, HttpServletResponse response) {
-        Category category = new Category();
-        category.setName(request.getParameter("name"));
+        City city = new City();
+        city.setName(request.getParameter("name"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.add(category);
+        CityDao cityDao = new CityDao();
+        int result = cityDao.add(city);
 
         return "{\"result\":" + result + "}";
     }
 
     private String update(HttpServletRequest request, HttpServletResponse response) {
-        Category category = new Category();
-        category.setId_category(Integer.parseInt(request.getParameter("id_category")));
-        category.setName(request.getParameter("name"));
+        City city = new City();
+        city.setId_city(Integer.parseInt(request.getParameter("id_city")));
+        city.setName(request.getParameter("name"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.update(category);
+        CityDao cityDao = new CityDao();
+        int result = cityDao.update(city);
 
         return "{\"result\":" + result + "}";
     }
-
-
 
 }

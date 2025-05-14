@@ -1,13 +1,13 @@
 package Controller.Actions;
 
-import Model.Category;
-import Model.CategoryDao;
+import Model.Delivery;
+import Model.DeliveryDao;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CategoryAction implements IAction {
+public class DeliveryAction implements IAction {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, String action) {
         String cadDestino = "";
@@ -28,47 +28,42 @@ public class CategoryAction implements IAction {
         }
         return cadDestino;
     }
-
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        CategoryDao categoryDao = new CategoryDao();
-        ArrayList<Category> categories = categoryDao.findAll(new Category());
-        return Category.toArrayJSon(categories);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        ArrayList<Delivery> deliveries = deliveryDao.findAll(new Delivery());
+        return Delivery.toArrayJSon(deliveries);
 
     }
 
-
     private String delete(HttpServletRequest request, HttpServletResponse response) {
-        int idCategory = Integer.parseInt(request.getParameter("id_category"));
+        int idDelivery = Integer.parseInt(request.getParameter("id_delivery"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.delete(idCategory);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        int result = deliveryDao.delete(idDelivery);
 
         return "{\"result\":" + result + "}";
     }
 
     private String add(HttpServletRequest request, HttpServletResponse response) {
-        Category category = new Category();
-        category.setName(request.getParameter("name"));
+        Delivery delivery = new Delivery();
+        delivery.setName(request.getParameter("name"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.add(category);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        int result = deliveryDao.add(delivery);
 
         return "{\"result\":" + result + "}";
     }
 
     private String update(HttpServletRequest request, HttpServletResponse response) {
-        Category category = new Category();
-        category.setId_category(Integer.parseInt(request.getParameter("id_category")));
-        category.setName(request.getParameter("name"));
+        Delivery delivery = new Delivery();
+        delivery.setId_delivery(Integer.parseInt(request.getParameter("id_delivery")));
+        delivery.setName(request.getParameter("name"));
 
-        CategoryDao categoryDao = new CategoryDao();
-        int result = categoryDao.update(category);
+        DeliveryDao deliveryDao = new DeliveryDao();
+        int result = deliveryDao.update(delivery);
 
         return "{\"result\":" + result + "}";
     }
-
-
-
 }

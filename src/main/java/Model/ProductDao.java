@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class ProductDao implements IDao {
 
     private final String SQL_FINDALL = "SELECT * FROM PRODUCTS WHERE 1=1 ";
+    private final String SQL_INSERT = "INSERT INTO PRODUCTS (id_tax, id_category, name, description, price, image) VALUES (?, ?, ?, ?, ?, ?)";
+    private final String SQL_DELETE = "DELETE FROM PRODUCTS WHERE id_product = ?";
+    private final String SQL_UPDATE = "UPDATE PRODUCTS SET id_tax = ?, id_category = ?, name = ?, description = ?, price = ?, image = ? WHERE id_product = ?";
+
     private IMotorSql motorSql;
 
     public ProductDao() {
@@ -18,22 +22,89 @@ public class ProductDao implements IDao {
 
     @Override
     public int add(Object bean) {
-        return 0;
+        int result = 0;
+        Product product = (Product) bean;
+
+        try {
+            motorSql.connect();
+            PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_INSERT);
+            stmt.setInt(1, product.getId_tax());
+            stmt.setInt(2, product.getId_category());
+            stmt.setString(3, product.getName());
+            stmt.setString(4, product.getDescription());
+            stmt.setDouble(5, product.getPrice());
+            stmt.setString(6, product.getImage());
+
+            motorSql.setPreparedStatement(stmt);
+            motorSql.execute();
+            result = 1; // Asumimos que la operación fue exitosa
+        } catch (SQLException e) {
+            System.out.println("Error al añadir producto: " + e.getMessage());
+        } finally {
+            motorSql.disconnect();
+        }
+
+        return result;
     }
 
     @Override
     public int delete(Object e) {
-        return 0;
+        int result = 0;
+        Integer idProduct = -1;
+
+        if (e instanceof Integer) {
+            idProduct = (Integer) e;
+        } else if (e instanceof Product) {
+            idProduct = ((Product) e).getId_product();
+        }
+
+        if (idProduct > 0) {
+            try {
+                motorSql.connect();
+                PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_DELETE);
+                stmt.setInt(1, idProduct);
+
+                motorSql.setPreparedStatement(stmt);
+                motorSql.execute();
+                result = 1; // Asumimos que la operación fue exitosa
+            } catch (SQLException ex) {
+                System.out.println("Error al eliminar producto: " + ex.getMessage());
+            } finally {
+                motorSql.disconnect();
+            }
+        }
+
+        return result;
     }
-/*
-    @Override
-    public int delete(Object e) {
-        return 0;
-    }
-*/
+
     @Override
     public int update(Object bean) {
-        return 0;
+        int result = 0;
+        Product product = (Product) bean;
+
+        if (product.getId_product() > 0) {
+            try {
+                motorSql.connect();
+                PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_UPDATE);
+                stmt.setInt(1, product.getId_tax());
+                stmt.setInt(2, product.getId_category());
+                stmt.setString(3, product.getName());
+                stmt.setString(4, product.getDescription());
+                stmt.setDouble(5, product.getPrice());
+                stmt.setString(6, product.getImage());
+                stmt.setInt(7, product.getId_product());
+
+                motorSql.setPreparedStatement(stmt);
+                motorSql.execute();
+                result = 1; // Asumimos que la operación fue exitosa
+            } catch (SQLException ex) {
+                System.out.println("Error al actualizar producto: " + ex.getMessage());
+            } finally {
+                motorSql.disconnect();
+            }
+        }
+
+        return result;
     }
 
     @Override
