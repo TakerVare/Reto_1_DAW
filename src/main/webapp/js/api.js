@@ -9,14 +9,15 @@ async function getShoppingCartItems() {
     
     return ShoppingCartItems
 }
-
+//CREO QUE ESTA FUNCIÓN NO LA USAMOS EN NIGÚN SITIO
+/*
 async function getProductDetails(id){
     let productDetails = await (await fetch('./mockup/products.json')).json()
     
     // Buscar el producto por su id_product en lugar de usar directamente el índice
     return productDetails.find(product => product.id_product === id)
 }
-
+*/
 async function getProducts() {
     try {
         const response = await fetch('Controller?ACTION=PRODUCT.FIND_ALL', {
@@ -60,54 +61,6 @@ async function getProducts() {
 }
 
 
-/*
-async function getProducts(){
-    try {
-        let productsResponse = await fetch('./mockup/products.json');
-        if (!productsResponse.ok) {
-            throw new Error(`Error fetching products: ${productsResponse.status}`);
-        }
-        let products = await productsResponse.json();
-        console.log('Products loaded:', products.length);
-        
-        // Añadir esta línea para mostrar todo el array en la consola
-        console.log('Products array:', products);
-        
-        return products;
-    } catch (error) {
-        console.error('Error in getProducts:', error);
-        return [];
-    }
-}
-*/
-/**
- * Obtiene las categorías de productos desde el archivo JSON
- * @returns {Promise<Array>} Promesa que resuelve a un array de categorías
- */
- /*
-async function getCategories() {
-    try {
-        const response = await fetch('./mockup/categories.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Error fetching categories:', error);
-        // Devuelve categorías por defecto en caso de error
-        return [
-            { "id_category": 0, "name": "Burgers" },
-            { "id_category": 1, "name": "Drinks" },
-            { "id_category": 2, "name": "Desserts" },
-            { "id_category": 3, "name": "Extras" },
-            { "id_category": 4, "name": "Menus" }
-        ];
-    }
-}
-*/
-
-/* EMPIEZA EDICIÓN GUILLERMO */
-//var categories = null;
 
 async function getCategories() {
     try {
@@ -180,33 +133,47 @@ async function getRoles() {
 }
 
 /**
- * Obtiene los empleados desde el archivo JSON
+ * Obtiene los empleados desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de empleados
  */
 async function getEmployees() {
     try {
-        const response = await fetch('./mockup/employees.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const employees = await response.json();
-        console.log('Employees loaded from API:', employees);
-        return employees;
-    } catch (error) {
-        console.error('Error fetching employees:', error);
-        // Intentar resolver con un formato alternativo de la URL
-        try {
-            const altResponse = await fetch('mockup/employees.json');
-            if (!altResponse.ok) {
-                throw new Error(`HTTP error in alternate path! Status: ${altResponse.status}`);
+        const response = await fetch('Controller?ACTION=EMPLOYEE.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
             }
-            const employees = await altResponse.json();
-            console.log('Employees loaded from alternate path:', employees);
-            return employees;
-        } catch (altError) {
-            console.error('Error fetching employees from alternate path:', altError);
-            return []; // Devolver array vacío en caso de error
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
         }
+
+        const responseText = await response.json();
+        //console.log(responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedEmployees = [];
+
+        for (var i in responseText) {
+            formattedEmployees.push({
+                "id_employee": responseText[i]['id_employee'],
+                "id_rol": responseText[i]['id_rol'],
+                "first_name": responseText[i]['first_name'],
+                "last_name": responseText[i]['last_name'],
+                "email": responseText[i]['email'],
+                "password": responseText[i]['password']
+            });
+        }
+
+        // Para depuración
+        //console.log(formattedCategories);
+
+        // Devolver el array de categorías con el formato deseado
+        return formattedEmployees;
+    } catch (error) {
+        console.error('Error al obtener los empleados:', error);
+        return []; // Devolver array vacío en caso de error
     }
 }
 
@@ -248,6 +215,7 @@ async function getTaxes() {
  * Obtiene las ofertas disponibles desde el archivo JSON
  * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
  */
+ //TODO
 async function getOffers() {
     try {
         const response = await fetch('./mockup/offers.json');
@@ -282,29 +250,40 @@ async function getOffers() {
  */
 async function getCustomers() {
     try {
-        const response = await fetch('./mockup/customers.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const customers = await response.json();
-        console.log('Customers loaded from API:', customers);
-        return customers;
-    } catch (error) {
-        console.error('Error fetching customers:', error);
-        try {
-            const altResponse = await fetch('mockup/customers.json');
-            if (!altResponse.ok) {
-                throw new Error(`HTTP error in alternate path! Status: ${altResponse.status}`);
+        const response = await fetch('Controller?ACTION=CUSTOMER.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
             }
-            const customers = await altResponse.json();
-            console.log('Customers loaded from alternate path:', customers);
-            return customers;
-        } catch (altError) {
-            console.error('Error fetching customers from alternate path:', altError);
-            return [];
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
         }
+
+        const responseText = await response.json();
+
+        // Transformar los datos al formato deseado
+        const formattedCustomers = [];
+
+        for (var i in responseText) {
+            formattedCustomers.push({
+                "id_customer": responseText[i]['id_customer'],
+                "first_name": responseText[i]['first_name'],
+                "last_name": responseText[i]['last_name'],
+                "email": responseText[i]['email'],
+                "password": responseText[i]['password']
+            });
+        }
+
+        // Devolver el array de categorías con el formato deseado
+        return formattedCustomers;
+    } catch (error) {
+        console.error('Error al obtener los clientes:', error);
+        return []; // Devolver array vacío en caso de error
     }
 }
+
 
 /**
  * Simula la adición de un nuevo cliente al JSON
@@ -351,7 +330,7 @@ async function addCustomer(customer) {
  * @param {string} email - Email del cliente
  * @param {string} password - Contraseña del cliente
  * @returns {Promise<Object|null>} Cliente si las credenciales son válidas, null en caso contrario
- */
+ */ //todo
 async function verifyCustomerCredentials(email, password) {
     try {
         // Intentar primero obtener clientes del localStorage (para incluir los nuevos registros)
