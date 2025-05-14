@@ -106,13 +106,20 @@ async function register(customerData) {
     try {
         // Validar email único
         const customers = await getCustomers();
-        const existingCustomer = customers.find(c => 
-            c.email.toLowerCase() === customerData.email.toLowerCase()
-        );
 
-        if (existingCustomer) {
-            console.log('Email already in use');
-            return false;
+        // Verificar si customers es un array válido
+        if (Array.isArray(customers)) {
+            // Verificar si existe un cliente con el mismo email, protegiendo contra valores undefined
+            const existingCustomer = customers.find(c =>
+                c && c.email && c.email.toLowerCase() === customerData.email.toLowerCase()
+            );
+
+            if (existingCustomer) {
+                console.log('Email already in use');
+                return false;
+            }
+        } else {
+            console.log('No se pudo verificar la unicidad del email, continuar con el registro');
         }
 
         // Agregar nuevo cliente
