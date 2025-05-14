@@ -109,12 +109,12 @@ async function register(customerData) {
         const existingCustomer = customers.find(c => 
             c.email.toLowerCase() === customerData.email.toLowerCase()
         );
-        
+
         if (existingCustomer) {
             console.log('Email already in use');
             return false;
         }
-        
+
         // Agregar nuevo cliente
         const result = await addCustomer(customerData);
         

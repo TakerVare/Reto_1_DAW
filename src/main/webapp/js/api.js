@@ -286,41 +286,40 @@ async function getCustomers() {
 
 
 /**
- * Simula la adición de un nuevo cliente al JSON
- * En un entorno real, esto se haría a través de una API real
+ * Crea un nuevo cliente en la base de datos
  * @param {Object} customer - Datos del nuevo cliente
  * @returns {Promise<boolean>} Promesa que resuelve a true si la operación fue exitosa
  */
 async function addCustomer(customer) {
     try {
-        // En un entorno real, aquí se enviaría una solicitud POST a la API
-        // Para el mockup, guardamos en localStorage
-        const customers = await getCustomers();
-        
-        // Generar un nuevo ID
-        const newId = customers.length > 0 
-            ? Math.max(...customers.map(c => c.id_customer)) + 1 
-            : 0;
-        
-        // Crear nuevo cliente
-        const newCustomer = {
-            id_customer: newId,
-            first_name: customer.first_name,
-            last_name: customer.last_name,
-            email: customer.email,
-            password: customer.password
-        };
-        
-        // Agregar a la lista temporal
-        customers.push(newCustomer);
-        
-        // Guardar en localStorage para simular persistencia
-        localStorage.setItem('mockCustomers', JSON.stringify(customers));
-        
-        console.log('Customer added:', newCustomer);
-        return true;
+        // Crear FormData para enviar los datos como parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'CUSTOMER.ADD');
+        formData.append('first_name', customer.first_name);
+        formData.append('last_name', customer.last_name);
+        formData.append('email', customer.email);
+        formData.append('password', customer.password);
+
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const result = await response.json();
+        console.log('Cliente añadido:', result);
+
+        // Verificar si la operación fue exitosa
+        return result.result === 1;
     } catch (error) {
-        console.error('Error adding customer:', error);
+        console.error('Error al añadir cliente:', error);
         return false;
     }
 }
