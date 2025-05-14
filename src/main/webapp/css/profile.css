@@ -288,3 +288,94 @@
         font-size: 0.65rem;
     }
 }
+
+.addresses-container {
+    width: 100%;
+}
+
+.profile-address {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s ease;
+}
+
+.profile-address:last-child {
+    margin-bottom: 0;
+}
+
+.profile-address:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.favourite-address {
+    border-color: var(--color-accent);
+    background-color: rgba(209, 160, 61, 0.05);
+}
+
+.address-badge {
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    background-color: var(--color-accent);
+    color: white;
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.address-content {
+    width: 100%;
+}
+
+.address-line {
+    margin: 0 0 4px 0;
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+}
+
+.address-line:last-child {
+    margin-bottom: 0;
+}
+
+/* Special styling for the address field label */
+.addresses-field .field-label {
+    align-self: flex-start;
+    padding-top: 5px;
+}
+
+/* Ensure no actions are displayed */
+.address-actions {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .profile-field.addresses-field {
+        flex-direction: column;
+    }
+    
+    .addresses-field .field-label {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .profile-address {
+        padding: 10px;
+    }
+    
+    .address-badge {
+        font-size: 0.6rem;
+        top: -7px;
+        right: 7px;
+    }
+    
+    .address-line {
+        font-size: 0.85rem;
+    }
+}
