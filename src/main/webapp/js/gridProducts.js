@@ -1,6 +1,7 @@
 /**
- * BurWeb - Grid Products Component
+ * BurWeb - Grid Products Component (Simplified)
  * Crea dinámicamente los grids de productos basados en datos JSON
+ * Versión simplificada con descripciones completas
  */
 
 // Mapeo de id_category a nombres de sección y configuración de sliders
@@ -12,35 +13,9 @@ const categoryMapping = {
     5: { sectionKey: 'menus', sliderConfig: { id: "slider-menus", content: "MENUS", speed: "1" } }
 };
 
-// Función para alternar entre descripción corta y completa (disponible globalmente)
-window.toggleDescription = function(event, productId) {
-    // Evitar que el clic se propague a la tarjeta del producto
-    event.stopPropagation();
-    
-    // Obtener los elementos
-    const shortDesc = document.getElementById(`desc-short-${productId}`);
-    const fullDesc = document.getElementById(`desc-full-${productId}`);
-    const toggleBtn = event.currentTarget;
-    
-    // Alternar visibilidad
-    if (shortDesc.classList.contains('hidden')) {
-        // Mostrar descripción corta, ocultar descripción completa
-        shortDesc.classList.remove('hidden');
-        fullDesc.classList.add('hidden');
-        toggleBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Ver más';
-    } else {
-        // Ocultar descripción corta, mostrar descripción completa
-        shortDesc.classList.add('hidden');
-        fullDesc.classList.remove('hidden');
-        toggleBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Ver menos';
-    }
-};
-
 // Función principal para inicializar el grid de productos
 async function initGridProducts() {
     try {
-        //getCategories();
-
         // Obtener los datos de productos desde la API
         const products = await getProducts();
         
@@ -131,18 +106,10 @@ function createProductSection(products, sectionKey, sliderConfig) {
     `;
 }
 
-// Función para crear una card de producto con descripción expandible
+// Función para crear una card de producto con descripción completa
 function createProductCard(product) {
     // Formatear el precio con 2 decimales y el símbolo €
     const formattedPrice = product.price.toFixed(2) + ' €';
-    
-    // Usar una versión más corta de la descripción inicialmente
-    const shortDescription = product.description.length > 100 ? 
-        product.description.substring(0, 100) + '...' : 
-        product.description;
-    
-    // Comprobar si la descripción necesita el botón "Ver más"
-    const needsExpand = product.description.length > 100;
     
     return `
         <div class="product-card" data-product-id="${product.id_product}">
@@ -152,13 +119,7 @@ function createProductCard(product) {
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
                 <div class="product-description-container">
-                    <p class="product-description" id="desc-short-${product.id_product}">${shortDescription}</p>
-                    <p class="product-description product-description-full hidden" id="desc-full-${product.id_product}">${product.description}</p>
-                    ${needsExpand ? 
-                        `<button class="description-toggle" data-product-id="${product.id_product}" onclick="toggleDescription(event, ${product.id_product})">
-                            <i class="fas fa-chevron-down"></i> Ver más
-                        </button>` : 
-                        ''}
+                    <p class="product-description">${product.description}</p>
                 </div>
                 <div class="product-price-container">
                     <div class="product-price">${formattedPrice}</div>
