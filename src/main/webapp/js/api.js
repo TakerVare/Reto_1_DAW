@@ -329,23 +329,25 @@ async function addCustomer(customer) {
  * @param {string} email - Email del cliente
  * @param {string} password - Contraseña del cliente
  * @returns {Promise<Object|null>} Cliente si las credenciales son válidas, null en caso contrario
- */ //todo
+ */
 async function verifyCustomerCredentials(email, password) {
     try {
-        // Intentar primero obtener clientes del localStorage (para incluir los nuevos registros)
-        let customers = JSON.parse(localStorage.getItem('mockCustomers')) || [];
-        
-        // Si no hay datos en localStorage, obtener del JSON original
-        if (customers.length === 0) {
-            customers = await getCustomers();
+        // Obtener clientes directamente de la base de datos
+        const customers = await getCustomers();
+
+        // Verificar que customers sea un array válido
+        if (Array.isArray(customers) && customers.length > 0) {
+            // Buscar cliente con las credenciales proporcionadas, protegiendo contra valores undefined
+            const customer = customers.find(c =>
+                c && c.email && c.email.toLowerCase() === email.toLowerCase() &&
+                c.password === password
+            );
+
+            return customer || null;
         }
-        
-        // Buscar cliente con las credenciales proporcionadas
-        const customer = customers.find(c => 
-            c.email.toLowerCase() === email.toLowerCase() && c.password === password
-        );
-        
-        return customer || null;
+
+        // Si no hay clientes o no es un array, devolver null
+        return null;
     } catch (error) {
         console.error('Error verifying customer credentials:', error);
         return null;
