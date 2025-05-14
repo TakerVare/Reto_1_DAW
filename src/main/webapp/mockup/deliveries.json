@@ -1,4 +1,4 @@
 [
     { "id_delivery": 0, "name": "In-store Pickup" },
-    { "id_delivery": 1, "name": "In-store Pickup" }
+    { "id_delivery": 1, "name": "Home Delivery" }
 ]

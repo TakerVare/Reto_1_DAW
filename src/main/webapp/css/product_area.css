@@ -127,8 +127,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(209, 160, 61, 0.2);
-    height: 100%; /* Asegura altura consistente */
-    display: flex; /* Estructura flex para distribución vertical */
+    height: 100%;
+    display: flex;
     flex-direction: column;
     text-align: center;
 }
@@ -201,10 +201,6 @@
 
 /* Ajuste en hover para ampliar la imagen */
 .product-card:hover .product-image img {
-    transform: scale(1.08);
-}
-
-.product-card:hover .product-image img {
     transform: scale(1.05);
 }
 
@@ -224,19 +220,21 @@
     font-family: var(--font-logo);
 }
 
+/* Estilos para descripciones (ahora completas) */
+.product-description-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
 .product-description {
     font-size: 0.95rem;
     color: var(--color-text);
     margin-bottom: 15px;
     line-height: 1.5;
     font-family: var(--font-main);
-    /* Control de altura para descripciones */
-    height: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
+    /* Eliminada la altura máxima para mostrar la descripción completa */
+    max-height: none;
+    overflow: visible;
 }
 
 .product-price-container {
@@ -293,15 +291,6 @@
     transform: scale(0.95);
 }
 
-/* Estilos específicos para cada tipo de producto */
-.drinks-grid .product-image {
-    aspect-ratio: 3 / 4; /* Más vertical para bebidas */
-}
-
-.desserts-grid .product-image {
-    aspect-ratio: 1 / 1; /* Cuadrado para postres */
-}
-
 /* Banner de productos */
 .products-banner {
     text-align: center;
@@ -325,6 +314,8 @@
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Estilos para el popup de cantidad */
 .quantity-popup {
     position: fixed;
     top: 0;

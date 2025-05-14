@@ -395,3 +395,113 @@ async function verifyEmployeeCredentials(email, password) {
         return null;
     }
 }
+
+/**
+ * Gets the addresses for a specific customer
+ * @param {number} customerId - ID of the customer
+ * @returns {Promise<Array>} Promise that resolves to an array of addresses
+ */
+async function getCustomerAddresses(customerId) {
+    try {
+        const response = await fetch('./mockup/addresses.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const addresses = await response.json();
+
+        // Filter addresses for the specific customer
+        return addresses.filter(address => address.ID_CUSTOMER === customerId);
+    } catch (error) {
+        console.error('Error fetching customer addresses:', error);
+        return [];
+    }
+}
+
+/**
+ * Gets all cities from the cities.json file
+ * @returns {Promise<Array>} Promise that resolves to an array of cities
+ */
+async function getCities() {
+    try {
+        const response = await fetch('./mockup/cities.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching cities:', error);
+        return [];
+    }
+}
+
+/**
+ * Sets an address as the default (favorite) for a customer
+ * @param {number} addressId - ID of the address
+ * @param {number} customerId - ID of the customer
+ * @returns {Promise<boolean>} Promise that resolves to true if successful
+ */
+async function setDefaultAddress(addressId, customerId) {
+    try {
+        // In a real implementation, this would be an API call
+        // For this mockup, we'll just return true
+        console.log(`Setting address ${addressId} as default for customer ${customerId}`);
+        return true;
+    } catch (error) {
+        console.error('Error setting default address:', error);
+        return false;
+    }
+}
+
+/**
+ * Deletes an address
+ * @param {number} addressId - ID of the address to delete
+ * @returns {Promise<boolean>} Promise that resolves to true if successful
+ */
+async function deleteAddress(addressId) {
+    try {
+        // In a real implementation, this would be an API call
+        // For this mockup, we'll just return true
+        console.log(`Deleting address ${addressId}`);
+        return true;
+    } catch (error) {
+        console.error('Error deleting address:', error);
+        return false;
+    }
+}
+
+/**
+ * Creates a new address for a customer
+ * @param {Object} addressData - Data for the new address
+ * @returns {Promise<boolean>} Promise that resolves to true if successful
+ */
+async function addAddress(addressData) {
+    try {
+        // In a real implementation, this would be an API call
+        // For this mockup, we'll just return true
+        console.log('Adding new address:', addressData);
+        return true;
+    } catch (error) {
+        console.error('Error adding address:', error);
+        return false;
+    }
+}
+
+/**
+ * Updates an existing address
+ * @param {number} addressId - ID of the address to update
+ * @param {Object} addressData - New data for the address
+ * @returns {Promise<boolean>} Promise that resolves to true if successful
+ */
+async function updateAddress(addressId, addressData) {
+    try {
+        // In a real implementation, this would be an API call
+        // For this mockup, we'll just return true
+        console.log(`Updating address ${addressId}:`, addressData);
+        return true;
+    } catch (error) {
+        console.error('Error updating address:', error);
+        return false;
+    }
+}

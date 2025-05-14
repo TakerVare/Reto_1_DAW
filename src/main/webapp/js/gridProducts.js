@@ -1,6 +1,7 @@
 /**
- * BurWeb - Grid Products Component
+ * BurWeb - Grid Products Component (Simplified)
  * Crea dinámicamente los grids de productos basados en datos JSON
+ * Versión simplificada con descripciones completas
  */
 
 // Mapeo de id_category a nombres de sección y configuración de sliders
@@ -15,8 +16,6 @@ const categoryMapping = {
 // Función principal para inicializar el grid de productos
 async function initGridProducts() {
     try {
-        //getCategories();
-
         // Obtener los datos de productos desde la API
         const products = await getProducts();
         
@@ -107,7 +106,7 @@ function createProductSection(products, sectionKey, sliderConfig) {
     `;
 }
 
-// Función para crear una card de producto
+// Función para crear una card de producto con descripción completa
 function createProductCard(product) {
     // Formatear el precio con 2 decimales y el símbolo €
     const formattedPrice = product.price.toFixed(2) + ' €';
@@ -119,7 +118,9 @@ function createProductCard(product) {
             </div>
             <div class="product-info">
                 <h3 class="product-title">${product.name}</h3>
-                <p class="product-description">${product.description}</p>
+                <div class="product-description-container">
+                    <p class="product-description">${product.description}</p>
+                </div>
                 <div class="product-price-container">
                     <div class="product-price">${formattedPrice}</div>
                     <button class="add-to-cart-btn" onclick="showQuantityPopup(${product.id_product}, '${product.name}', ${product.price}, '${product.image}')">
@@ -173,7 +174,7 @@ function createQuantityPopup() {
         <div id="quantity-popup" class="quantity-popup">
             <div class="quantity-popup-content">
                 <div class="quantity-popup-header">
-                    <h3>Add to Cart</h3>
+                    <h3>Añadir al Carrito</h3>
                     <button class="close-popup" onclick="closeQuantityPopup()">&times;</button>
                 </div>
                 <div class="quantity-popup-body">
@@ -194,7 +195,7 @@ function createQuantityPopup() {
                         <span id="popup-total-price"></span>
                     </div>
                     <button class="add-to-cart-confirm" onclick="confirmAddToCart()">
-                        Add to Cart
+                        Añadir al Carrito
                     </button>
                 </div>
             </div>
@@ -280,7 +281,7 @@ function showAddToCartConfirmation() {
         const confirmationHTML = `
             <div id="cart-confirmation" class="cart-confirmation">
                 <i class="fas fa-check-circle"></i>
-                <span>Product added to cart</span>
+                <span>Producto añadido al carrito</span>
             </div>
         `;
         
