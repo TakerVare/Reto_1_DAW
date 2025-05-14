@@ -180,3 +180,111 @@
         margin-bottom: 5px;
     }
 }
+
+/* Address section styles */
+.profile-address {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    border: 1px solid #eee;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-address:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.favourite-address {
+    border-color: var(--color-accent);
+    background-color: rgba(209, 160, 61, 0.05);
+}
+
+.address-badge {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: var(--color-accent);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.address-content {
+    flex: 1;
+}
+
+.address-line {
+    margin: 0 0 5px 0;
+    color: var(--color-text);
+}
+
+.address-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.address-action {
+    background-color: transparent;
+    border: none;
+    color: #999;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+.address-action:hover {
+    color: var(--color-accent);
+}
+
+.address-action.delete-address:hover {
+    color: #e74c3c;
+}
+
+.make-default {
+    background-color: var(--color-accent);
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.make-default:hover {
+    background-color: #b58a2e;
+}
+
+.add-address-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .profile-address {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .address-actions {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+
+    .address-badge {
+        top: -8px;
+        right: 8px;
+        font-size: 0.65rem;
+    }
+}
