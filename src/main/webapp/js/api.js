@@ -304,7 +304,7 @@ async function addCustomer(customer) {
         const response = await fetch('Controller', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/x-www-form-urlencoded', //Todo => pasar a json como en el GET
             },
             body: formData
         });
