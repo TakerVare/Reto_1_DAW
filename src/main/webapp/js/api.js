@@ -217,30 +217,59 @@ async function getTaxes() { //todo
  * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
  */
  //TODO
+/**
+ * Obtiene las ofertas disponibles desde la base de datos
+ * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
+ */
 async function getOffers() {
     try {
-        const response = await fetch('./mockup/offers.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const offers = await response.json();
-        console.log('Ofertas cargadas desde API:', offers);
-        return offers;
-    } catch (error) {
-        console.error('Error fetching offers:', error);
-        // Intentar resolver con un formato alternativo de la URL
-        try {
-            const altResponse = await fetch('mockup/offers.json');
-            if (!altResponse.ok) {
-                throw new Error(`HTTP error in alternate path! Status: ${altResponse.status}`);
+        const response = await fetch('Controller?ACTION=OFFER.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
             }
-            const offers = await altResponse.json();
-            console.log('Ofertas cargadas desde ruta alternativa:', offers);
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Ofertas cargadas desde la base de datos:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedOffers = [];
+
+        for (var i in responseText) {
+            formattedOffers.push({
+                "id_offer": responseText[i]['id_offer'],
+                "name": responseText[i]['name'],
+                "discount": responseText[i]['discount'],
+                "start_date": responseText[i]['start_date'],
+                "end_date": responseText[i]['end_date']
+            });
+        }
+
+        // Para depuración
+        console.log('Ofertas formateadas:', formattedOffers);
+
+        // Devolver el array de ofertas con el formato deseado
+        return formattedOffers;
+    } catch (error) {
+        console.error('Error al obtener las ofertas:', error);
+
+        // Intentar resolver con el archivo JSON como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/offers.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+            const offers = await fallbackResponse.json();
+            console.log('Ofertas cargadas desde archivo local (fallback):', offers);
             return offers;
-        } catch (altError) {
-            console.error('Error fetching offers from alternate path:', altError);
-            // Devolver array vacío en caso de error
-            return [];
+        } catch (fallbackError) {
+            console.error('Error al cargar ofertas desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
         }
     }
 }

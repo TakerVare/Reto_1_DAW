@@ -12,6 +12,7 @@ import Controller.Actions.CustomerAction;
 import Controller.Actions.DeliveryAction;
 import Controller.Actions.EmployeeAction;
 import Controller.Actions.ProductAction;
+import Controller.Actions.OfferAction;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -73,6 +74,11 @@ public class Controller extends HttpServlet {
             case "DELIVERY":
             {
                 out.print(new DeliveryAction().execute(request, response, arrayAction[1]));
+                break;
+            }
+            case "OFFER":
+            {
+                out.print(new OfferAction().execute(request, response, arrayAction[1]));
                 break;
             }
             default:
