@@ -422,20 +422,56 @@ async function verifyEmployeeCredentials(email, password) {
  * @param {number} customerId - ID of the customer
  * @returns {Promise<Array>} Promise that resolves to an array of addresses
  */
-async function getCustomerAddresses(customerId) {   //todo
+async function getCustomerAddresses(customerId) {
     try {
-        const response = await fetch('./mockup/addresses.json');
+        const response = await fetch(`Controller?ACTION=ADDRESS.FIND_ALL&id_customer=${customerId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`Error en la red: ${response.status}`);
         }
 
-        const addresses = await response.json();
+        const responseText = await response.json();
+        console.log('Direcciones cargadas:', responseText);
 
-        // Filter addresses for the specific customer
-        return addresses.filter(address => address.ID_CUSTOMER === customerId);
+        // Transformar los datos al formato deseado
+        const formattedAddresses = [];
+
+        for (var i in responseText) {
+            formattedAddresses.push({
+                "ID_ADDRESS": responseText[i]['id_address'],
+                "ID_CUSTOMER": responseText[i]['id_customer'],
+                "ID_CITY": responseText[i]['id_city'],
+                "STREET": responseText[i]['street'],
+                "STATE": responseText[i]['state'],
+                "ZIP": responseText[i]['zip'],
+                "FAVOURITE": responseText[i]['favourite']
+            });
+        }
+
+        return formattedAddresses;
     } catch (error) {
-        console.error('Error fetching customer addresses:', error);
-        return [];
+        console.error('Error al obtener las direcciones del cliente:', error);
+
+        // Si hay un error, intentar cargar desde el archivo local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/addresses.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+
+            const addresses = await fallbackResponse.json();
+
+            // Filtrar direcciones para el cliente específico
+            return addresses.filter(address => address.ID_CUSTOMER === customerId);
+        } catch (fallbackError) {
+            console.error('Error al cargar direcciones desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
     }
 }
 
