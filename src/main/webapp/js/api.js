@@ -293,11 +293,11 @@ async function getCustomers() {
 
         for (var i in responseText) {
             formattedCustomers.push({
-                "id_customer": responseText[i]['id_customer'],
-                "first_name": responseText[i]['first_name'],
-                "last_name": responseText[i]['last_name'],
-                "email": responseText[i]['email'],
-                "password": responseText[i]['password']
+                "id_customer": responseText[i]['m_iIdCustomer'],
+                "first_name": responseText[i]['m_strFirstName'],
+                "last_name": responseText[i]['m_strLastName'],
+                "email": responseText[i]['m_strEmail'],
+                "password": responseText[i]['m_strPassword']
             });
         }
 
