@@ -187,30 +187,32 @@ function initRegisterForm() {
             const result = await addCustomer(customerData);
 
             if (result) {
-                // Ahora iniciamos sesión con las credenciales
+                // Now log in with credentials
                 try {
+                    console.log('Registration successful, attempting login with:', customerData.email);
                     const loginSuccess = await login(customerData.email, customerData.password, 'customer');
 
                     if (loginSuccess) {
-                        // Redireccionar a la página principal
+                        // Redirect to main page
                         showMessage(messageContainer, 'Registration successful! Redirecting...', 'success');
                         setTimeout(() => {
                             window.location.href = 'index.html';
                         }, 1000);
                     } else {
-                        // Registro exitoso pero fallo al iniciar sesión automáticamente
+                        console.error('Login failed after successful registration');
+                        // Registration successful but auto-login failed
                         showMessage(messageContainer, 'Registration successful! Please sign in.', 'success');
                         setTimeout(() => {
-                            // Cambiar a la pestaña de inicio de sesión
+                            // Switch to login tab
                             document.querySelector('.auth-tab[data-tab="login"]').click();
                         }, 2000);
                     }
                 } catch (loginError) {
-                    console.error('Auto-login error after registration:', loginError);
-                    // Registro exitoso pero error al iniciar sesión
+                    console.error('Error during auto-login after registration:', loginError);
+                    // Registration successful but error during login
                     showMessage(messageContainer, 'Registration successful! Please sign in.', 'success');
                     setTimeout(() => {
-                        // Cambiar a la pestaña de inicio de sesión
+                        // Switch to login tab
                         document.querySelector('.auth-tab[data-tab="login"]').click();
                     }, 2000);
                 }

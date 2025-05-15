@@ -292,7 +292,7 @@ async function getCustomers() {
  */
 async function addCustomer(customer) {
     try {
-        // Crear FormData para enviar los datos como parámetros
+        // Create FormData for sending parameters
         let formData = new URLSearchParams();
         formData.append('ACTION', 'CUSTOMER.ADD');
         formData.append('first_name', customer.first_name);
@@ -300,7 +300,7 @@ async function addCustomer(customer) {
         formData.append('email', customer.email);
         formData.append('password', customer.password);
 
-        // Realizar la petición POST al controlador
+        // Make POST request to the controller
         const response = await fetch('Controller', {
             method: 'POST',
             headers: {
@@ -309,22 +309,33 @@ async function addCustomer(customer) {
             body: formData
         });
 
+        // Check for network errors
         if (!response.ok) {
-            throw new Error('Error en la red: ' + response.status);
+            console.error('Network error:', response.status);
+            return false;
         }
 
-        // Intentar parsear la respuesta como JSON
-        const result = await response.json();
-        console.log('Respuesta al añadir cliente:', result);
+        // Try to parse the response as JSON
+        const responseText = await response.text();
+        console.log('Raw response:', responseText);
 
-        // Verificar si la operación fue exitosa
-        // El servidor devuelve {result: 1} si fue exitoso
-        if (result && typeof result.result !== 'undefined') {
-            return result.result === 1;
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Parsed response:', result);
+
+            // Verify if operation was successful
+            // Server returns {result: 1} if successful
+            if (result && typeof result.result !== 'undefined') {
+                return result.result === 1;
+            }
+            return false;
+        } catch (parseError) {
+            console.error('Error parsing JSON response:', parseError);
+            console.error('Raw response was:', responseText);
+            return false;
         }
-        return false;
     } catch (error) {
-        console.error('Error al añadir cliente:', error);
+        console.error('Error adding customer:', error);
         return false;
     }
 }
