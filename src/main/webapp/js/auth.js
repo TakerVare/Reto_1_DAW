@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function checkAuthState() {
     const authUser = getAuthUser();
-    
+
     if (authUser) {
         // Usuario autenticado
         updateUIForAuthenticatedUser(authUser);
@@ -42,7 +42,7 @@ function checkAuthState() {
 async function login(email, password, userType) {
     try {
         let user = null;
-        
+
         if (userType === USER_TYPES.CUSTOMER) {
             // Verificar credenciales de cliente
             user = await verifyCustomerCredentials(email, password);
@@ -50,7 +50,7 @@ async function login(email, password, userType) {
             // Verificar credenciales de empleado
             user = await verifyEmployeeCredentials(email, password);
         }
-        
+
         if (user) {
             // Credenciales válidas, guardar datos de sesión
             const sessionData = {
@@ -61,13 +61,13 @@ async function login(email, password, userType) {
                 type: userType,
                 role: userType === USER_TYPES.EMPLOYEE ? user.id_rol : null
             };
-            
+
             // Guardar en localStorage
             localStorage.setItem('authUser', JSON.stringify(sessionData));
-            
+
             // Actualizar UI
             updateUIForAuthenticatedUser(sessionData);
-            
+
             return true;
         } else {
             // Credenciales inválidas
@@ -86,12 +86,12 @@ async function login(email, password, userType) {
 function logout() {
     // Eliminar datos de sesión
     localStorage.removeItem('authUser');
-    
+
     // Actualizar UI
     updateUIForGuest();
-    
+
     // Redireccionar a la página de inicio si es necesario
-    if (window.location.pathname.includes('profile.html') || 
+    if (window.location.pathname.includes('profile.html') ||
         window.location.pathname.includes('employee_area.html')) {
         window.location.href = 'index.html';
     }
@@ -104,29 +104,12 @@ function logout() {
  */
 async function register(customerData) {
     try {
-        // Validar email único
-        const customers = await getCustomers();
-
-        // Verificar si customers es un array válido
-        if (Array.isArray(customers)) {
-            // Verificar si existe un cliente con el mismo email, protegiendo contra valores undefined
-            const existingCustomer = customers.find(c =>
-                c && c.email && c.email.toLowerCase() === customerData.email.toLowerCase()
-            );
-
-            if (existingCustomer) {
-                console.log('Email already in use');
-                return false;
-            }
-        } else {
-            console.log('No se pudo verificar la unicidad del email, continuar con el registro');
-        }
-
-        // Agregar nuevo cliente
+        // Esta función se usaba anteriormente, pero ahora vamos a simplificarla
+        // y llamar directamente a addCustomer desde login.js
         const result = await addCustomer(customerData);
-        
+
         if (result) {
-            // Iniciar sesión automáticamente
+            // Iniciar sesión automáticamente con las nuevas credenciales
             return await login(customerData.email, customerData.password, USER_TYPES.CUSTOMER);
         } else {
             return false;
@@ -158,7 +141,7 @@ function getAuthUser() {
 function updateUIForAuthenticatedUser(user) {
     // Actualizar el rol de usuario en localStorage para los componentes que lo utilizan
     localStorage.setItem('UserRol', user.type === USER_TYPES.EMPLOYEE ? 'employee' : 'customer');
-    
+
     // Actualizar menú de usuario
     const userMenuButton = document.querySelector('#nav_user');
     if (userMenuButton) {
@@ -201,34 +184,34 @@ function updateUIForAuthenticatedUser(user) {
                 </div>
             </div>
         `;
-        
+
         // Agregar evento para mostrar/ocultar menú
         const userIcon = document.getElementById('nav_user_icon');
         const userMenu = document.getElementById('nav_user_menu');
-        
+
         if (userIcon && userMenu) {
             userIcon.addEventListener('click', function(e) {
                 e.stopPropagation();
                 userMenu.classList.toggle('hidden');
             });
-            
+
             // Cerrar menú al hacer clic fuera
             document.addEventListener('click', function() {
                 userMenu.classList.add('hidden');
             });
-            
+
             // Evitar que el menú se cierre al hacer clic dentro de él
             userMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         }
     }
-    
+
     // Si estamos en la página de perfil, actualizar información del perfil
     if (window.location.pathname.includes('profile.html')) {
         updateProfilePage(user);
     }
-    
+
     // Si estamos en employee_area.html y el usuario no es empleado, redirigir
     if (window.location.pathname.includes('employee_area.html') && user.type !== USER_TYPES.EMPLOYEE) {
         window.location.href = 'index.html';
@@ -241,7 +224,7 @@ function updateUIForAuthenticatedUser(user) {
 function updateUIForGuest() {
     // Actualizar el rol de usuario en localStorage para los componentes que lo utilizan
     localStorage.setItem('UserRol', 'guest');
-    
+
     // Actualizar menú de usuario
     const userMenuButton = document.querySelector('#nav_user');
     if (userMenuButton) {
@@ -272,31 +255,31 @@ function updateUIForGuest() {
                 </div>
             </div>
         `;
-        
+
         // Agregar evento para mostrar/ocultar menú
         const userIcon = document.getElementById('nav_user_icon');
         const userMenu = document.getElementById('nav_user_menu');
-        
+
         if (userIcon && userMenu) {
             userIcon.addEventListener('click', function(e) {
                 e.stopPropagation();
                 userMenu.classList.toggle('hidden');
             });
-            
+
             // Cerrar menú al hacer clic fuera
             document.addEventListener('click', function() {
                 userMenu.classList.add('hidden');
             });
-            
+
             // Evitar que el menú se cierre al hacer clic dentro de él
             userMenu.addEventListener('click', function(e) {
                 e.stopPropagation();
             });
         }
     }
-    
+
     // Si estamos en la página de perfil o área de empleados, redirigir al login
-    if (window.location.pathname.includes('profile.html') || 
+    if (window.location.pathname.includes('profile.html') ||
         window.location.pathname.includes('employee_area.html')) {
         window.location.href = 'login.html';
     }
@@ -309,7 +292,7 @@ function updateUIForGuest() {
 function updateProfilePage(user) {
     const profileContainer = document.getElementById('profile-container');
     if (!profileContainer) return;
-    
+
     // Mostrar información del perfil sin incluir la sección de avatar
     profileContainer.innerHTML = `
         <div class="profile-header">
@@ -355,7 +338,7 @@ function updateProfilePage(user) {
             </div>
         </div>
     `;
-    
+
     // Si es empleado, cargar información del rol
     if (user.type === USER_TYPES.EMPLOYEE) {
         loadEmployeeRole(user.role);
@@ -370,7 +353,7 @@ async function loadEmployeeRole(roleId) {
     try {
         const roles = await getRoles();
         const role = roles.find(r => r.id_rol === roleId);
-        
+
         const roleElement = document.getElementById('employee-role');
         if (roleElement && role) {
             roleElement.textContent = role.name;

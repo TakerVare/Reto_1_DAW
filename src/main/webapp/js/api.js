@@ -313,11 +313,16 @@ async function addCustomer(customer) {
             throw new Error('Error en la red: ' + response.status);
         }
 
+        // Intentar parsear la respuesta como JSON
         const result = await response.json();
-        console.log('Cliente añadido:', result);
+        console.log('Respuesta al añadir cliente:', result);
 
         // Verificar si la operación fue exitosa
-        return result.result === 1;
+        // El servidor devuelve {result: 1} si fue exitoso
+        if (result && typeof result.result !== 'undefined') {
+            return result.result === 1;
+        }
+        return false;
     } catch (error) {
         console.error('Error al añadir cliente:', error);
         return false;
