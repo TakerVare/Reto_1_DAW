@@ -476,29 +476,64 @@ async function getCustomerAddresses(customerId) {
 }
 
 /**
- * Gets all cities from the cities.json file
+ * Gets all cities from the database
  * @returns {Promise<Array>} Promise that resolves to an array of cities
  */
-async function getCities() {    //todo
+async function getCities() {
     try {
-        const response = await fetch('./mockup/cities.json');
+        const response = await fetch('Controller?ACTION=CITY.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`Error en la red: ${response.status}`);
         }
 
-        return await response.json();
+        const responseText = await response.json();
+        console.log('Ciudades cargadas desde la base de datos:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedCities = [];
+
+        for (var i in responseText) {
+            formattedCities.push({
+                "id_city": responseText[i]['id_city'],
+                "name": responseText[i]['name']
+            });
+        }
+
+        return formattedCities;
     } catch (error) {
-        console.error('Error fetching cities:', error);
-        return [];
+        console.error('Error al obtener las ciudades:', error);
+
+        // Si hay un error, intentar cargar desde el archivo local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/cities.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+
+            const cities = await fallbackResponse.json();
+            console.log('Ciudades cargadas desde archivo local (fallback):', cities);
+            return cities;
+        } catch (fallbackError) {
+            console.error('Error al cargar ciudades desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
     }
 }
 
+//FUNCIONALIDAD ELIMINADA HASTA NUEVA ÓRDEN
 /**
  * Sets an address as the default (favorite) for a customer
  * @param {number} addressId - ID of the address
  * @param {number} customerId - ID of the customer
  * @returns {Promise<boolean>} Promise that resolves to true if successful
  */
+/*
 async function setDefaultAddress(addressId, customerId) {
     try {
         // In a real implementation, this would be an API call
@@ -510,6 +545,7 @@ async function setDefaultAddress(addressId, customerId) {
         return false;
     }
 }
+*/
 
 /**
  * Deletes an address
