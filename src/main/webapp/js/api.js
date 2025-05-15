@@ -3,12 +3,13 @@ async function getMenuItems() {
     
     return menuItems
 }
-
-async function getShoppingCartItems() {
+/*
+async function getShoppingCartItems() { //Todo manejar carrito por js hasta volcar el pedido en la bd
     let ShoppingCartItems = (await fetch('./mockup/shopping_cart_items.json')).json()
     
     return ShoppingCartItems
 }
+*/
 //CREO QUE ESTA FUNCIÓN NO LA USAMOS EN NIGÚN SITIO
 /*
 async function getProductDetails(id){
@@ -105,7 +106,7 @@ async function getCategories() {
  * Obtiene los roles desde el archivo JSON
  * @returns {Promise<Array>} Promesa que resuelve a un array de roles
  */
-async function getRoles() {
+async function getRoles() { //todo
     try {
         const response = await fetch('./mockup/roles.json');
         if (!response.ok) {
@@ -181,7 +182,7 @@ async function getEmployees() {
  * Obtiene los impuestos desde el archivo JSON
  * @returns {Promise<Array>} Promesa que resuelve a un array de impuestos
  */
-async function getTaxes() {
+async function getTaxes() { //todo
     try {
         const response = await fetch('./mockup/taxes.json');
         if (!response.ok) {
@@ -397,7 +398,7 @@ async function verifyEmployeeCredentials(email, password) {
  * @param {number} customerId - ID of the customer
  * @returns {Promise<Array>} Promise that resolves to an array of addresses
  */
-async function getCustomerAddresses(customerId) {
+async function getCustomerAddresses(customerId) {   //todo
     try {
         const response = await fetch('./mockup/addresses.json');
         if (!response.ok) {
@@ -418,7 +419,7 @@ async function getCustomerAddresses(customerId) {
  * Gets all cities from the cities.json file
  * @returns {Promise<Array>} Promise that resolves to an array of cities
  */
-async function getCities() {
+async function getCities() {    //todo
     try {
         const response = await fetch('./mockup/cities.json');
         if (!response.ok) {
