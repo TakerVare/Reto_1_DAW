@@ -94,6 +94,26 @@ public class Controller extends HttpServlet {
                 out.print(new Order_DetailAction().execute(request,response, arrayAction[1]));
                 break;
             }
+            case "PAYMENT_METHOD":
+            {
+                out.print(new Payment_MethodAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "ROL":
+            {
+                out.print(new RolAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "SHOP":
+            {
+                out.print(new ShopAction().execute(request,response, arrayAction[1]));
+                break;
+            }
+            case "TAX":
+            {
+                out.print(new TaxAction().execute(request,response, arrayAction[1]));
+                break;
+            }
             default:
             {                
                 System.out.println(action); 

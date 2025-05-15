@@ -23,20 +23,24 @@ public class OrderDao implements IDao {
     @Override
     public int add(Object bean) {
         int result = 0;
-        Order_Detail order_detail = (Order_Detail) bean;
+        Order order = (Order) bean;
 
         try {
             motorSql.connect();
             PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_INSERT);
-            stmt.setInt(1, order_detail.getId_order());
-            stmt.setInt(2, order_detail.getId_product());
-            stmt.setDouble(3, order_detail.getLine_price());
+            stmt.setInt(1, order.getId_customer());
+            stmt.setInt(2, order.getId_address());
+            stmt.setInt(3, order.getId_payment());
+            stmt.setInt(4, order.getId_shop());
+            stmt.setInt(5, order.getId_delivery());
+            stmt.setInt(6, order.getId_offer());
+            stmt.setString(7, order.getOrder_date());
 
             motorSql.setPreparedStatement(stmt);
             motorSql.execute();
             result = 1; // Asumimos que la operación fue exitosa
         } catch (SQLException e) {
-            System.out.println("Error al añadir Order_Detail: " + e.getMessage());
+            System.out.println("Error al añadir Order: " + e.getMessage());
         } finally {
             motorSql.disconnect();
         }
@@ -47,25 +51,25 @@ public class OrderDao implements IDao {
     @Override
     public int delete(Object e) {
         int result = 0;
-        Integer idOrder_Detail = -1;
+        Integer idOrder = -1;
 
         if (e instanceof Integer) {
-            idOrder_Detail = (Integer) e;
-        } else if (e instanceof Order_Detail) {
-            idOrder_Detail = ((Order_Detail) e).getId_order_detail();
+            idOrder = (Integer) e;
+        } else if (e instanceof Order) {
+            idOrder = ((Order) e).getId_order();
         }
 
-        if (idOrder_Detail > 0) {
+        if (idOrder > 0) {
             try {
                 motorSql.connect();
                 PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_DELETE);
-                stmt.setInt(1, idOrder_Detail);
+                stmt.setInt(1, idOrder);
 
                 motorSql.setPreparedStatement(stmt);
                 motorSql.execute();
                 result = 1; // Asumimos que la operación fue exitosa
             } catch (SQLException ex) {
-                System.out.println("Error al eliminar Order_Detail: " + ex.getMessage());
+                System.out.println("Error al eliminar Order: " + ex.getMessage());
             } finally {
                 motorSql.disconnect();
             }
@@ -77,22 +81,26 @@ public class OrderDao implements IDao {
     @Override
     public int update(Object bean) {
         int result = 0;
-        Order_Detail order_detail = (Order_Detail) bean;
+        Order order = (Order) bean;
 
-        if (order_detail.getId_order_detail() > 0) {
+        if (order.getId_order() > 0) {
             try {
                 motorSql.connect();
                 PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_UPDATE);
-                stmt.setInt(1, order_detail.getId_order_detail());
-                stmt.setInt(2, order_detail.getId_order());
-                stmt.setInt(3, order_detail.getId_product());
-                stmt.setDouble(4, order_detail.getLine_price());
+                stmt.setInt(1, order.getId_order());
+                stmt.setInt(2, order.getId_customer());
+                stmt.setInt(3, order.getId_address());
+                stmt.setInt(4, order.getId_payment());
+                stmt.setInt(5, order.getId_shop());
+                stmt.setInt(6, order.getId_delivery());
+                stmt.setInt(7, order.getId_offer());
+                stmt.setString(8, order.getOrder_date());
 
                 motorSql.setPreparedStatement(stmt);
                 motorSql.execute();
                 result = 1; // Asumimos que la operación fue exitosa
             } catch (SQLException ex) {
-                System.out.println("Error al actualizar Order_Detail: " + ex.getMessage());
+                System.out.println("Error al actualizar Order: " + ex.getMessage());
             } finally {
                 motorSql.disconnect();
             }
