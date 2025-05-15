@@ -213,11 +213,6 @@ async function getTaxes() { //todo
 }
 
 /**
- * Obtiene las ofertas disponibles desde el archivo JSON
- * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
- */
- //TODO
-/**
  * Obtiene las ofertas disponibles desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
  */
