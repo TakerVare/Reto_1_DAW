@@ -818,4 +818,313 @@ async function updateAddress(addressId, addressData) {
 
 //START ORDERS SECTION
 
+/**
+ * Obtiene todas las órdenes desde la base de datos
+ * @param {number} customerId - ID del cliente (opcional) para filtrar órdenes
+ * @returns {Promise<Array>} Promesa que resuelve a un array de órdenes
+ */
+async function getOrders(customerId = null) {
+    try {
+        // Construir la URL de la petición, añadiendo el filtro de cliente si se proporciona
+        let url = 'Controller?ACTION=ORDER.FIND_ALL';
+        if (customerId) {
+            url += `&id_customer=${customerId}`;
+        }
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Órdenes cargadas:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedOrders = [];
+
+        for (var i in responseText) {
+            formattedOrders.push({
+                "id_order": responseText[i]['id_order'],
+                "id_customer": responseText[i]['id_customer'],
+                "id_address": responseText[i]['id_address'],
+                "id_payment": responseText[i]['id_payment'],
+                "id_shop": responseText[i]['id_shop'],
+                "id_delivery": responseText[i]['id_delivery'],
+                "id_offer": responseText[i]['id_offer'],
+                "order_date": responseText[i]['order_date']
+            });
+        }
+
+        return formattedOrders;
+    } catch (error) {
+        console.error('Error al obtener las órdenes:', error);
+
+        // Intentar cargar desde JSON local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/orders.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+            const orders = await fallbackResponse.json();
+            console.log('Órdenes cargadas desde archivo local (fallback):', orders);
+            return orders;
+        } catch (fallbackError) {
+            console.error('Error al cargar órdenes desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
+    }
+}
+
+/**
+ * Añade una nueva orden a la base de datos
+ * @param {Object} orderData - Datos de la nueva orden
+ * @returns {Promise<Object>} Promesa que resuelve al ID de la orden creada si es exitosa
+ */
+async function addOrder(orderData) {
+    try {
+        // Crear FormData para enviar los parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'ORDER.ADD');
+        formData.append('id_customer', orderData.id_customer);
+        formData.append('id_address', orderData.id_address);
+        formData.append('id_payment', orderData.id_payment);
+        formData.append('id_shop', orderData.id_shop);
+        formData.append('id_delivery', orderData.id_delivery);
+
+        // Añadir id_offer solo si está presente en los datos
+        if (orderData.id_offer) {
+            formData.append('id_offer', orderData.id_offer);
+        }
+
+        // Añadir order_date solo si está presente, de lo contrario usar fecha actual
+        if (orderData.order_date) {
+            formData.append('order_date', orderData.order_date);
+        } else {
+            // Formato de fecha YYYY-MM-DD
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            formData.append('order_date', formattedDate);
+        }
+
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        // Verificar si hay errores de red
+        if (!response.ok) {
+            console.error('Error de red:', response.status);
+            return { success: false, error: 'Error de red' };
+        }
+
+        // Intentar parsear la respuesta como JSON
+        const responseText = await response.text();
+        console.log('Respuesta del servidor:', responseText);
+
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Respuesta parseada:', result);
+
+            // Verificar si la operación fue exitosa
+            // El servidor devuelve {result: id_order} si fue exitoso
+            if (result && typeof result.result !== 'undefined') {
+                return {
+                    success: true,
+                    id_order: result.result
+                };
+            }
+            return { success: false, error: 'Error desconocido' };
+        } catch (parseError) {
+            console.error('Error al parsear la respuesta JSON:', parseError);
+            console.error('Respuesta original:', responseText);
+            return { success: false, error: 'Error al parsear respuesta' };
+        }
+    } catch (error) {
+        console.error('Error al añadir la orden:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+/**
+ * Obtiene los detalles de una orden específica
+ * @param {number} orderId - ID de la orden
+ * @returns {Promise<Array>} Promesa que resuelve a un array de detalles de la orden
+ */
+async function getOrderDetail(orderId) {
+    try {
+        const response = await fetch(`Controller?ACTION=ORDER_DETAIL.FIND_ALL&id_order=${orderId}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Detalles de orden cargados:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedOrderDetails = [];
+
+        for (var i in responseText) {
+            formattedOrderDetails.push({
+                "id_order_detail": responseText[i]['id_order_detail'],
+                "id_order": responseText[i]['id_order'],
+                "id_product": responseText[i]['id_product'],
+                "line_price": responseText[i]['line_price']
+            });
+        }
+
+        return formattedOrderDetails;
+    } catch (error) {
+        console.error('Error al obtener los detalles de la orden:', error);
+
+        // Intentar cargar desde JSON local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/order_details.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+            const orderDetails = await fallbackResponse.json();
+            // Filtrar solo los detalles de la orden solicitada
+            const filteredDetails = orderDetails.filter(detail => detail.id_order === orderId);
+            console.log('Detalles de orden cargados desde archivo local (fallback):', filteredDetails);
+            return filteredDetails;
+        } catch (fallbackError) {
+            console.error('Error al cargar detalles de orden desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
+    }
+}
+
+/**
+ * Añade un nuevo detalle a una orden existente
+ * @param {Object} detailData - Datos del nuevo detalle de orden
+ * @returns {Promise<Object>} Promesa que resuelve a true si la operación fue exitosa
+ */
+async function addOrderDetail(detailData) {
+    try {
+        // Crear FormData para enviar los parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'ORDER_DETAIL.ADD');
+        formData.append('id_order', detailData.id_order);
+        formData.append('id_product', detailData.id_product);
+        formData.append('line_price', detailData.line_price);
+
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        // Verificar si hay errores de red
+        if (!response.ok) {
+            console.error('Error de red:', response.status);
+            return { success: false, error: 'Error de red' };
+        }
+
+        // Intentar parsear la respuesta como JSON
+        const responseText = await response.text();
+        console.log('Respuesta del servidor:', responseText);
+
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Respuesta parseada:', result);
+
+            // Verificar si la operación fue exitosa
+            // El servidor devuelve {result: 1} si fue exitoso
+            if (result && typeof result.result !== 'undefined') {
+                return {
+                    success: result.result === 1,
+                    id_order_detail: result.id_order_detail
+                };
+            }
+            return { success: false, error: 'Error desconocido' };
+        } catch (parseError) {
+            console.error('Error al parsear la respuesta JSON:', parseError);
+            console.error('Respuesta original:', responseText);
+            return { success: false, error: 'Error al parsear respuesta' };
+        }
+    } catch (error) {
+        console.error('Error al añadir el detalle de la orden:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+/**
+ * Procesa una compra completa, creando una orden y sus detalles
+ * @param {Object} orderData - Datos de la orden
+ * @param {Array} cartItems - Items del carrito a incluir en la orden
+ * @returns {Promise<Object>} Promesa que resuelve a objeto con resultado de la operación
+ */
+async function processOrder(orderData, cartItems) {
+    try {
+        // Paso 1: Crear la orden
+        const orderResult = await addOrder(orderData);
+
+        if (!orderResult.success) {
+            return { success: false, error: 'Error al crear la orden', details: orderResult.error };
+        }
+
+        const orderId = orderResult.id_order;
+        console.log(`Orden creada con ID: ${orderId}`);
+
+        // Paso 2: Añadir cada item del carrito como detalle de la orden
+        const detailResults = [];
+        let allDetailsSuccess = true;
+
+        for (const item of cartItems) {
+            const detailData = {
+                id_order: orderId,
+                id_product: item.id,
+                line_price: (item.price * item.quantity)
+            };
+
+            const detailResult = await addOrderDetail(detailData);
+            detailResults.push(detailResult);
+
+            if (!detailResult.success) {
+                allDetailsSuccess = false;
+            }
+        }
+
+        // Comprobar si todos los detalles se crearon correctamente
+        if (!allDetailsSuccess) {
+            return {
+                success: false,
+                error: 'Error al crear algunos detalles de la orden',
+                orderId: orderId,
+                detailResults: detailResults
+            };
+        }
+
+        // Todo correcto
+        return {
+            success: true,
+            orderId: orderId,
+            message: 'Orden procesada correctamente'
+        };
+
+    } catch (error) {
+        console.error('Error al procesar la orden completa:', error);
+        return { success: false, error: error.message };
+    }
+}
+
 //END ORDERS SECTION

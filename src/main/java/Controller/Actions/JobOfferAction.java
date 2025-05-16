@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Job_OfferAction implements IAction {
+public class JobOfferAction implements IAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, String action) {

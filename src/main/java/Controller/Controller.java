@@ -5,15 +5,7 @@
  */
 package Controller;
 
-import Controller.Actions.AddressAction;
-import Controller.Actions.CategoryAction;
-import Controller.Actions.CityAction;
-import Controller.Actions.CustomerAction;
-import Controller.Actions.DeliveryAction;
-import Controller.Actions.EmployeeAction;
-import Controller.Actions.ProductAction;
-import Controller.Actions.OfferAction;
-import Controller.Actions.TaxAction;
+import Controller.Actions.*;
 
 
 import java.io.IOException;
@@ -86,6 +78,16 @@ public class Controller extends HttpServlet {
             case "TAX":
             {
                 out.print(new TaxAction().execute(request, response, arrayAction[1]));
+                break;
+            }
+            case "ORDER":
+            {
+                out.print(new OrderAction().execute(request, response, arrayAction[1]));
+                break;
+            }
+            case "ORDER_DETAIL":
+            {
+                out.print(new OrderDetailAction().execute(request, response, arrayAction[1]));
                 break;
             }
             default:

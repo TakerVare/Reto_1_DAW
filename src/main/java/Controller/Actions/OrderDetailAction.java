@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class Order_DetailAction implements IAction {
+public class OrderDetailAction implements IAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response, String action) {
