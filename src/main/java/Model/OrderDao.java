@@ -27,7 +27,7 @@ public class OrderDao implements IDao {
 
         try {
             motorSql.connect();
-            PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_INSERT);
+            PreparedStatement stmt = motorSql.getConnection().prepareStatement(SQL_INSERT, java.sql.Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, order.getId_customer());
             stmt.setInt(2, order.getId_address());
             stmt.setInt(3, order.getId_payment());
@@ -38,9 +38,16 @@ public class OrderDao implements IDao {
 
             motorSql.setPreparedStatement(stmt);
             motorSql.execute();
-            result = 1; // Asumimos que la operación fue exitosa
+
+            // Obtener el ID generado para la orden
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                result = generatedKeys.getInt(1);
+            }
+
         } catch (SQLException e) {
             System.out.println("Error al añadir Order: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             motorSql.disconnect();
         }

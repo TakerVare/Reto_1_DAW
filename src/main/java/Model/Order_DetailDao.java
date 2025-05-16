@@ -33,9 +33,10 @@ public class Order_DetailDao implements IDao {
 
             motorSql.setPreparedStatement(stmt);
             motorSql.execute();
-            result = 1; // Asumimos que la operación fue exitosa
+            result = 1; // Éxito
         } catch (SQLException e) {
             System.out.println("Error al añadir Order_Detail: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             motorSql.disconnect();
         }
