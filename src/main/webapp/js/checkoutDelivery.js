@@ -43,23 +43,68 @@ async function initDeliveryOptions() {
 }
 
 /**
- * Obtiene las opciones de entrega del archivo JSON
+ * Obtiene las opciones de entrega desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de opciones de entrega
  */
 async function getDeliveryOptions() {
     try {
-        const response = await fetch('./mockup/deliveries.json');
+        // Hacer solicitud a la API del controlador para obtener los datos de entrega
+        const response = await fetch('Controller?ACTION=DELIVERY.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`Error en la red: ${response.status}`);
         }
-        return await response.json();
+
+        const responseText = await response.json();
+        console.log('Opciones de entrega cargadas desde la base de datos:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedDeliveries = [];
+
+        for (var i in responseText) {
+            formattedDeliveries.push({
+                "id_delivery": responseText[i]['id_delivery'],
+                "name": responseText[i]['name']
+            });
+        }
+
+        // Si no hay opciones de entrega en la base de datos, usar valores predeterminados
+        if (formattedDeliveries.length === 0) {
+            console.warn('No se encontraron opciones de entrega en la base de datos, usando valores predeterminados');
+            return [
+                { id_delivery: 0, name: "In-store Pickup" },
+                { id_delivery: 1, name: "Home Delivery" }
+            ];
+        }
+
+        return formattedDeliveries;
     } catch (error) {
-        console.error('Error fetching delivery options:', error);
-        // Si hay un error, devolver opciones por defecto
-        return [
-            { id_delivery: 0, name: "In-store Pickup" },
-            { id_delivery: 1, name: "Home Delivery" }
-        ];
+        console.error('Error al obtener opciones de entrega:', error);
+
+        // Intentar cargar desde el archivo JSON como fallback
+        try {
+            console.log('Intentando cargar opciones de entrega desde archivo local (fallback)');
+            const fallbackResponse = await fetch('./mockup/deliveries.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+            const deliveries = await fallbackResponse.json();
+            console.log('Opciones de entrega cargadas desde archivo local (fallback):', deliveries);
+            return deliveries;
+        } catch (fallbackError) {
+            console.error('Error al cargar opciones de entrega desde archivo local:', fallbackError);
+
+            // Si todo falla, devolver opciones predeterminadas
+            return [
+                { id_delivery: 1, name: "In-store Pickup" },
+                { id_delivery: 2, name: "Home Delivery" }
+            ];
+        }
     }
 }
 
@@ -158,7 +203,8 @@ async function updateDeliveryLocations(optionId) {
             
         } 
         // Si es entrega a domicilio (id_delivery = 1)
-        else if (deliveryOptionId === 1) {
+
+        else if (deliveryOptionId === 2) {
             // Obtener el usuario autenticado
             const authUser = getAuthUser();
             

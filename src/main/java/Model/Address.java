@@ -31,6 +31,10 @@ public class Address {
         this.favourite = favourite;
     }
 
+    public Address(int id_customer) {
+        this.id_customer = id_customer;
+    }
+
     // Getters y Setters
 
     public int getId_address() {

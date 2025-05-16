@@ -17,7 +17,7 @@ async function loadConfigData() {
             if (offersResponse.ok) {
                 const loadedOffers = await offersResponse.json();
                 console.log('Offers loaded successfully:', loadedOffers);
-                
+
                 // Procesar las ofertas para extraer los montos mínimos
                 offers = loadedOffers.map(offer => {
                     const match = offer.name.match(/Over €(\d+)/);
@@ -46,7 +46,7 @@ async function loadConfigData() {
             if (taxesResponse.ok) {
                 const taxes = await taxesResponse.json();
                 console.log('Taxes loaded successfully:', taxes);
-                
+
                 // Si hay impuestos configurados, usar el primero (asumiendo que solo hay uno)
                 if (taxes && taxes.length > 0) {
                     taxRate = taxes[0].percentage / 100; // Convertir porcentaje a decimal
@@ -72,7 +72,7 @@ function updateCartStorage() {
 function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
     // Verificar si el producto ya está en el carrito
     const existingItemIndex = cart.findIndex(item => item.id === productId);
-    
+
     if (existingItemIndex !== -1) {
         // Si el producto ya está en el carrito, aumentar la cantidad
         cart[existingItemIndex].quantity += quantity;
@@ -86,13 +86,13 @@ function addToCart(productId, productName, productPrice, productImage, quantity 
             quantity: quantity
         });
     }
-    
+
     // Actualizar localStorage
     updateCartStorage();
-    
+
     // Actualizar contador del carrito
     updateCartCounter();
-    
+
     console.log(`Product added to cart:`, cart);
     return true;
 }
@@ -107,17 +107,17 @@ function showAddToCartConfirmation() {
                 <span>Product added to cart</span>
             </div>
         `;
-        
+
         const confirmationContainer = document.createElement('div');
         confirmationContainer.innerHTML = confirmationHTML;
         document.body.appendChild(confirmationContainer.firstElementChild);
     }
-    
+
     const confirmation = document.getElementById('cart-confirmation');
-    
+
     // Mostrar confirmación
     confirmation.classList.add('show');
-    
+
     // Ocultar después de 3 segundos
     setTimeout(() => {
         confirmation.classList.remove('show');
@@ -128,13 +128,13 @@ function showAddToCartConfirmation() {
 function removeFromCart(productId) {
     // Filtrar el carrito para eliminar el producto
     cart = cart.filter(item => item.id !== productId);
-    
+
     // Actualizar localStorage
     updateCartStorage();
-    
+
     // Actualizar contador del carrito
     updateCartCounter();
-    
+
     // Si estamos en la página de checkout, actualizar la UI
     if (document.getElementById('cart-items')) {
         renderCartItems();
@@ -145,7 +145,7 @@ function removeFromCart(productId) {
 function updateCartItemQuantity(productId, newQuantity) {
     // Encontrar el producto en el carrito
     const itemIndex = cart.findIndex(item => item.id === productId);
-    
+
     if (itemIndex !== -1) {
         if (newQuantity <= 0) {
             // Si la cantidad es 0 o menos, eliminar el producto
@@ -153,10 +153,10 @@ function updateCartItemQuantity(productId, newQuantity) {
         } else {
             // Actualizar la cantidad
             cart[itemIndex].quantity = newQuantity;
-            
+
             // Actualizar localStorage
             updateCartStorage();
-            
+
             // Si estamos en la página de checkout, actualizar la UI
             if (document.getElementById('cart-items')) {
                 renderCartItems();
@@ -173,10 +173,10 @@ function calculateCartTotal() {
 // Verificar si se aplica alguna oferta y calcular el descuento
 function getApplicableOffer() {
     if (!offers || offers.length === 0) return null;
-    
+
     const subtotal = calculateCartTotal();
     console.log(`Checking offers for subtotal: ${subtotal} €`);
-    
+
     // Buscar ofertas aplicables basadas en el monto mínimo
     const validOffers = offers
         .filter(offer => {
@@ -186,13 +186,13 @@ function getApplicableOffer() {
             return applicable;
         })
         .sort((a, b) => b.discount - a.discount); // Ordenar por mayor descuento primero
-    
+
     // Retornar la oferta más ventajosa si hay alguna válida
     if (validOffers.length > 0) {
         console.log(`Best applicable offer: ${validOffers[0].name} with ${validOffers[0].discount}% discount`);
         return validOffers[0];
     }
-    
+
     console.log('No applicable offers found');
     return null;
 }
@@ -201,7 +201,7 @@ function getApplicableOffer() {
 function calculateDiscount() {
     const applicableOffer = getApplicableOffer();
     if (!applicableOffer) return 0;
-    
+
     const subtotal = calculateCartTotal();
     const discountAmount = subtotal * (applicableOffer.discount / 100);
     console.log(`Discount amount: ${discountAmount.toFixed(2)} €`);
@@ -212,10 +212,10 @@ function calculateDiscount() {
 function updateCartCounter() {
     // Calcular total de productos
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    
+
     // Buscar el contador en el menú del carrito
     const counter = document.querySelector('.cart-counter');
-    
+
     if (counter) {
         // Si hay productos, mostrar el contador con el número
         if (totalItems > 0) {
@@ -231,7 +231,7 @@ function updateCartCounter() {
 // Inicializar el menú del carrito en la barra de navegación
 function initShoppingCartMenu() {
     const cartContainer = document.querySelector('.nav_shopping_car');
-    
+
     if (cartContainer) {
         const cartHTML = `
             <div class="cart-menu-container">
@@ -241,9 +241,9 @@ function initShoppingCartMenu() {
                 </a>
             </div>
         `;
-        
+
         cartContainer.innerHTML = cartHTML;
-        
+
         // Actualizar contador
         updateCartCounter();
     }
@@ -252,15 +252,15 @@ function initShoppingCartMenu() {
 // Renderizar los productos en la página de checkout
 function renderCartItems() {
     const cartItemsContainer = document.getElementById('cart-items');
-    
+
     if (cartItemsContainer) {
         if (cart.length > 0) {
             // Si hay productos en el carrito, mostrarlos
             let cartItemsHTML = '';
-            
+
             cart.forEach(item => {
                 const itemTotal = (item.price * item.quantity).toFixed(2);
-                
+
                 cartItemsHTML += `
                     <div class="cart-item" data-product-id="${item.id}">
                         <div class="cart-item-details">
@@ -285,9 +285,9 @@ function renderCartItems() {
                     </div>
                 `;
             });
-            
+
             cartItemsContainer.innerHTML = cartItemsHTML;
-            
+
             // Actualizar el resumen
             updateCartSummary();
         } else {
@@ -299,7 +299,7 @@ function renderCartItems() {
                     <a href="products.html" class="continue-shopping">Continue Shopping</a>
                 </div>
             `;
-            
+
             // Actualizar el resumen
             updateCartSummary();
         }
@@ -309,23 +309,23 @@ function renderCartItems() {
 // Actualizar el resumen del carrito
 function updateCartSummary() {
     const summaryContainer = document.getElementById('cart-summary');
-    
+
     if (summaryContainer) {
         if (cart.length > 0) {
             // Calcular subtotal
             const subtotal = calculateCartTotal();
-            
+
             // Verificar si se aplica alguna oferta
             const applicableOffer = getApplicableOffer();
             const discountAmount = applicableOffer ? parseFloat(calculateDiscount()) : 0;
-            
+
             // Calcular impuestos (sobre el monto después del descuento)
             const discountedSubtotal = subtotal - discountAmount;
             const tax = discountedSubtotal * taxRate;
-            
+
             // Calcular total
             const total = discountedSubtotal + tax;
-            
+
             // Mostrar resumen
             let summaryHTML = `
                 <div class="summary-row">
@@ -333,7 +333,7 @@ function updateCartSummary() {
                     <span>${subtotal.toFixed(2)} €</span>
                 </div>
             `;
-            
+
             // Añadir fila de descuento si hay una oferta aplicable
             if (applicableOffer) {
                 summaryHTML += `
@@ -343,7 +343,7 @@ function updateCartSummary() {
                     </div>
                 `;
             }
-            
+
             // Mostrar el impuesto con el porcentaje cargado desde el JSON
             summaryHTML += `
                 <div class="summary-row">
@@ -355,9 +355,9 @@ function updateCartSummary() {
                     <span>${total.toFixed(2)} €</span>
                 </div>
             `;
-            
+
             summaryContainer.innerHTML = summaryHTML;
-            
+
             // Habilitar el botón de checkout
             document.getElementById('checkout-section').style.display = 'block';
         } else {
@@ -369,95 +369,120 @@ function updateCartSummary() {
 }
 
 // Proceder al checkout
-function proceedToCheckout() {
-    // Obtener el método de pago seleccionado
-    const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
-    const paymentMethodName = paymentMethod === "0" ? "Cash" : "Credit Card";
-    
-    // Validar que se haya seleccionado un método de pago
-    if (!paymentMethod) {
-        alert('Please select a payment method');
+async function proceedToCheckout() {
+    // Verificar que el usuario está autenticado
+    const authUser = getAuthUser();
+    if (!authUser || authUser.type !== 'customer') {
+        alert('Por favor, inicia sesión como cliente para completar tu compra');
+        window.location.href = 'login.html';
         return;
     }
-    
-    // Calcular totales para mostrar en el resumen
+
+    // Obtener el método de pago seleccionado
+    const paymentMethodInput = document.querySelector('input[name="payment-method"]:checked');
+    if (!paymentMethodInput) {
+        alert('Por favor, selecciona un método de pago');
+        return;
+    }
+    const paymentMethodId = parseInt(paymentMethodInput.value);
+
+    // Obtener información de entrega seleccionada
+    let deliveryOption;
+    if (typeof getSelectedDeliveryOption === 'function') {
+        deliveryOption = getSelectedDeliveryOption();
+        if (deliveryOption.error) {
+            alert(deliveryOption.error);
+            return;
+        }
+    } else {
+        // Valores por defecto si no existe la función
+        deliveryOption = {
+            deliveryType: 0, // Recogida en tienda
+            locationId: 0,   // Tienda principal
+            locationType: 'shop'
+        };
+    }
+
+    // Calcular totales para el pedido
     const subtotal = calculateCartTotal();
-    
-    // Verificar si se aplica alguna oferta
     const applicableOffer = getApplicableOffer();
     const discountAmount = applicableOffer ? parseFloat(calculateDiscount()) : 0;
-    
-    // Calcular impuestos (sobre el monto después del descuento)
     const discountedSubtotal = subtotal - discountAmount;
     const tax = discountedSubtotal * taxRate;
-    
-    // Calcular total
     const total = discountedSubtotal + tax;
-    
-    // Crear resumen del pedido
-    let orderSummary = `
-        Order Summary:
-        --------------
-        Subtotal: ${subtotal.toFixed(2)} €
-    `;
-    
-    // Añadir línea de descuento si hay una oferta aplicable
-    if (applicableOffer) {
-        orderSummary += `
-        Discount (${applicableOffer.name}): -${discountAmount.toFixed(2)} €
-        `;
-    }
-    
-    orderSummary += `
-        Tax (${(taxRate * 100).toFixed(2)}%): ${tax.toFixed(2)} €
-        Total: ${total.toFixed(2)} €
-        
-        Payment Method: ${paymentMethodName}
-        
-        Thank you for your purchase!
-    `;
-    
-    // Mostrar resumen y confirmación
-    alert(orderSummary);
-    
-    // Vaciar carrito
-    cart = [];
-    updateCartStorage();
-    
-    // Redirigir a la página de productos
-    window.location.href = 'products.html';
-}
 
-// Inicializar el carrito cuando se cargue la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Cargar datos de configuración (ofertas e impuestos)
-    loadConfigData();
-    
-    // Inicializar menú del carrito
-    initShoppingCartMenu();
-    
-    // Si estamos en la página de checkout, renderizar los productos
-    if (document.getElementById('cart-items')) {
-        renderCartItems();
-        
-        // Inicializar selección de método de pago
-        initPaymentMethods();
+    // Preparar datos para el pedido
+    const orderData = {
+        id_customer: authUser.id,
+        id_payment: paymentMethodId,
+        id_delivery: deliveryOption.deliveryType,
+        // Asignar id_shop o id_address según el tipo de entrega
+        id_shop: deliveryOption.locationType === 'shop' ? deliveryOption.locationId : 1,
+        id_address: deliveryOption.locationType === 'address' ? deliveryOption.locationId : 1,
+        // Asignar id_offer si hay una oferta aplicable
+        id_offer: applicableOffer ? applicableOffer.id_offer : 1
+    };
+
+    // Cambiar el texto del botón a "Procesando..." y deshabilitarlo
+    const checkoutButton = document.getElementById('checkout-button');
+    const originalButtonText = checkoutButton.textContent;
+    checkoutButton.textContent = 'Procesando...';
+    checkoutButton.disabled = true;
+
+    try {
+        console.log('Enviando datos del pedido:', orderData);
+        console.log('Productos en el carrito:', cart);
+
+        // Preparar los items del carrito para la API
+        const cartItems = cart.map(item => ({
+            id: item.id,
+            price: item.price,
+            quantity: item.quantity
+        }));
+
+        // Llamar a la API para procesar el pedido
+        const result = await processOrder(orderData, cartItems);
+        console.log('Resultado del procesamiento del pedido:', result);
+
+        if (result.success) {
+            // Pedido guardado correctamente
+            alert(`¡Pedido realizado con éxito! Número de pedido: ${result.orderId}`);
+
+            // Vaciar carrito
+            cart = [];
+            updateCartStorage();
+
+            // Redirigir a la página de productos o a una confirmación
+            window.location.href = 'products.html';
+        } else {
+            // Error al guardar el pedido
+            alert(`Error al procesar tu pedido: ${result.error || 'Error desconocido'}`);
+            // Restaurar el botón
+            checkoutButton.textContent = originalButtonText;
+            checkoutButton.disabled = false;
+        }
+    } catch (error) {
+        console.error('Error al procesar el pedido:', error);
+        alert('Ha ocurrido un error al procesar tu pedido. Por favor, inténtalo de nuevo.');
+        // Restaurar el botón
+        checkoutButton.textContent = originalButtonText;
+        checkoutButton.disabled = false;
     }
-});
+}
 
 // Inicializar métodos de pago
 function initPaymentMethods() {
     const paymentOptions = document.querySelectorAll('.payment-option');
-    
+
     // Añadir eventos de clic para mejorar la experiencia de usuario
     paymentOptions.forEach(option => {
         option.addEventListener('click', function() {
             // Obtener el input dentro de esta opción
             const radio = this.querySelector('input[type="radio"]');
-            
+
             // Marcar este radio y desmarcar los demás
             radio.checked = true;
-            
+
             // Actualizar las clases para el estilo visual
             paymentOptions.forEach(opt => {
                 opt.classList.remove('selected');
@@ -465,9 +490,26 @@ function initPaymentMethods() {
             this.classList.add('selected');
         });
     });
-    
+
     // Marcar la primera opción como seleccionada por defecto
     if (paymentOptions.length > 0) {
         paymentOptions[0].classList.add('selected');
     }
 }
+
+// Inicializar el carrito cuando se cargue la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Cargar datos de configuración (ofertas e impuestos)
+    loadConfigData();
+
+    // Inicializar menú del carrito
+    initShoppingCartMenu();
+
+    // Si estamos en la página de checkout, renderizar los productos
+    if (document.getElementById('cart-items')) {
+        renderCartItems();
+
+        // Inicializar selección de método de pago
+        initPaymentMethods();
+    }
+});

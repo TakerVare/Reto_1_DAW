@@ -33,8 +33,68 @@ public class AddressAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
+        // Crear un objeto Address para usar como filtro
+        Address addressFilter = new Address();
+
+        // Comprobar si viene el parámetro id_customer y añadirlo al filtro
+        String idCustomerParam = request.getParameter("id_customer");
+        if (idCustomerParam != null && !idCustomerParam.isEmpty()) {
+            try {
+                int idCustomer = Integer.parseInt(idCustomerParam);
+                addressFilter.setId_customer(idCustomer);
+                System.out.println("Filtrando direcciones por id_customer: " + idCustomer);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al parsear id_customer: " + e.getMessage());
+            }
+        }
+
+        // Comprobar si viene el parámetro id_address y añadirlo al filtro
+        String idAddressParam = request.getParameter("id_address");
+        if (idAddressParam != null && !idAddressParam.isEmpty()) {
+            try {
+                int idAddress = Integer.parseInt(idAddressParam);
+                addressFilter.setId_address(idAddress);
+                System.out.println("Filtrando direcciones por id_address: " + idAddress);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al parsear id_address: " + e.getMessage());
+            }
+        }
+
+        // Comprobar si viene el parámetro id_city y añadirlo al filtro
+        String idCityParam = request.getParameter("id_city");
+        if (idCityParam != null && !idCityParam.isEmpty()) {
+            try {
+                int idCity = Integer.parseInt(idCityParam);
+                addressFilter.setId_city(idCity);
+                System.out.println("Filtrando direcciones por id_city: " + idCity);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al parsear id_city: " + e.getMessage());
+            }
+        }
+
+        // También podemos añadir otros parámetros como street, state, zip, etc.
+        String streetParam = request.getParameter("street");
+        if (streetParam != null && !streetParam.isEmpty()) {
+            addressFilter.setStreet(streetParam);
+            System.out.println("Filtrando direcciones por street: " + streetParam);
+        }
+
+        String stateParam = request.getParameter("state");
+        if (stateParam != null && !stateParam.isEmpty()) {
+            addressFilter.setState(stateParam);
+            System.out.println("Filtrando direcciones por state: " + stateParam);
+        }
+
+        String zipParam = request.getParameter("zip");
+        if (zipParam != null && !zipParam.isEmpty()) {
+            addressFilter.setZip(zipParam);
+            System.out.println("Filtrando direcciones por zip: " + zipParam);
+        }
+
+        // Ahora usamos el objeto Address con los filtros para la consulta
+
         AddressDao addressDao = new AddressDao();
-        ArrayList<Address> addresses = addressDao.findAll(null);
+        ArrayList<Address> addresses = addressDao.findAll(addressFilter);
         return Address.toArrayJSon(addresses);
 
     }
