@@ -350,31 +350,58 @@ async function getEmployees() {
 }
 
 /**
- * Obtiene los impuestos desde el archivo JSON
+ * Obtiene los impuestos desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de impuestos
  */
-async function getTaxes() { //todo
+async function getTaxes() {
     try {
-        const response = await fetch('./mockup/taxes.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const taxes = await response.json();
-        console.log('Taxes loaded from API:', taxes);
-        return taxes;
-    } catch (error) {
-        console.error('Error fetching taxes:', error);
-        // Intentar resolver con un formato alternativo de la URL
-        try {
-            const altResponse = await fetch('mockup/taxes.json');
-            if (!altResponse.ok) {
-                throw new Error(`HTTP error in alternate path! Status: ${altResponse.status}`);
+        // Intentar obtener impuestos desde la base de datos
+        const response = await fetch('Controller?ACTION=TAX.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
             }
-            const taxes = await altResponse.json();
-            console.log('Taxes loaded from alternate path:', taxes);
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Impuestos cargados desde la base de datos:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedTaxes = [];
+
+        for (var i in responseText) {
+            formattedTaxes.push({
+                "id_tax": responseText[i]['id_tax'],
+                "name": responseText[i]['name'],
+                "percentage": responseText[i]['percentage']
+            });
+        }
+
+        // Para depuración
+        console.log('Impuestos formateados:', formattedTaxes);
+
+        // Devolver el array de impuestos con el formato deseado
+        return formattedTaxes;
+    } catch (error) {
+        console.error('Error al obtener los impuestos desde la base de datos:', error);
+
+        // Intentar cargar desde el archivo JSON como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/taxes.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+
+            const taxes = await fallbackResponse.json();
+            console.log('Impuestos cargados desde archivo local (fallback):', taxes);
             return taxes;
-        } catch (altError) {
-            console.error('Error fetching taxes from alternate path:', altError);
+        } catch (fallbackError) {
+            console.error('Error al cargar impuestos desde archivo local:', fallbackError);
+
             // Devolver impuestos por defecto en caso de error
             return [
                 { id_tax: 0, name: "Sales tax estatal", percentage: 6.25 }

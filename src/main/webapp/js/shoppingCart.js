@@ -35,7 +35,14 @@ async function loadConfigData() {
 
         // Cargar impuestos
         try {
-            const taxesResponse = await fetch('./mockup/taxes.json');
+            //const taxesResponse = await fetch('./mockup/taxes.json');
+            //const taxesResponse = await getTaxes();
+            const taxesResponse = await fetch('Controller?ACTION=TAX.FIND_ALL', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             if (taxesResponse.ok) {
                 const taxes = await taxesResponse.json();
                 console.log('Taxes loaded successfully:', taxes);
