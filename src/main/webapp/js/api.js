@@ -19,6 +19,10 @@ async function getProductDetails(id){
     return productDetails.find(product => product.id_product === id)
 }
 */
+
+
+//START PRODUCTS SECTION
+
 async function getProducts() {
     try {
         const response = await fetch('Controller?ACTION=PRODUCT.FIND_ALL', {
@@ -61,7 +65,174 @@ async function getProducts() {
     }
 }
 
+/**
+ * Añade un nuevo producto a la base de datos
+ * @param {Object} product - Datos del nuevo producto
+ * @returns {Promise<boolean>} Promesa que resuelve a true si la operación fue exitosa
+ */
+async function addProduct(product) {
+    try {
+        // Crear FormData para enviar los parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'PRODUCT.ADD');
+        formData.append('id_tax', product.id_tax);
+        formData.append('id_category', product.id_category);
+        formData.append('name', product.name);
+        formData.append('description', product.description);
+        formData.append('price', product.price);
+        formData.append('image', product.image);
 
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        // Verificar si hay errores de red
+        if (!response.ok) {
+            console.error('Error de red:', response.status);
+            return false;
+        }
+
+        // Intentar parsear la respuesta como JSON
+        const responseText = await response.text();
+        console.log('Respuesta del servidor:', responseText);
+
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Respuesta parseada:', result);
+
+            // Verificar si la operación fue exitosa
+            // El servidor devuelve {result: 1} si fue exitoso
+            if (result && typeof result.result !== 'undefined') {
+                return result.result === 1;
+            }
+            return false;
+        } catch (parseError) {
+            console.error('Error al parsear la respuesta JSON:', parseError);
+            console.error('Respuesta original:', responseText);
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al añadir el producto:', error);
+        return false;
+    }
+}
+
+/**
+ * Elimina un producto de la base de datos
+ * @param {number} productId - ID del producto a eliminar
+ * @returns {Promise<boolean>} Promesa que resuelve a true si la operación fue exitosa
+ */
+async function deleteProduct(productId) {
+    try {
+        // Crear FormData para enviar los parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'PRODUCT.DELETE');
+        formData.append('id_product', productId);
+
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        // Verificar si hay errores de red
+        if (!response.ok) {
+            console.error('Error de red:', response.status);
+            return false;
+        }
+
+        // Intentar parsear la respuesta como JSON
+        const responseText = await response.text();
+        console.log('Respuesta del servidor:', responseText);
+
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Respuesta parseada:', result);
+
+            // Verificar si la operación fue exitosa
+            // El servidor devuelve {result: 1} si fue exitoso
+            if (result && typeof result.result !== 'undefined') {
+                return result.result === 1;
+            }
+            return false;
+        } catch (parseError) {
+            console.error('Error al parsear la respuesta JSON:', parseError);
+            console.error('Respuesta original:', responseText);
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al eliminar el producto:', error);
+        return false;
+    }
+}
+
+/**
+ * Actualiza un producto existente en la base de datos
+ * @param {Object} product - Datos actualizados del producto
+ * @returns {Promise<boolean>} Promesa que resuelve a true si la operación fue exitosa
+ */
+async function updateProduct(product) {
+    try {
+        // Crear FormData para enviar los parámetros
+        let formData = new URLSearchParams();
+        formData.append('ACTION', 'PRODUCT.UPDATE');
+        formData.append('id_product', product.id_product);
+        formData.append('id_tax', product.id_tax);
+        formData.append('id_category', product.id_category);
+        formData.append('name', product.name);
+        formData.append('description', product.description);
+        formData.append('price', product.price);
+        formData.append('image', product.image);
+
+        // Realizar la petición POST al controlador
+        const response = await fetch('Controller', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+        });
+
+        // Verificar si hay errores de red
+        if (!response.ok) {
+            console.error('Error de red:', response.status);
+            return false;
+        }
+
+        // Intentar parsear la respuesta como JSON
+        const responseText = await response.text();
+        console.log('Respuesta del servidor:', responseText);
+
+        try {
+            const result = JSON.parse(responseText);
+            console.log('Respuesta parseada:', result);
+
+            // Verificar si la operación fue exitosa
+            // El servidor devuelve {result: 1} si fue exitoso
+            if (result && typeof result.result !== 'undefined') {
+                return result.result === 1;
+            }
+            return false;
+        } catch (parseError) {
+            console.error('Error al parsear la respuesta JSON:', parseError);
+            console.error('Respuesta original:', responseText);
+            return false;
+        }
+    } catch (error) {
+        console.error('Error al actualizar el producto:', error);
+        return false;
+    }
+}
+
+//END PRODUCTS SECTION
 
 async function getCategories() {
     try {
@@ -100,7 +271,7 @@ async function getCategories() {
     }
 }
 
-/* FIN EDICIÓN GUILLERMO */
+
 
 /**
  * Obtiene los roles desde el archivo JSON
