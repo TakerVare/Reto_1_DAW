@@ -329,12 +329,12 @@ async function getEmployees() {
 
         for (var i in responseText) {
             formattedEmployees.push({
-                "id_employee": responseText[i]['id_employee'],
-                "id_rol": responseText[i]['id_rol'],
-                "first_name": responseText[i]['first_name'],
-                "last_name": responseText[i]['last_name'],
-                "email": responseText[i]['email'],
-                "password": responseText[i]['password']
+                "id_employee": responseText[i]['m_iIdEmployee'],
+                "id_rol": responseText[i]['m_iIdRol'],
+                "first_name": responseText[i]['m_strFirstName'],
+                "last_name": responseText[i]['m_strLastName'],
+                "email": responseText[i]['m_strEmail'],
+                "password": responseText[i]['m_strPassword']
             });
         }
 
