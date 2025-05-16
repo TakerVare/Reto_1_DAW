@@ -234,6 +234,7 @@ async function updateProduct(product) {
 
 //END PRODUCTS SECTION
 
+//START CATEGORIES SECTION
 async function getCategories() {
     try {
         const response = await fetch('Controller?ACTION=CATEGORY.FIND_ALL', {
@@ -271,8 +272,9 @@ async function getCategories() {
     }
 }
 
+//END CATEGORIES SECTION
 
-
+//START ROLES SECTION
 /**
  * Obtiene los roles desde el archivo JSON
  * @returns {Promise<Array>} Promesa que resuelve a un array de roles
@@ -303,7 +305,9 @@ async function getRoles() { //todo
         }
     }
 }
+//END ROLES SECTION
 
+//START EMPLOYEES SECTION
 /**
  * Obtiene los empleados desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de empleados
@@ -349,6 +353,31 @@ async function getEmployees() {
     }
 }
 
+/**
+ * Verifica las credenciales de un empleado
+ * @param {string} email - Email del empleado
+ * @param {string} password - Contraseña del empleado
+ * @returns {Promise<Object|null>} Empleado si las credenciales son válidas, null en caso contrario
+ */
+async function verifyEmployeeCredentials(email, password) {
+    try {
+        const employees = await getEmployees();
+
+        // Buscar empleado con las credenciales proporcionadas
+        const employee = employees.find(e =>
+            e.email.toLowerCase() === email.toLowerCase() && e.password === password
+        );
+
+        return employee || null;
+    } catch (error) {
+        console.error('Error verifying employee credentials:', error);
+        return null;
+    }
+}
+
+//END EMPLOYEES SECTION
+
+//START TAXES SECTION
 /**
  * Obtiene los impuestos desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de impuestos
@@ -410,6 +439,9 @@ async function getTaxes() {
     }
 }
 
+//END TAXES SECTION
+
+//START OFFERS SECTION
 /**
  * Obtiene las ofertas disponibles desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas
@@ -466,9 +498,12 @@ async function getOffers() {
         }
     }
 }
+//END OFFERS SECTION
 
+
+//START CUSTOMERS SECTION
 /**
- * Obtiene los clientes desde el archivo JSON
+ * Obtiene los clientes desde la base de datos
  * @returns {Promise<Array>} Promesa que resuelve a un array de clientes
  */
 async function getCustomers() {
@@ -506,7 +541,6 @@ async function getCustomers() {
         return []; // Devolver array vacío en caso de error
     }
 }
-
 
 /**
  * Crea un nuevo cliente en la base de datos
@@ -594,28 +628,6 @@ async function verifyCustomerCredentials(email, password) {
 }
 
 /**
- * Verifica las credenciales de un empleado
- * @param {string} email - Email del empleado
- * @param {string} password - Contraseña del empleado
- * @returns {Promise<Object|null>} Empleado si las credenciales son válidas, null en caso contrario
- */
-async function verifyEmployeeCredentials(email, password) {
-    try {
-        const employees = await getEmployees();
-        
-        // Buscar empleado con las credenciales proporcionadas
-        const employee = employees.find(e => 
-            e.email.toLowerCase() === email.toLowerCase() && e.password === password
-        );
-        
-        return employee || null;
-    } catch (error) {
-        console.error('Error verifying employee credentials:', error);
-        return null;
-    }
-}
-
-/**
  * Gets the addresses for a specific customer
  * @param {number} customerId - ID of the customer
  * @returns {Promise<Array>} Promise that resolves to an array of addresses
@@ -672,6 +684,9 @@ async function getCustomerAddresses(customerId) {
         }
     }
 }
+//END CUSTOMERS SECTION
+
+//START CITIES SECTION
 
 /**
  * Gets all cities from the database
@@ -723,7 +738,9 @@ async function getCities() {
         }
     }
 }
+//END CITIES SECTION
 
+//START ADRESS SECTION
 //FUNCIONALIDAD ELIMINADA HASTA NUEVA ÓRDEN
 /**
  * Sets an address as the default (favorite) for a customer
@@ -796,3 +813,9 @@ async function updateAddress(addressId, addressData) {
         return false;
     }
 }
+
+//END ADRESS SECTION
+
+//START ORDERS SECTION
+
+//END ORDERS SECTION
