@@ -2,7 +2,7 @@
  * BurWeb - Locations Page Styles
  */
 
- :root {
+:root {
     --color-background: #D4E4D3;    /* Verde Pastel */
     --color-text: #3B4C44;          /* Gris oscuro verdoso */
     --color-accent: #D1A03D;        /* Amarillo dorado */
@@ -182,6 +182,36 @@
 
 .locations-info a:hover {
     text-decoration: underline;
+}
+
+/* Estilo para mensaje de error */
+.loading-error {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(255, 0, 0, 0.05);
+    border-radius: 10px;
+    grid-column: 1 / -1;
+}
+
+.loading-error i {
+    color: #e74c3c;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.loading-error button {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.loading-error button:hover {
+    background-color: var(--color-text);
 }
 
 /* Responsive Styles */

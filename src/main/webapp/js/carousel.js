@@ -12,9 +12,9 @@ function initCarousel() {
     
     // Definir las imágenes del carrusel
     const images = [
-        { src: "images/Menus/Iberico_menu.png", alt: "Slide 1" },
-        { src: "images/MainFood/burger_2.png", alt: "Slide 2" },
-        { src: "images/MainFood/burger_3.png", alt: "Slide 3" }
+        { src: "images/Carousel/Iberico_menu.png", alt: "Slide 1" },
+        { src: "images/Carousel/Muestra_carrusel.png", alt: "Slide 2" },
+        { src: "images/Carousel/New_offers.png", alt: "Slide 3" }
     ];
     
     // Generar el HTML del carrusel
