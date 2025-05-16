@@ -127,7 +127,7 @@ async function addProduct(product) {
  * @param {number} productId - ID del producto a eliminar
  * @returns {Promise<boolean>} Promesa que resuelve a true si la operación fue exitosa
  */
-async function deleteProduct(productId) {
+async function deleteProductFromDatabase(productId) {
     try {
         // Crear FormData para enviar los parámetros
         let formData = new URLSearchParams();

@@ -520,16 +520,29 @@ function saveProduct() {
  * @param {Object} product - Producto a eliminar
  */
 function deleteProduct(product) {
-    // Buscar el índice del producto
+    // Buscar el índice del producto en el estado local
     const index = productState.products.findIndex(p => p.id_product === product.id_product);
-    
-    // Si se encuentra, eliminarlo
+
+    // Si se encuentra, intentar eliminarlo de la base de datos
     if (index !== -1) {
-        productState.products.splice(index, 1);
-        showMessage(`Product "${product.name}" deleted successfully`, 'success');
-        
-        // Actualizar la lista de productos
-        loadProductsList();
+        // Llamar a la API para eliminar el producto de la base de datos
+        deleteProductFromDatabase(product.id_product)
+            .then(success => {
+                if (success) {
+                    // Si se elimina correctamente en la base de datos, actualizar el estado local
+                    productState.products.splice(index, 1);
+                    showMessage(`Product "${product.name}" deleted successfully`, 'success');
+
+                    // Actualizar la lista de productos
+                    loadProductsList();
+                } else {
+                    showMessage('Error deleting product from database', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting product:', error);
+                showMessage('Error deleting product: ' + error.message, 'error');
+            });
     } else {
         showMessage('Product not found', 'error');
     }
