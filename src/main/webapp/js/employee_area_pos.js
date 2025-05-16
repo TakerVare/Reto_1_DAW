@@ -509,15 +509,57 @@ function closeCheckoutModal() {
 /**
  * Procesa el pago
  */
-function processPayment() {
+async function processPayment() {
     // Cerrar el modal
     closeCheckoutModal();
-    
-    // Mostrar mensaje de éxito
-    showMessage('Payment successful! Order has been processed.', 'success');
-    
-    // Limpiar el carrito
-    clearPOSCart();
+
+    // Si no hay items en el carrito, mostrar mensaje y salir
+    if (posState.cartItems.length === 0) {
+        showMessage('No hay productos en el carrito', 'warning');
+        return;
+    }
+
+    // Preparar datos para el pedido con valores predeterminados
+    const orderData = {
+        id_customer: 1,      // Cliente predeterminado
+        id_payment: 1,       // Método de pago predeterminado
+        id_delivery: 1,      // Opción de entrega predeterminada
+        id_shop: 1,          // Tienda predeterminada
+        id_address: 1        // Dirección predeterminada
+    };
+
+    // Preparar los items del carrito para la API
+    const cartItems = posState.cartItems.map(item => ({
+        id: item.product.id_product,
+        price: item.product.price,
+        quantity: item.quantity
+    }));
+
+    try {
+        console.log('Enviando datos del pedido desde área de empleado:', orderData);
+        console.log('Productos en el carrito:', cartItems);
+
+        // Mostrar mensaje de procesamiento
+        showMessage('Procesando pedido...', 'info');
+
+        // Llamar a la API para procesar el pedido
+        const result = await processOrder(orderData, cartItems);
+        console.log('Resultado del procesamiento del pedido:', result);
+
+        if (result.success) {
+            // Pedido guardado correctamente
+            showMessage(`¡Pedido realizado con éxito! Número de pedido: ${result.orderId}`, 'success');
+
+            // Limpiar el carrito del POS
+            clearPOSCart();
+        } else {
+            // Error al guardar el pedido
+            showMessage(`Error al procesar el pedido: ${result.error || 'Error desconocido'}`, 'error');
+        }
+    } catch (error) {
+        console.error('Error al procesar el pedido:', error);
+        showMessage('Ha ocurrido un error al procesar el pedido. Por favor, inténtalo de nuevo.', 'error');
+    }
 }
 
 /**
