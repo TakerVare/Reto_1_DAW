@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class OrderDao implements IDao {
 
     private final String SQL_FINDALL = "SELECT * FROM ORDERS WHERE 1=1 ";
-    private final String SQL_INSERT = "INSERT INTO ORDERS (id_customer, id_address, id_payment, id_shop, id_delivery, id_offer, order_date, order_detail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String SQL_INSERT = "INSERT INTO ORDERS (id_customer, id_address, id_payment, id_shop, id_delivery, id_offer, order_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private final String SQL_DELETE = "DELETE FROM ORDERS WHERE ID_ORDER = ?";
     private final String SQL_UPDATE = "UPDATE ORDERS SET id_customer = ?, id_address = ?, id_payment = ?, id_shop = ?, id_delivery = ?, id_offer = ?, order_date = ?, order_detail = ? WHERE ID_ORDER = ?";
 

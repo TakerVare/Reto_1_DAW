@@ -446,7 +446,7 @@ async function proceedToCheckout() {
 
         if (result.success) {
             // Pedido guardado correctamente
-            alert(`¡Pedido realizado con éxito! Número de pedido: ${result.orderId}`);
+            //alert(`¡Pedido realizado con éxito! Número de pedido: ${result.orderId}`);
 
             // Vaciar carrito
             cart = [];
