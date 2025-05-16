@@ -380,10 +380,90 @@ function selectProduct(product) {
         }
     }
 }
-
+//Modificación crítica, guardo copia
 /**
  * Guarda un producto (nuevo o editado)
  */
+function saveProduct() {
+    // Obtener los valores del formulario
+    const id = parseInt(document.getElementById('product_id').value);
+    const name = document.getElementById('product_name').value;
+    const price = parseFloat(document.getElementById('product_price').value);
+    const description = document.getElementById('product_description').value;
+    const category = parseInt(document.getElementById('product_category').value);
+    const tax = parseInt(document.getElementById('product_tax').value);
+
+    // Obtener la imagen
+    const imagePreview = document.getElementById('imagePreview');
+    const imageSrc = imagePreview.classList.contains('hidden') ? null : imagePreview.src;
+
+    // Validar campos obligatorios
+    if (!name || !price || !description) {
+        showMessage('Please fill in all required fields', 'error');
+        return;
+    }
+
+    // Crear objeto de producto
+    const product = {
+        id_product: id,
+        id_tax: tax,
+        id_category: category,
+        name: name,
+        description: description,
+        price: price,
+        image: imageSrc || (productState.selectedProduct ? productState.selectedProduct.image : '/api/placeholder/100/100')
+    };
+
+    // Determinar si es una edición o un nuevo producto
+    if (productState.currentAction === 'edit') {
+        // Actualizar producto existente
+        updateProduct(product)
+            .then(success => {
+                if (success) {
+                    // Actualizar en el estado local
+                    const index = productState.products.findIndex(p => p.id_product === id);
+                    if (index !== -1) {
+                        productState.products[index] = product;
+                    }
+                    showMessage(`Product "${name}" updated successfully`, 'success');
+                    // Actualizar la lista de productos
+                    loadProductsList();
+                    // Ocultar formulario
+                    cancelProductForm();
+                } else {
+                    showMessage('Error updating product in database', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error updating product:', error);
+                showMessage('Error updating product: ' + error.message, 'error');
+            });
+    } else {
+        // Añadir nuevo producto
+        addProduct(product)
+            .then(success => {
+                if (success) {
+                    // Añadir al estado local
+                    productState.products.push(product);
+                    showMessage(`Product "${name}" added successfully`, 'success');
+                    // Actualizar la lista de productos
+                    loadProductsList();
+                    // Ocultar formulario
+                    cancelProductForm();
+                } else {
+                    showMessage('Error adding product to database', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error adding product:', error);
+                showMessage('Error adding product: ' + error.message, 'error');
+            });
+    }
+}
+/**
+ * Guarda un producto (nuevo o editado)
+ */
+/*
 function saveProduct() {
     // Obtener los valores del formulario
     const id = parseInt(document.getElementById('product_id').value);
@@ -434,7 +514,7 @@ function saveProduct() {
     // Ocultar formulario
     cancelProductForm();
 }
-
+*/
 /**
  * Elimina un producto
  * @param {Object} product - Producto a eliminar
