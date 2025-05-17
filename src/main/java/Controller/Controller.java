@@ -95,6 +95,11 @@ public class Controller extends HttpServlet {
                 out.print(new JobOfferAction().execute(request, response, arrayAction[1]));
                 break;
             }
+            case "SHOP":
+            {
+                out.print(new ShopAction().execute(request, response, arrayAction[1]));
+                break;
+            }
             default:
             {                
                 System.out.println(action); 
