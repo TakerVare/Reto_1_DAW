@@ -1,7 +1,7 @@
 package Controller.Actions;
 
-import Model.Job_Offer;
-import Model.Job_OfferDao;
+import Model.JobOffer;
+import Model.JobOfferDao;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +24,9 @@ public class JobOfferAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        Job_OfferDao job_offerDao = new Job_OfferDao();
-        ArrayList<Job_Offer> job_offers = job_offerDao.findAll(null);
-        return Job_Offer.toArrayJSon(job_offers);
+        JobOfferDao job_offerDao = new JobOfferDao();
+        ArrayList<JobOffer> job_offers = job_offerDao.findAll(null);
+        return JobOffer.toArrayJSon(job_offers);
 
 
     }

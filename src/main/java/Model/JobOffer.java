@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 
 
-public class Job_Offer {
+public class JobOffer {
     //Atributos
     private int id_job_offer;
     private int id_rol;
@@ -15,11 +15,11 @@ public class Job_Offer {
 
     //Constructores
 
-    public Job_Offer(){
+    public JobOffer(){
 
     }
 
-    public Job_Offer(int id_job_offer, int id_rol, int id_shop, String name, String description) {
+    public JobOffer(int id_job_offer, int id_rol, int id_shop, String name, String description) {
         this.id_job_offer = id_job_offer;
         this.id_rol = id_rol;
         this.id_shop = id_shop;
@@ -74,7 +74,7 @@ public class Job_Offer {
 
     @Override
     public String toString() {
-        return "Job_Offer{" +
+        return "JobOffer{" +
                 "id_job_offer=" + id_job_offer +
                 ", id_rol=" + id_rol +
                 ", id_shop=" + id_shop +
@@ -83,8 +83,8 @@ public class Job_Offer {
                 '}';
     }
 
-    public static String toCadena(Job_Offer job_offer) {
-        return "Job_Offer{" +
+    public static String toCadena(JobOffer job_offer) {
+        return "JobOffer{" +
                 "id_job_offer=" + job_offer.getId_job_offer() + ", "
                 + " id_rol=" + job_offer.getId_rol() + ","
                 + " id_shop=" + job_offer.getId_shop() + ", "
@@ -92,9 +92,9 @@ public class Job_Offer {
                 + "description =" + job_offer.getDescription() +'}';
     }
 
-    public static String fromArrayToJson(ArrayList<Job_Offer> job_offers){
+    public static String fromArrayToJson(ArrayList<JobOffer> job_offers){
         String resp = "[";
-        for (Job_Offer job_offer : job_offers) {
+        for (JobOffer job_offer : job_offers) {
             resp+= "{" +
                     "id_job_offer=" + job_offer.getId_job_offer() + ", "
                     + " id_rol=" + job_offer.getId_rol() + ","
@@ -108,7 +108,7 @@ public class Job_Offer {
         return resp;
     }
 
-    public static String toArrayJSon(ArrayList<Job_Offer> job_offers) {
+    public static String toArrayJSon(ArrayList<JobOffer> job_offers) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
 

@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-public class Job_OfferDao implements IDao {
+public class JobOfferDao implements IDao {
 
     private final String SQL_FINDALL = "SELECT * FROM JOB_OFFER WHERE 1=1 ";
     private final String SQL_INSERT = "INSERT INTO JOB_OFFER (id_rol, id_shop, name, description) VALUES (?, ?, ?, ?)";
@@ -13,7 +13,7 @@ public class Job_OfferDao implements IDao {
 
     private IMotorSql motorSql;
 
-    public Job_OfferDao() {
+    public JobOfferDao() {
         // Opción sencilla: motorSql = new MotorSQL();
         // Opción más avanzada:
         motorSql = new MotorSql();
@@ -22,7 +22,7 @@ public class Job_OfferDao implements IDao {
     @Override
     public int add(Object bean) {
         int result = 0;
-        Job_Offer job_offer = (Job_Offer) bean;
+        JobOffer job_offer = (JobOffer) bean;
 
         try {
             motorSql.connect();
@@ -36,7 +36,7 @@ public class Job_OfferDao implements IDao {
             motorSql.execute();
             result = 1; // Asumimos que la operación fue exitosa
         } catch (SQLException e) {
-            System.out.println("Error al añadir Job_Offer: " + e.getMessage());
+            System.out.println("Error al añadir JobOffer: " + e.getMessage());
         } finally {
             motorSql.disconnect();
         }
@@ -51,8 +51,8 @@ public class Job_OfferDao implements IDao {
 
         if (e instanceof Integer) {
             idJob_Offer = (Integer) e;
-        } else if (e instanceof Job_Offer) {
-            idJob_Offer = ((Job_Offer) e).getId_job_offer();
+        } else if (e instanceof JobOffer) {
+            idJob_Offer = ((JobOffer) e).getId_job_offer();
         }
 
         if (idJob_Offer > 0) {
@@ -65,7 +65,7 @@ public class Job_OfferDao implements IDao {
                 motorSql.execute();
                 result = 1; // Asumimos que la operación fue exitosa
             } catch (SQLException ex) {
-                System.out.println("Error al eliminar Job_Offer: " + ex.getMessage());
+                System.out.println("Error al eliminar JobOffer: " + ex.getMessage());
             } finally {
                 motorSql.disconnect();
             }
@@ -77,7 +77,7 @@ public class Job_OfferDao implements IDao {
     @Override
     public int update(Object bean) {
         int result = 0;
-        Job_Offer job_offer = (Job_Offer) bean;
+        JobOffer job_offer = (JobOffer) bean;
 
         if (job_offer.getId_job_offer() > 0) {
             try {
@@ -93,7 +93,7 @@ public class Job_OfferDao implements IDao {
                 motorSql.execute();
                 result = 1; // Asumimos que la operación fue exitosa
             } catch (SQLException ex) {
-                System.out.println("Error al actualizar Job_Offer: " + ex.getMessage());
+                System.out.println("Error al actualizar JobOffer: " + ex.getMessage());
             } finally {
                 motorSql.disconnect();
             }
@@ -104,26 +104,26 @@ public class Job_OfferDao implements IDao {
 
 
     @Override
-    public ArrayList<Job_Offer> findAll(Object bean) {
-        ArrayList<Job_Offer> job_offers = new ArrayList<>();
+    public ArrayList<JobOffer> findAll(Object bean) {
+        ArrayList<JobOffer> job_offers = new ArrayList<>();
 
         String sql= SQL_FINDALL;
         motorSql.connect();
         if (bean != null) {
-            if (((Job_Offer)bean).getId_job_offer() != 0 ) {
-                sql += " AND id_job_offer=" + ((Job_Offer)bean).getId_job_offer() + "";
+            if (((JobOffer)bean).getId_job_offer() != 0 ) {
+                sql += " AND id_job_offer=" + ((JobOffer)bean).getId_job_offer() + "";
             }
-            if (((Job_Offer)bean).getId_rol() != 0) {
-                sql += " AND id_rol=" + ((Job_Offer)bean).getId_rol() + "";
+            if (((JobOffer)bean).getId_rol() != 0) {
+                sql += " AND id_rol=" + ((JobOffer)bean).getId_rol() + "";
             }
-            if (((Job_Offer)bean).getId_shop() != 0) {
-                sql += " AND id_shop=" + ((Job_Offer)bean).getId_shop() + "";
+            if (((JobOffer)bean).getId_shop() != 0) {
+                sql += " AND id_shop=" + ((JobOffer)bean).getId_shop() + "";
             }
-            if (((Job_Offer)bean).getName() != "" && ((Job_Offer)bean).getName() != null) {
-                sql += " AND name like '" + ((Job_Offer)bean).getName() + "'";
+            if (((JobOffer)bean).getName() != "" && ((JobOffer)bean).getName() != null) {
+                sql += " AND name like '" + ((JobOffer)bean).getName() + "'";
             }
-            if (((Job_Offer)bean).getDescription() != "" && ((Job_Offer)bean).getDescription() != null) {
-                sql += " AND description like '" + ((Job_Offer)bean).getDescription() + "'";
+            if (((JobOffer)bean).getDescription() != "" && ((JobOffer)bean).getDescription() != null) {
+                sql += " AND description like '" + ((JobOffer)bean).getDescription() + "'";
             }
         }
         sql+=" ;";
@@ -134,7 +134,7 @@ public class Job_OfferDao implements IDao {
             ResultSet rs = motorSql.executeQuery(sql);
 
             while (rs.next()) {// TRANSFOMAR LA COLECCIÓN DEBASE DE DATOS A UN ARRAYLIST
-                Job_Offer job_offer = new Job_Offer();
+                JobOffer job_offer = new JobOffer();
                 job_offer.setId_job_offer(rs.getInt("id_job_offer"));
                 job_offer.setId_rol(rs.getInt("id_rol"));
                 job_offer.setId_shop(rs.getInt("id_shop"));
