@@ -160,24 +160,312 @@
     background-color: #777;
 }
 
+/* Estilos para la sección de historial de pedidos */
+.order-history-section {
+    padding-bottom: 30px;
+}
+
+.orders-loading,
+.orders-error,
+.no-orders-message {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--color-text);
+}
+
+.orders-loading i,
+.orders-error i {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.orders-error i {
+    color: #e74c3c;
+}
+
+.action-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: var(--color-accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.action-btn:hover {
+    background-color: #b58a2e;
+}
+
+/* Tabla de pedidos */
+.orders-table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.orders-table-header {
+    display: flex;
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 600;
+    padding: 12px 15px;
+}
+
+.orders-table-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+    transition: background-color 0.2s;
+}
+
+.orders-table-row:last-child {
+    border-bottom: none;
+}
+
+.orders-table-row:hover {
+    background-color: #f9f9f9;
+}
+
+.order-cell {
+    flex: 1;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.view-order-btn {
+    background-color: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-order-btn:hover {
+    background-color: #b58a2e;
+}
+
+/* Modal de detalles de pedido */
+.order-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.order-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.order-modal-header {
+    background-color: var(--color-accent);
+    color: white;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.order-modal-header h2 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-logo);
+    font-size: 1.5rem;
+}
+
+.order-modal-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.order-modal-details {
+    padding: 20px;
+}
+
+.order-modal-details h3 {
+    margin: 20px 0 10px 0;
+    color: var(--color-text);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.order-modal-details h3:first-child {
+    margin-top: 0;
+}
+
+/* Tabla de productos en el modal */
+.order-products-table {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.order-products-header {
+    display: flex;
+    background-color: #f5f5f5;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-products-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+}
+
+.order-products-row:last-child {
+    border-bottom: none;
+}
+
+.product-cell {
+    flex: 1;
+    padding: 10px 15px;
+}
+
+/* Resumen del pedido */
+.order-summary {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+}
+
+/* Info de envío y pago */
+.order-shipping-info,
+.order-payment-info {
+    padding: 0 10px;
+}
+
+.order-shipping-info p,
+.order-payment-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* Loading y error en el modal */
+.order-loading,
+.order-error {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.order-loading i,
+.order-error i {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.order-error i {
+    color: #e74c3c;
+}
+
+/* Responsive adjustments */
 @media (max-width: 600px) {
     .profile-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .profile-avatar {
         margin-right: 0;
         margin-bottom: 15px;
     }
-    
+
     .profile-field {
         flex-direction: column;
     }
-    
+
     .field-label {
         width: 100%;
         margin-bottom: 5px;
+    }
+
+    .orders-table-header,
+    .orders-table-row {
+        flex-wrap: wrap;
+    }
+
+    .order-cell {
+        flex: 0 0 50%;
+    }
+
+    .orders-table-header .order-cell:nth-child(4),
+    .orders-table-row .order-cell:nth-child(4) {
+        flex: 0 0 100%;
+        justify-content: center;
+        padding-top: 5px;
+    }
+
+    .order-modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    .order-products-header,
+    .order-products-row {
+        flex-direction: column;
+    }
+
+    .product-cell {
+        padding: 8px 15px;
+    }
+
+    .order-products-header {
+        display: none;
+    }
+
+    .product-cell:nth-child(1)::before {
+        content: "Producto: ";
+        font-weight: 600;
+    }
+
+    .product-cell:nth-child(2)::before {
+        content: "Precio: ";
+        font-weight: 600;
     }
 }
 
@@ -359,22 +647,22 @@
     .profile-field.addresses-field {
         flex-direction: column;
     }
-    
+
     .addresses-field .field-label {
         width: 100%;
         margin-bottom: 8px;
     }
-    
+
     .profile-address {
         padding: 10px;
     }
-    
+
     .address-badge {
         font-size: 0.6rem;
         top: -7px;
         right: 7px;
     }
-    
+
     .address-line {
         font-size: 0.85rem;
     }

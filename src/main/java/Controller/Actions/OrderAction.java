@@ -27,8 +27,23 @@ public class OrderAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
+        //Crear un objeto Order para usar como filtro
+        Order orderFilter = new Order();
+
+        // Comprobar si viene el parámetro id_customer y añadirlo al filtro
+        String idCustomerParam = request.getParameter("id_customer");
+        if (idCustomerParam != null && !idCustomerParam.isEmpty()) {
+            try {
+                int idCustomer = Integer.parseInt(idCustomerParam);
+                orderFilter.setId_customer(idCustomer);
+                System.out.println("Filtrando perido por id_customer: " + idCustomer);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al parsear id_customer: " + e.getMessage());
+            }
+        }
+
         OrderDao orderDao = new OrderDao();
-        ArrayList<Order> orders = orderDao.findAll(null);
+        ArrayList<Order> orders = orderDao.findAll(orderFilter);
         return Order.toArrayJSon(orders);
     }
 
