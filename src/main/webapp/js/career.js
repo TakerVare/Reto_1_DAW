@@ -223,7 +223,9 @@ function openJobDetails(job) {
     const applyButton = document.getElementById('apply-button');
     applyButton.onclick = function() {
         // Show the application form
-        showApplicationForm();
+        //showApplicationForm();
+        //KISS
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfeRRpIT96xGKm4VWtej1TWN-7Y39fqrYMn75t4SENnVbOogA/viewform?usp=dialog');
     };
     
     // Show modal
@@ -232,7 +234,7 @@ function openJobDetails(job) {
     // Disable scrolling on body when modal is open
     document.body.style.overflow = 'hidden';
 }
-
+//Disabled function
 /**
  * Shows the job application form in the modal
  */
