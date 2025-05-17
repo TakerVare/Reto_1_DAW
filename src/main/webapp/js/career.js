@@ -28,28 +28,38 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Loads shops and job opportunities from JSON files
+ * Loads cities and job opportunities from the server
  */
 async function loadShopsAndJobs() {
     try {
-        // Fetch shops data first
-        const shopsResponse = await fetch('./mockup/shops.json');
-        if (!shopsResponse.ok) {
-            throw new Error(`HTTP error! Status: ${shopsResponse.status}`);
+        // Fetch cities data using the API function
+        const cities = await getCities();
+        if (!cities || cities.length === 0) {
+            throw new Error('No se pudieron cargar los datos de ciudades');
         }
-        
-        shopsData = await shopsResponse.json();
-        
-        // Then fetch job offers
-        const jobsResponse = await fetch('./mockup/jobOffers.json');
-        if (!jobsResponse.ok) {
-            throw new Error(`HTTP error! Status: ${jobsResponse.status}`);
+
+        // Guardar los datos de ciudades
+        shopsData = cities.map(city => ({
+            id_shop: city.id_city, // Mapeamos id_city como id_shop para compatibilidad
+            id_city: city.id_city,
+            name: city.name,
+            phone_number: "555-" + city.id_city, // Datos de ejemplo para mantener compatibilidad
+            email: `info@burweb-${city.name.toLowerCase()}.com` // Datos de ejemplo para mantener compatibilidad
+        }));
+
+        console.log('Ciudades cargadas desde la API:', shopsData);
+
+        // Obtener ofertas de trabajo usando la función del API
+        const jobOffers = await getJobOffers();
+
+        // Verificar que hayamos obtenido datos válidos
+        if (!jobOffers || jobOffers.length === 0) {
+            throw new Error('No se encontraron ofertas de trabajo');
         }
-        
-        const jobsData = await jobsResponse.json();
-        const jobOffers = jobsData.job_offers;
-        
-        // Render job cards with shop info
+
+        console.log('Ofertas de trabajo cargadas desde la API:', jobOffers);
+
+        // Renderizar las tarjetas de trabajo con los datos obtenidos
         renderJobCards(jobOffers);
     } catch (error) {
         console.error('Error loading data:', error);
