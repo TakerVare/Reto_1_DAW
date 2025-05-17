@@ -1128,3 +1128,61 @@ async function processOrder(orderData, cartItems) {
 }
 
 //END ORDERS SECTION
+
+//START JOB OFFERS SECTION
+/**
+ * Obtiene todas las ofertas de empleo desde la base de datos
+ * @returns {Promise<Array>} Promesa que resuelve a un array de ofertas de empleo
+ */
+async function getJobOffers() {
+    try {
+        const response = await fetch('Controller?ACTION=JOB_OFFER.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Ofertas de empleo cargadas:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedJobOffers = [];
+
+        for (var i in responseText) {
+            formattedJobOffers.push({
+                "id_job_offer": responseText[i]['id_job_offer'],
+                "id_rol": responseText[i]['id_rol'],
+                "id_shop": responseText[i]['id_shop'],
+                "name": responseText[i]['name'],
+                "description": responseText[i]['description']
+            });
+        }
+
+        return formattedJobOffers;
+    } catch (error) {
+        console.error('Error al obtener las ofertas de empleo:', error);
+
+        // Si hay un error, intentar cargar desde el archivo local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/jobOffers.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+
+            const jobOffers = await fallbackResponse.json();
+            console.log('Ofertas de empleo cargadas desde archivo local (fallback):', jobOffers);
+            return jobOffers.job_offers || [];
+        } catch (fallbackError) {
+            console.error('Error al cargar ofertas de empleo desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
+    }
+}
+
+//END JOB OFFERS SECTION
+
