@@ -1186,3 +1186,57 @@ async function getJobOffers() {
 
 //END JOB OFFERS SECTION
 
+//START SHOPS SECTION
+/**
+ * Obtiene todas las tiendas desde la base de datos
+ * @returns {Promise<Array>} Promesa que resuelve a un array de tiendas
+ */
+async function getShops() {
+    try {
+        const response = await fetch('Controller?ACTION=SHOP.FIND_ALL', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la red: ' + response.status);
+        }
+
+        const responseText = await response.json();
+        console.log('Tiendas cargadas:', responseText);
+
+        // Transformar los datos al formato deseado
+        const formattedShops = [];
+
+        for (var i in responseText) {
+            formattedShops.push({
+                "id_shop": responseText[i]['id_shop'],
+                "id_city": responseText[i]['id_city'],
+                "phone_number": responseText[i]['phone_number'],
+                "email": responseText[i]['email']
+            });
+        }
+
+        return formattedShops;
+    } catch (error) {
+        console.error('Error al obtener las tiendas:', error);
+
+        // Si hay un error, intentar cargar desde el archivo local como fallback
+        try {
+            const fallbackResponse = await fetch('./mockup/shops.json');
+            if (!fallbackResponse.ok) {
+                throw new Error(`HTTP error en ruta alternativa! Status: ${fallbackResponse.status}`);
+            }
+
+            const shops = await fallbackResponse.json();
+            console.log('Tiendas cargadas desde archivo local (fallback):', shops);
+            return jobOffers.job_offers || [];
+        } catch (fallbackError) {
+            console.error('Error al cargar tiendas desde archivo local:', fallbackError);
+            return []; // Devolver array vacío en caso de error
+        }
+    }
+}
+//END SHOPS SECTION
