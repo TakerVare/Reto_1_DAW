@@ -28,26 +28,33 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Loads cities and job opportunities from the server
+ * Loads shops, cities and job opportunities from the server
  */
 async function loadShopsAndJobs() {
     try {
-        // Fetch cities data using the API function
+        // Obtener tiendas usando la función del API
+        const shops = await getShops();
+        if (!shops || shops.length === 0) {
+            throw new Error('No se pudieron cargar los datos de tiendas');
+        }
+
+        // Obtener ciudades usando la función del API
         const cities = await getCities();
         if (!cities || cities.length === 0) {
             throw new Error('No se pudieron cargar los datos de ciudades');
         }
 
-        // Guardar los datos de ciudades
-        shopsData = cities.map(city => ({
-            id_shop: city.id_city, // Mapeamos id_city como id_shop para compatibilidad
-            id_city: city.id_city,
-            name: city.name,
-            phone_number: "555-" + city.id_city, // Datos de ejemplo para mantener compatibilidad
-            email: `info@burweb-${city.name.toLowerCase()}.com` // Datos de ejemplo para mantener compatibilidad
-        }));
+        // Enriquecer las tiendas con los nombres de las ciudades
+        shopsData = shops.map(shop => {
+            // Encontrar la ciudad correspondiente al id_city de la tienda
+            const city = cities.find(city => city.id_city === shop.id_city);
+            return {
+                ...shop,
+                city_name: city ? city.name : 'Ciudad desconocida'
+            };
+        });
 
-        console.log('Ciudades cargadas desde la API:', shopsData);
+        console.log('Tiendas con información de ciudad cargadas:', shopsData);
 
         // Obtener ofertas de trabajo usando la función del API
         const jobOffers = await getJobOffers();
@@ -75,18 +82,12 @@ async function loadShopsAndJobs() {
 function getShopLocation(shopId) {
     // Find the shop with matching ID
     const shop = shopsData.find(shop => shop.id_shop === shopId);
-    
-    // If shop found, get city name based on id_city
-    if (shop) {
-        // Map city IDs to city names (you can extend this based on your data)
-        const cityNames = {
-            0: "Houston, TX",
-            1: "Austin, TX"
-        };
-        
-        return cityNames[shop.id_city] || "Location unavailable";
+
+    // If shop found, return the city name with a default location format
+    if (shop && shop.city_name) {
+        return `${shop.city_name}, TX`;
     }
-    
+
     return "Location unavailable";
 }
 
