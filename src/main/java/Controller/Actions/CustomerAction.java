@@ -1,5 +1,6 @@
 package Controller.Actions;
 
+import Model.Address;
 import Model.Customer;
 import Model.CustomerDao;
 
@@ -31,8 +32,23 @@ public class CustomerAction implements IAction{
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
+        // Crear un objeto Address para usar como filtro
+        Customer customerFilter = new Customer();
+
+        // Comprobar si viene el parámetro id_customer y añadirlo al filtro
+        String idCustomerParam = request.getParameter("id_customer");
+        if (idCustomerParam != null && !idCustomerParam.isEmpty()) {
+            try {
+                int idCustomer = Integer.parseInt(idCustomerParam);
+                customerFilter.setiIdCustomer(idCustomer);
+                System.out.println("Filtrando clientes por id_customer: " + idCustomer);
+            } catch (NumberFormatException e) {
+                System.out.println("Error al parsear id_customer: " + e.getMessage());
+            }
+        }
+
         CustomerDao customerDao = new CustomerDao();
-        ArrayList<Customer> customers = customerDao.findAll(new Customer());
+        ArrayList<Customer> customers = customerDao.findAll(customerFilter);
         return Customer.toArrayJSon(customers);
 
     }
