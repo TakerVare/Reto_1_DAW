@@ -1,0 +1,333 @@
+/**
+ * BurWeb - Philosophy Page Styles
+ */
+
+ :root {
+    --color-background: #D4E4D3;    /* Verde Pastel */
+    --color-text: #3B4C44;          /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;        /* Amarillo dorado */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    --color-border: #FFB066;        /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+.philosophy-banner {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(209, 160, 61, 0.1);
+    margin-bottom: 40px;
+}
+
+.philosophy-banner h1 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+}
+
+.philosophy-banner p {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.philosophy-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+/* Intro Section */
+.philosophy-intro {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.diamond-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    margin-left: -30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.diamond-icon i {
+    transform: rotate(-45deg);
+    color: white;
+    font-size: 24px;
+}
+
+.philosophy-intro h2 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    margin: 20px 0 15px 0;
+}
+
+.philosophy-intro p {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Values Section */
+.values-section {
+    margin-bottom: 60px;
+}
+
+.values-section h2 {
+    text-align: center;
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    margin: 0 0 30px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.value-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-5px);
+}
+
+.value-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(209, 160, 61, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.value-icon i {
+    font-size: 30px;
+    color: var(--color-accent);
+}
+
+.value-item h3 {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0 0 15px 0;
+}
+
+.value-item p {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    margin-bottom: 60px;
+}
+
+.testimonials-section h2 {
+    text-align: center;
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    margin: 0 0 30px 0;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.testimonial-quote {
+    position: relative;
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+
+.testimonial-quote i.fa-quote-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--color-accent);
+    opacity: 0.5;
+    font-size: 20px;
+}
+
+.testimonial-quote i.fa-quote-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: var(--color-accent);
+    opacity: 0.5;
+    font-size: 20px;
+}
+
+.testimonial-quote p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--color-accent);
+}
+
+.testimonial-author h4 {
+    margin: 0 0 5px 0;
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.testimonial-author p {
+    margin: 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Join Team Section */
+.join-team-section {
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(209, 160, 61, 0.1);
+    border-radius: 10px;
+}
+
+.join-team-section h2 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+}
+
+.join-team-section p {
+    color: var(--color-text);
+    margin: 0 0 25px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-team-button {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-family: var(--font-main);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.join-team-button:hover {
+    background-color: var(--color-text);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-quote {
+        padding: 0 20px;
+    }
+    
+    .testimonial-quote i.fa-quote-left,
+    .testimonial-quote i.fa-quote-right {
+        font-size: 16px;
+    }
+    
+    .philosophy-intro {
+        padding: 20px;
+    }
+    
+    .diamond-icon {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+    }
+    
+    .diamond-icon i {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-author {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .testimonial-author img {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .join-team-section {
+        padding: 30px 20px;
+    }
+}
+
+.testimonial-author-simple {
+    text-align: right;
+    padding-right: 30px;
+    font-style: italic;
+    color: #666;
+}
+
+.testimonial-author-simple p {
+    margin: 0;
+}

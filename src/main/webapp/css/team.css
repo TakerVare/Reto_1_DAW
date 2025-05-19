@@ -1,0 +1,251 @@
+/**
+ * BurWeb - Team Page Styles
+ */
+
+ :root {
+    --color-background: #D4E4D3;    /* Verde Pastel */
+    --color-text: #3B4C44;          /* Gris oscuro verdoso */
+    --color-accent: #D1A03D;        /* Amarillo dorado */
+    --color-button: #D1A03D;        /* Verde Oliva Oscuro */
+    --color-border: #FFB066;        /* Naranja Cálido */
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Bungee', cursive;
+}
+
+.team-banner {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(209, 160, 61, 0.1);
+    margin-bottom: 40px;
+}
+
+.team-banner h1 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+}
+
+.team-banner p {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.team-intro {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-intro p {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Team Members Section */
+.team-members {
+    margin-bottom: 60px;
+}
+
+.team-member {
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(209, 160, 61, 0.2);
+}
+
+.member-image {
+    flex: 0 0 300px;
+    overflow: hidden;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.05);
+}
+
+.member-info {
+    flex: 1;
+    padding: 30px;
+}
+
+.member-info h2 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.member-info p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Culture Section */
+.team-culture {
+    background-color: rgba(209, 160, 61, 0.05);
+    padding: 40px;
+    border-radius: 10px;
+    margin-bottom: 60px;
+}
+
+.team-culture h2 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.team-culture > p {
+    text-align: center;
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto 30px;
+}
+
+.culture-values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.culture-value {
+    text-align: center;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.culture-value:hover {
+    transform: translateY(-5px);
+}
+
+.culture-value i {
+    font-size: 2rem;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.culture-value h3 {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+}
+
+.culture-value p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Join Team Section */
+.join-team {
+    text-align: center;
+    padding: 40px;
+    background-color: rgba(209, 160, 61, 0.1);
+    border-radius: 10px;
+}
+
+.join-team h2 {
+    font-family: var(--font-logo);
+    color: var(--color-text);
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+}
+
+.join-team p {
+    color: var(--color-text);
+    margin: 0 0 25px 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.join-button {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.join-button:hover {
+    background-color: var(--color-text);
+}
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .team-member {
+        flex-direction: column;
+    }
+    
+    .member-image {
+        flex: 0 0 auto;
+        height: 300px;
+    }
+    
+    .culture-values {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .culture-values {
+        grid-template-columns: 1fr;
+    }
+    
+    .member-image {
+        height: 250px;
+    }
+    
+    .member-info {
+        padding: 20px;
+    }
+    
+    .team-culture, .join-team {
+        padding: 25px;
+    }
+}

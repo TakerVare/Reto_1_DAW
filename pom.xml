@@ -32,13 +32,11 @@
       <version>2.12.1</version>
     </dependency>
     <!-- Dependencia para mysql-->
-    <!--
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <version>9.3.0</version>
     </dependency>
-    -->
     <!-- Dependencia para mysql protobuf-->
     <dependency>
       <groupId>com.mysql</groupId>
@@ -54,18 +52,5 @@
   </dependencies>
   <build>
     <finalName>BurWeb</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <source>17</source>
-          <target>17</target>
-          <executable>C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin\javac.exe</executable>
-          <fork>true</fork>
-        </configuration>
-      </plugin>
-    </plugins>
   </build>
 </project>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Locations - BurWeb.Sa</title>
+    <!--Ponemos el logo por duplicado para mejorar la compatibilidad del logo con navegadores antiguos como IExplorer-->
+    <link rel="shortcut icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/locations.css">
+    <!--Añadimos esta fuente para el carrito-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Cargamos el script después del CSS pero antes del cierre del head -->
+    <script src="js/api.js"></script>
+    <script src="js/navMenu.js"></script>
+    <script src="js/navUser.js"></script>
+    <script src="js/shoppingCart.js"></script>
+    <script src="js/burgerMenu.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- Script de inicialización de componentes comunes -->
+    <script src="js/common.js"></script>
+    
+    <!-- Script específico para esta página -->
+    <script src="js/locations.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="nav_burger_menu">
+            <!-- El botón hamburguesa se generará dinámicamente aquí -->
+        </div>
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
+        </div>
+        <div class="nav_menu">
+            <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_user" id="nav_user">
+            <!-- Este contenido se generará dinámicamente con JavaScript -->
+        </div>
+        <div class="nav_shopping_car">
+            <!-- El menú del carrito se generará dinámicamente con JavaScript -->
+        </div>
+    </div>
+    <div class="main">
+        <div class="locations-banner">
+            <h1>Our Locations</h1>
+            <p>Find a BurWeb restaurant near you</p>
+        </div>
+
+        <div class="locations-container">
+            <div class="locations-intro">
+                <h2>BurWeb Restaurants</h2>
+                <p>Visit us at any of our convenient locations. We look forward to serving you!</p>
+            </div>
+
+            <div id="location-list" class="location-list">
+                <!-- Location cards will be loaded here dynamically -->
+                <div class="loading-locations">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading our locations...</p>
+                </div>
+            </div>
+
+            <div class="locations-info">
+                <h2>Coming Soon to More Cities</h2>
+                <p>We're expanding! Stay tuned for new BurWeb locations opening in your area.</p>
+                <p>Can't find a location near you? <a href="contact.html">Contact us</a> to suggest a new location.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <!-- El contenido del footer se generará dinámicamente con JS -->
+    </div>
+</body>
+
+</html>
