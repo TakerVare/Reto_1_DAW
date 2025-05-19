@@ -67,7 +67,7 @@ async function addProduct(product) {
         formData.append('image', product.image);
 
         // Realizar la petición POST al controlador
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -119,7 +119,7 @@ async function deleteProductFromDatabase(productId) {
         formData.append('id_product', productId);
 
         // Realizar la petición POST al controlador
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -177,7 +177,7 @@ async function updateProduct(product) {
         formData.append('image', product.image);
 
         // Realizar la petición POST al controlador
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -542,7 +542,7 @@ async function addCustomer(customer) {
         formData.append('password', customer.password);
 
         // Make POST request to the controller
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded', //Todo => pasar a json como en el GET
@@ -880,7 +880,7 @@ async function addOrder(orderData) {
         }
 
         // Realizar la petición POST al controlador
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -992,7 +992,7 @@ async function addOrderDetail(detailData) {
         formData.append('line_price', detailData.line_price);
 
         // Realizar la petición POST al controlador
-        const response = await fetch('Controller', {
+        const response = await fetch('api/Controller', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
