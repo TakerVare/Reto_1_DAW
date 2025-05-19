@@ -15,8 +15,7 @@ public class AddressDao implements IDao {
     private IMotorSql motorSql;
 
     public AddressDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 

@@ -138,8 +138,7 @@ public class Order {
                 + " id_shop =" + order.getId_shop() + ", "
                 + " id_delivery =" + order.getId_delivery() + ", "
                 + " id_offer =" + order.getId_offer() + ", "
-                + " order_date =" + order.getOrder_date() + '}'; //Por comprobar
-        //+ "order_detail =" + Arrays.toString(order.getOrder_detail()) +'}'; //Por comprobar
+                + " order_date =" + order.getOrder_date() + '}';
     }
 
     public static String fromArrayToJson(ArrayList<Order> orders){
@@ -154,7 +153,6 @@ public class Order {
                     + " id_delivery =" + order.getId_delivery() + ", "
                     + " id_offer =" + order.getId_offer() + ", "
                     + " order_date =" + order.getOrder_date() + '}';
-                    //+ "order_detail =" + Arrays.toString(order.getOrder_detail()) +'}'; //Por comprobar
             resp+=",";
         }
         resp = resp.substring(0, resp.length()-1);

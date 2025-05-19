@@ -82,18 +82,7 @@ public class MotorSql implements IMotorSql{
             System.out.println(sqlEx.getMessage());
             m_ResultSet = null;
         }
-        //return null;
-
-
-        /*
-        int resp = 0;
-        try {
-            resp = m_Statement.executeUpdate(sql);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return resp;
-        */
+       
     }
     // Consultas DML - Data Manipulation Language
     public ResultSet executeQuery(String sql) {

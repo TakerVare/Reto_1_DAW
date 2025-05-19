@@ -1,6 +1,5 @@
 package Controller.Actions;
 
-import Model.Address;
 import Model.Order_Detail;
 import Model.Order_DetailDao;
 
@@ -28,10 +27,10 @@ public class OrderDetailAction implements IAction {
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        // Crear un objeto Address para usar como filtro
+    
         Order_Detail orderDetailFilter = new Order_Detail();
 
-        // Comprobar si viene el parámetro id_customer y añadirlo al filtro
+
         String idOrderParam = request.getParameter("id_order");
         if (idOrderParam != null && !idOrderParam.isEmpty()) {
             try {

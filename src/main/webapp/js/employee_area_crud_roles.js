@@ -5,9 +5,9 @@
 
 // Estado de los roles
 let roleState = {
-    currentAction: null,  // 'add', 'edit', 'delete'
-    selectedRole: null,   // Rol seleccionado para edición
-    roles: []             // Lista de roles
+    currentAction: null, 
+    selectedRole: null,  
+    roles: []             
 };
 
 /**

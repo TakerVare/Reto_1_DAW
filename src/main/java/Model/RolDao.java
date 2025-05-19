@@ -15,8 +15,7 @@ public class RolDao implements IDao {
     private IMotorSql motorSql;
 
     public RolDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 

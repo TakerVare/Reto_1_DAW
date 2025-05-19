@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadShopLocations();
 });
 
-/**
- * Loads shop location data from shops.json
- */
+
+ 
+ 
 async function loadShopLocations() {
     try {
         // Fetch shops data

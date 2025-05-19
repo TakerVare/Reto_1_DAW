@@ -15,8 +15,7 @@ public class ProductDao implements IDao {
     private IMotorSql motorSql;
 
     public ProductDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 

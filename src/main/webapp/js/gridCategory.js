@@ -5,7 +5,6 @@
 window.initGridCategory = initGridCategory;
 
 async function initGridCategory() {
-    //console.log("Initializing category grid...");
     
     // Obtener el contenedor de la cuadrícula
     const container = document.getElementById('grid-category-container');
@@ -29,11 +28,11 @@ async function initGridCategory() {
 
         // Mapeo de categorías a iconos
         const categoryIcons = {
-            "BURGERS": "./images/category_icons/burger_icon.png",
-            "DRINKS": "./images/category_icons/drink_icon.png",
-            "DESSERTS": "./images/category_icons/dessert_icon.png",
-            "EXTRAS": "./images/category_icons/sides_icon.png",
-            "MENUS": "./images/category_icons/menu_icon.png"
+            "BURGERS": "./images/Burgers/TORREZNATOR.png",
+            "DRINKS": "./images/Drinks/CocaCola_Original.png",
+            "DESSERTS": "./images/Desserts/Burcream Chocolate.png",
+            "EXTRAS": "./images/Sides/French_friesweb.png",
+            "MENUS": "./images/Menus/Police_Menu.png"
         };
         
         // Generar el HTML de la cuadrícula
@@ -65,7 +64,6 @@ async function initGridCategory() {
         // Añadir eventos de clic a las categorías
         addClickEvents();
         
-        //console.log("Category grid initialized successfully");
     } catch (error) {
         console.error("Error initializing category grid:", error);
         container.innerHTML = '<p>Error loading categories. Please try again later.</p>';
@@ -98,8 +96,6 @@ function addClickEvents() {
                 // Feedback visual
                 this.classList.add('active');
                 
-                // Quitar la clase 'active' después de que se complete la animación
-                // (solo si estamos en la página de productos)
                 if (!window.location.pathname.includes('index.html')) {
                     setTimeout(() => {
                         this.classList.remove('active');

@@ -5,8 +5,6 @@ localStorage.setItem("UserRol", "employee")
 let navMenuInitialized = false;
 
 async function initNavUser() {
-    // No hacer nada aquí, la autenticación manejará esto
-    // Solo para compatibilidad con cualquier código que pueda estar llamando a esta función
     console.log('Nav user initialization deferred to auth system');
 }
 
@@ -39,10 +37,9 @@ async function initNavMenu() {
     }
     
     for (let i = 0; i < numMenuItems; i++) {
-        // Modificar la URL si el ítem es el menú "Menus" para que lleve a la sección de menús en products.html
         let url = menuItems[i].url;
         if (menuItems[i].text === "Menus") {
-            url = "products.html?category=4"; // Categoría 4 corresponde a Menus según tu estructura
+            url = "products.html?category=4";
         }
         
         let menuItemNode = `<a href="${url}" class="nav_menu_item">
@@ -54,7 +51,7 @@ async function initNavMenu() {
         menuNode.innerHTML += menuItemNode;
     }
     
-    // Evento clic para enlaces del menú (cerrar menú hamburguesa al clickear un enlace)
+    // Evento clic para enlaces del menú
     const navLinks = document.querySelectorAll('.nav_menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -69,8 +66,7 @@ async function initNavMenu() {
     navMenuInitialized = true;
 }
 
-// Comprobar si hay que inicializarlo directamente o será llamado por common.js
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Permitir que common.js maneje la inicialización si existe
-    // No hacer nada aquí, ya que common.js llamará a initNavMenu()
+    
 });

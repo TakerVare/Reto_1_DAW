@@ -12,7 +12,6 @@ function initSliderNewProduct() {
     if (!container) return;
     
     // Definir el contenido del slider
-    // Esto podría venir de una API en el futuro
     const productName = "TORREZNATOR";
     
     // Generar el HTML del slider

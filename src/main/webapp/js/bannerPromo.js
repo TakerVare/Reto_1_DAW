@@ -12,7 +12,6 @@ function initBannerPromo() {
     if (!container) return;
     
     // Definir el contenido del banner
-    // Esto podría venir de una API en el futuro
     const promoContent = {
         title: "NEW ARRIVAL!",
         subtitle: "'TORREZNATOR'",

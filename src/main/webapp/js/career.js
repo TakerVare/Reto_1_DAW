@@ -319,10 +319,8 @@ function showApplicationForm() {
 function handleFormSubmit(e) {
     e.preventDefault();
     
-    // In a real application, you would collect the form data and send it to the server
     const formData = new FormData(e.target);
     
-    // For this demo, we'll just show a success message after a brief delay
     const modalBody = document.getElementById('job-modal-body');
     
     // Show loading state
@@ -336,7 +334,6 @@ function handleFormSubmit(e) {
         </div>
     `;
     
-    // Simulate form submission delay
     setTimeout(() => {
         // Show success message
         modalBody.innerHTML = `

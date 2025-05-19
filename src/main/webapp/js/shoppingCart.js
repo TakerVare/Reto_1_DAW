@@ -5,7 +5,7 @@
 
 // Inicializar carrito desde localStorage o crear uno vacío
 let cart = JSON.parse(localStorage.getItem('burwebCart')) || [];
-let offers = []; // Se cargará desde offers.json
+let offers = []; 
 let taxRate = 0.0625; // Valor por defecto (6.25%)
 
 // Cargar ofertas y tasas de impuestos al iniciar
@@ -35,8 +35,7 @@ async function loadConfigData() {
 
         // Cargar impuestos
         try {
-            //const taxesResponse = await fetch('./mockup/taxes.json');
-            //const taxesResponse = await getTaxes();
+        
             const taxesResponse = await fetch('Controller?ACTION=TAX.FIND_ALL', {
                 method: 'GET',
                 headers: {
@@ -47,9 +46,9 @@ async function loadConfigData() {
                 const taxes = await taxesResponse.json();
                 console.log('Taxes loaded successfully:', taxes);
 
-                // Si hay impuestos configurados, usar el primero (asumiendo que solo hay uno)
+                // Si hay impuestos configurados, usar el primero
                 if (taxes && taxes.length > 0) {
-                    taxRate = taxes[0].percentage / 100; // Convertir porcentaje a decimal
+                    taxRate = taxes[0].percentage / 100; 
                     console.log(`Tax rate set to ${taxRate * 100}%`);
                 }
             } else {

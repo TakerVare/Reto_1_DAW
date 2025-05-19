@@ -1,6 +1,5 @@
 package Controller.Actions;
 
-import Model.Address;
 import Model.Customer;
 import Model.CustomerDao;
 
@@ -32,7 +31,7 @@ public class CustomerAction implements IAction{
     private String findAll(HttpServletRequest request,
                            HttpServletResponse response) {
 
-        // Crear un objeto Address para usar como filtro
+
         Customer customerFilter = new Customer();
 
         // Comprobar si viene el parámetro id_customer y añadirlo al filtro

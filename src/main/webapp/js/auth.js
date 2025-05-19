@@ -104,8 +104,6 @@ function logout() {
  */
 async function register(customerData) {
     try {
-        // Esta función se usaba anteriormente, pero ahora vamos a simplificarla
-        // y llamar directamente a addCustomer desde login.js
         const result = await addCustomer(customerData);
 
         if (result) {

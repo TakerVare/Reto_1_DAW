@@ -52,7 +52,7 @@ async function loadPOSConfigData() {
                 posState.taxes = appData.taxes;
                 // Establecer la tasa de impuesto por defecto
                 if (posState.taxes.length > 0) {
-                    posState.taxRate = posState.taxes[0].percentage / 100; // Convertir porcentaje a decimal
+                    posState.taxRate = posState.taxes[0].percentage / 100;
                 }
                 console.log('Impuestos cargados en POS:', posState.taxes);
                 console.log(`Tasa de impuesto establecida en: ${posState.taxRate * 100}%`);
@@ -64,7 +64,7 @@ async function loadPOSConfigData() {
                     posState.taxes = taxes;
                     // Establecer la tasa de impuesto por defecto
                     if (taxes.length > 0) {
-                        posState.taxRate = taxes[0].percentage / 100; // Convertir porcentaje a decimal
+                        posState.taxRate = taxes[0].percentage / 100; 
                     }
                     console.log('Impuestos cargados desde archivo en POS:', posState.taxes);
                     console.log(`Tasa de impuesto establecida en: ${posState.taxRate * 100}%`);

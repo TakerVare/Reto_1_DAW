@@ -15,8 +15,7 @@ public class OrderDao implements IDao {
     private IMotorSql motorSql;
 
     public OrderDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 

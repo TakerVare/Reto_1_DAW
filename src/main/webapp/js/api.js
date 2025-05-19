@@ -3,22 +3,6 @@ async function getMenuItems() {
     
     return menuItems
 }
-/*
-async function getShoppingCartItems() { //Todo manejar carrito por js hasta volcar el pedido en la bd
-    let ShoppingCartItems = (await fetch('./mockup/shopping_cart_items.json')).json()
-    
-    return ShoppingCartItems
-}
-*/
-//CREO QUE ESTA FUNCIÓN NO LA USAMOS EN NIGÚN SITIO
-/*
-async function getProductDetails(id){
-    let productDetails = await (await fetch('./mockup/products.json')).json()
-    
-    // Buscar el producto por su id_product en lugar de usar directamente el índice
-    return productDetails.find(product => product.id_product === id)
-}
-*/
 
 
 //START PRODUCTS SECTION
@@ -748,19 +732,6 @@ async function getCities() {
  * @param {number} customerId - ID of the customer
  * @returns {Promise<boolean>} Promise that resolves to true if successful
  */
-/*
-async function setDefaultAddress(addressId, customerId) {
-    try {
-        // In a real implementation, this would be an API call
-        // For this mockup, we'll just return true
-        console.log(`Setting address ${addressId} as default for customer ${customerId}`);
-        return true;
-    } catch (error) {
-        console.error('Error setting default address:', error);
-        return false;
-    }
-}
-*/
 
 /**
  * Deletes an address
@@ -786,8 +757,6 @@ async function deleteAddress(addressId) {
  */
 async function addAddress(addressData) {
     try {
-        // In a real implementation, this would be an API call
-        // For this mockup, we'll just return true
         console.log('Adding new address:', addressData);
         return true;
     } catch (error) {
@@ -804,8 +773,6 @@ async function addAddress(addressData) {
  */
 async function updateAddress(addressId, addressData) {
     try {
-        // In a real implementation, this would be an API call
-        // For this mockup, we'll just return true
         console.log(`Updating address ${addressId}:`, addressData);
         return true;
     } catch (error) {

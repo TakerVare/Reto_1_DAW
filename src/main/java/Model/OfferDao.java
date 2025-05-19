@@ -14,8 +14,7 @@ public class OfferDao implements IDao {
     private IMotorSql motorSql;
 
     public OfferDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 
@@ -133,7 +132,7 @@ public class OfferDao implements IDao {
             System.out.println(sql);
             ResultSet rs = motorSql.executeQuery(sql);
 
-            while (rs.next()) {// TRANSFOMAR LA COLECCIÓN DEBASE DE DATOS A UN ARRAYLIST
+            while (rs.next()) {// TRANSFOMAR LA COLECCIÓN DE BASE DE DATOS A UN ARRAYLIST
                 Offer offer = new Offer();
                 offer.setId_offer(rs.getInt("id_offer"));
                 offer.setName(rs.getString("name"));

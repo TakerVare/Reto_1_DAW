@@ -45,7 +45,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // Función para desplazarse a la categoría específica
 function scrollToCategory(categoryId) {
-    // Convertir a número si es necesario
     const catId = parseInt(categoryId);
     
     // Buscar el mapeo de categoría a nombre de sección
@@ -60,7 +59,6 @@ function scrollToCategory(categoryId) {
             const menuSection = productGrid.closest('.menu-section');
             
             if (menuSection) {
-                // Esperar un momento para que todo se renderice completamente
                 setTimeout(() => {
                     // Desplazarse a la sección
                     menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });

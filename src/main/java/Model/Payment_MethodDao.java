@@ -15,8 +15,7 @@ public class Payment_MethodDao implements IDao {
     private IMotorSql motorSql;
 
     public Payment_MethodDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+        
         motorSql = new MotorSql();
     }
 

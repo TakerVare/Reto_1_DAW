@@ -103,8 +103,8 @@ async function loadOffers() {
 
 /**
  * Formatea una fecha a formato legible
- * @param {Date} date - Fecha a formatear
- * @returns {string} Fecha formateada (e.g., "Jan 01, 2025")
+ * @param {Date} date 
+ * @returns {string} 
  */
 function formatDate(date) {
     const options = { year: 'numeric', month: 'short', day: '2-digit' };

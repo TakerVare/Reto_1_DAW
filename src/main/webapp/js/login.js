@@ -182,8 +182,7 @@ function initRegisterForm() {
 
         // Intentar registrar
         try {
-            // Llamamos directamente a addCustomer en lugar de register
-            // Esto nos permite manejar la respuesta de manera más directa
+
             const result = await addCustomer(customerData);
 
             if (result) {

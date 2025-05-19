@@ -1,12 +1,4 @@
 
-<<<<<<< HEAD
-window.onload = function() {
-    initNavMenu();
-    initNavUser();
-    initBurgerMenu();
-    initShoppingCart();
-}
-=======
 /**
  * BurWeb - Inicialización de componentes comunes
  * Este script inicializa los componentes compartidos por todas las páginas
@@ -29,4 +21,3 @@ window.initCommonComponents = function() {
 document.addEventListener('DOMContentLoaded', function() {
     window.initCommonComponents();
 });
->>>>>>> modificaciones_gabriel

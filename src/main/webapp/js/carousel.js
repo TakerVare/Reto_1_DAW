@@ -46,12 +46,12 @@ function initCarousel() {
         loop: true,
         effect: 'fade',
         fadeEffect: {
-            crossFade: true  // Esta es la clave para que no se superpongan
+            crossFade: true  
         },
-        speed: 1000,  // Velocidad de la transición en ms
+        speed: 1000, 
         autoplay: {
-            delay: 5000,  // 5 segundos entre slides
-            disableOnInteraction: false  // Continúa el autoplay después de interacciones
+            delay: 5000,  
+            disableOnInteraction: false 
         },
         pagination: {
             el: ".swiper-pagination",
@@ -65,25 +65,3 @@ function initCarousel() {
     
     console.log("Carousel initialized successfully");
 }
-
-/*Adaptación para API en el futuro:
-Cuando estés listo para conectarlo a una API, simplemente modifica la parte donde defines las imágenes:
-javascript// En lugar de:
-const images = [
-    { src: "images/Menus/Iberico_menu.png", alt: "Slide 1" },
-    { src: "images/MainFood/burger_2.png", alt: "Slide 2" },
-    { src: "images/MainFood/burger_3.png", alt: "Slide 3" }
-];
-
-// Cambia a:
-fetch('http://localhost:8080/api/carousel')
-    .then(response => response.json())
-    .then(images => {
-        // Aquí el resto del código usando las imágenes de la API
-        let html = `...`;
-        // ...
-    })
-    .catch(error => {
-        console.error("Error loading carousel data:", error);
-        container.innerHTML = "Error loading carousel";
-    });*/

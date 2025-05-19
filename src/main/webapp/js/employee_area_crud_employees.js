@@ -5,9 +5,9 @@
 
 // Estado de los empleados
 let employeeState = {
-    currentAction: null,    // 'add', 'edit', 'delete'
-    selectedEmployee: null, // Empleado seleccionado para edición
-    employees: []           // Lista de empleados
+    currentAction: null,    
+    selectedEmployee: null, 
+    employees: []           
 };
 
 /**
@@ -316,7 +316,7 @@ function selectEmployee(employee) {
 
 /**
  * Muestra los detalles de un empleado
- * @param {Object} employee - Empleado a visualizar
+ * @param {Object} employee - 
  */
 function viewEmployee(employee) {
     // Asegúrate de que los roles estén cargados
@@ -416,7 +416,7 @@ function saveEmployee() {
 
 /**
  * Elimina un empleado
- * @param {Object} employee - Empleado a eliminar
+ * @param {Object} employee - 
  */
 function deleteEmployee(employee) {
     // Buscar el índice del empleado

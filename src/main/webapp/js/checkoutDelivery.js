@@ -163,7 +163,7 @@ function addDeliveryOptionListeners() {
 
 /**
  * Actualiza las ubicaciones de entrega según la opción seleccionada
- * @param {string} optionId - ID de la opción de entrega seleccionada
+ * @param {string} optionId -
  */
 async function updateDeliveryLocations(optionId) {
     const locationsContainer = document.getElementById('delivery-locations');

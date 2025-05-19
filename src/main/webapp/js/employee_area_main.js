@@ -29,21 +29,12 @@ const appData = {
     roles: [],                  // Lista de roles
     employees: [],              // Lista de empleados
     categories: [],
-    /*
-    categories: [
-        { id_category: 0, name: "Burgers" },
-        { id_category: 1, name: "Drinks" },
-        { id_category: 2, name: "Desserts" },
-        { id_category: 3, name: "Extras" },
-        { id_category: 4, name: "Menus" }
-    ], // Categorías de productos*/
     taxes: [
         { id_tax: 0, rate: 10, name: "Regular Tax" },
         { id_tax: 1, rate: 20, name: "Special Tax" }
     ] // Impuestos disponibles
 };
 
-// Nota: He modificado el evento DOMContentLoaded original para incluir la verificación
 
 /**
  * Inicializa la aplicación cargando los datos necesarios

@@ -14,7 +14,6 @@
     --color-text: #3B4C44;          /* Gris oscuro verdoso */
     --color-accent: #D1A03D;        /* Amarillo dorado */
     --color-button: #D1A03D;        /* Verde Oliva Oscuro */
-    /*--color-button: #6B8B3A;*/
     --color-border: #FFB066;        /* Naranja Cálido */
     --font-main: 'Montserrat', sans-serif;
     --font-logo: 'Bungee', cursive;
@@ -32,7 +31,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Prevenir scroll horizontal */
+    overflow-x: hidden;
 }
 
 img {
@@ -110,16 +109,16 @@ img {
     display: flex;
     align-items: center;
     padding: 0.5rem;
-    position: relative; /* Añadido para que sea el punto de referencia para la posición absoluta del menú de usuario y del carrito*/
+    position: relative; 
 }
 
 .shopping_cart_menu {
     position: absolute;
-    top: 100%; /* Posiciona justo debajo del icono */
+    top: 100%; 
     right: 0;
     z-index: 500;
-    margin-top: 5px; /* Pequeño margen para separar del icono */
-    width: 400px; /* Ancho del menú del carrito */
+    margin-top: 5px; 
+    width: 400px; 
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -164,11 +163,11 @@ img {
     flex-direction: column;
     gap: 15px;
     position: absolute;
-    top: 100%; /* Justo debajo del icono */
-    right: 0; /* Alineado a la derecha del contenedor del usuario */
+    top: 100%; 
+    right: 0; 
     z-index: 100;
     min-width: 170px;
-    margin-top: 5px; /* Pequeño margen para separar del icono */
+    margin-top: 5px; 
   }
   
   .card_user_menu .separator {
@@ -247,16 +246,16 @@ img {
 /*Fin tarjeta nav_user_menu*/  
 
 .fas.fa-shopping-cart {
-    font-size: 2rem; /* Tamaño del icono */
-    color: #D1A03D;  /* Color del icono */
+    font-size: 2rem; 
+    color: #D1A03D; 
     cursor: pointer;
     transition: all 0.3s ease;
 }
 /* Ajustes para la animación del carrito */
 
 .fas.fa-shopping-cart:hover {
-    font-size: 3rem; /* Tamaño del icono */
-    color: #D1A03D;  /* Color del icono */
+    font-size: 3rem; 
+    color: #D1A03D;  
 }
 
 .nav_user .nav_user_button:hover, 
@@ -281,7 +280,6 @@ img {
     font-size: 1rem;
     line-height: 1.6;
     width: 100%;
-    /*max-width: 1200px;*/
     margin: 0 auto;
 }
 
@@ -380,7 +378,6 @@ img {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    /*max-width: 1200px;*/
     margin: 0 auto;
     padding: 1rem 0;
 }
@@ -449,7 +446,7 @@ Start Shipping card Styles
     display: grid;
     grid-template-columns: auto;
     gap: 5px;
-    background-color: transparent; /*Pongo el fondo transparente para que sea coherente con el patrón de diseño*/
+    background-color: transparent;
 }
   
 .card {
@@ -515,10 +512,10 @@ Start Shipping card Styles
 .cart .product_quantity {
     height: 30px;
     width: 75px;
-    display: flex;          /* Cambiamos a flexbox para mejor control horizontal */
-    flex-direction: row;    /* Asegura que los elementos se muestren en fila */
-    justify-content: space-between; /* Distribuye el espacio entre los elementos */
-    align-items: center;    /* Centra los elementos verticalmente */
+    display: flex;          
+    flex-direction: row;   
+    justify-content: space-between; 
+    align-items: center;    
     margin: auto;
     background-color: var(--color-border);
     border: 1px solid var(--color-text);
@@ -692,7 +689,7 @@ Start Shipping card Styles
   /*Start burger menu*/
 /* Estilos para el contenedor del botón hamburguesa */
 .nav_burger_menu {
-    display: none; /* Oculto por defecto en pantallas grandes */
+    display: none;
     flex: 0 1 auto;
     align-items: center;
     justify-content: center;
@@ -702,7 +699,6 @@ Start Shipping card Styles
 /* Hamburger menu para móviles - inicialmente oculto */
 
 .hamburger {
-    /*display: none;*/
     flex-direction: column;
     justify-content: space-around;
     width: 2rem;
@@ -797,7 +793,7 @@ Start Shipping card Styles
     
     /* Mostrar el botón hamburguesa en móviles */
     .nav_burger_menu {
-        display: flex; /* Hacemos visible el contenedor del botón hamburguesa */
+        display: flex; 
     }
     
     .hamburger {
@@ -924,7 +920,7 @@ Start Shipping card Styles
     }
       
     .shopping_cart_menu {
-        width: 320px; /* Ligeramente más pequeño en móviles */
+        width: 320px; 
     }
     
     .cart .product_quantity {

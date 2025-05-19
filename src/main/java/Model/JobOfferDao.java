@@ -14,8 +14,7 @@ public class JobOfferDao implements IDao {
     private IMotorSql motorSql;
 
     public JobOfferDao() {
-        // Opción sencilla: motorSql = new MotorSQL();
-        // Opción más avanzada:
+       
         motorSql = new MotorSql();
     }
 

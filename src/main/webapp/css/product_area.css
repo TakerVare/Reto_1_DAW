@@ -167,8 +167,8 @@
 }
 
 .menus-grid .product-image {
-    height: 350px; /* Aumentado a 350px para hacer los menús mucho más grandes */
-    padding: 2px; /* Padding mínimo para maximizar espacio */
+    height: 350px; 
+    padding: 2px; 
 }
 
 .drinks-grid .product-image {
@@ -188,7 +188,7 @@
 
 /* Especial para maximizar espacio en menús */
 .menus-grid .product-image img {
-    max-width: 99%; /* Prácticamente todo el espacio disponible */
+    max-width: 99%; 
     max-height: 99%;
 }
 
@@ -207,9 +207,9 @@
 .product-info {
     padding: 18px;
     background-color: rgba(212, 228, 211, 0.3);
-    display: flex; /* Estructura flex para contenido */
+    display: flex; 
     flex-direction: column;
-    flex: 1; /* Ocupa el espacio disponible */
+    flex: 1; 
 }
 
 .product-title {
@@ -232,13 +232,12 @@
     margin-bottom: 15px;
     line-height: 1.5;
     font-family: var(--font-main);
-    /* Eliminada la altura máxima para mostrar la descripción completa */
     max-height: none;
     overflow: visible;
 }
 
 .product-price-container {
-    margin-top: auto; /* Empuja el precio al fondo */
+    margin-top: auto; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -534,7 +533,7 @@
 
 /* Espacio para el encabezado fijo */
 .menu-section {
-    scroll-margin-top: 80px; /* Ajusta este valor según la altura de tu encabezado */
+    scroll-margin-top: 80px; 
 }
 
 /* Estilo para la sección activa */
@@ -566,12 +565,12 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 50px; /* Tamaño aumentado */
-    height: 50px; /* Tamaño aumentado */
+    width: 50px; 
+    height: 50px; 
     border-radius: 50%;
     background-color: var(--color-accent, #D1A03D);
     color: white;
-    display: flex; /* Centrar el icono */
+    display: flex; 
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -582,7 +581,7 @@
 }
 
 .back-to-top i {
-    font-size: 24px; /* Tamaño del icono */
+    font-size: 24px; 
 }
 
 .back-to-top.visible {

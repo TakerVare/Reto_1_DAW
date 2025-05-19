@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Llamar a la función para crear los elementos del menú
     createMenuItems();
     
-    //Creo esta variable para dibujar los botones de login y register 
-    //o el icono de usuario según corresponda 
     var navUser = document.querySelector('.nav_user');
     localStorage.setItem("usuario", "noactivo");
     var usuario_estatus = localStorage.getItem("usuario");
@@ -320,10 +318,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //Fin Manejo del carrito de compras
 
     //Start burger menu
-    // Buscamos el elemento .nav_burger_menu
-    // Ya definimos navBurgerMenu al inicio del script
     
-    var hamburger = document.querySelector('.hamburger');   //Creo la variable hamburguesa
+    var hamburger = document.querySelector('.hamburger');
     
     if (navBurgerMenu) {
         hamburger = document.querySelector('.hamburger');
@@ -344,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!hamburger && navBurgerMenu) {
         const newHamburger = document.createElement('button');
         newHamburger.classList.add('hamburger');
-        newHamburger.innerHTML = '<div></div><div></div><div></div>';   //Estos divs dan la imagen de las tres líneas
+        newHamburger.innerHTML = '<div></div><div></div><div></div>';  
         navBurgerMenu.appendChild(newHamburger);
         //Actualizar referencia
         hamburger = newHamburger;

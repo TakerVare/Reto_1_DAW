@@ -13,7 +13,7 @@ public class CategoryDao implements IDao {
 
     private IMotorSql motorSql;
 
-    public CategoryDao() {  //Este punto no acabo de entenderlo
+    public CategoryDao() {  
         motorSql = new MotorSql();
     }
 
@@ -29,7 +29,7 @@ public class CategoryDao implements IDao {
 
             motorSql.setPreparedStatement(stmt);
             motorSql.execute();
-            result = 1; // Asumimos que la operación fue exitosa
+            result = 1; 
         } catch (SQLException e) {
             System.out.println("Error al añadir categoría: " + e.getMessage());
         } finally {
@@ -135,20 +135,7 @@ public class CategoryDao implements IDao {
             }
 
         }
-        /*
-        //Hardcodeado para hacer pruebas
-        //llamar a la BBDD todo
-
-        Category category1 = new Category();
-        category1.setId_category(1);
-        category1.setName("bebidas");
-        categories.add(category1);
-
-        Category category2 = new Category();
-        category2.setId_category(2);
-        category2.setName("burgers");
-        categories.add(category2);
-        */
+        
         return categories;
     }
 

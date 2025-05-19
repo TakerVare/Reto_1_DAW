@@ -36,7 +36,7 @@
 }
 
 .contact-container {
-    max-width: 1200px; /* Aumentado de 1000px a 1200px para más espacio */
+    max-width: 1200px; 
     margin: 0 auto;
     padding: 0 20px 60px;
 }
@@ -45,7 +45,7 @@
 .contact-options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px; /* Aumentado de 30px a 40px para más espacio entre tarjetas */
+    gap: 40px; 
     margin-bottom: 40px;
 }
 
@@ -53,13 +53,13 @@
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 35px; /* Aumentado de 30px a 35px para más espacio interno */
+    padding: 35px; 
     text-align: center;
     transition: transform 0.3s ease;
     height: 100%;
     display: flex;
     flex-direction: column;
-    min-width: 250px; /* Asegurar un ancho mínimo */
+    min-width: 250px; 
 }
 
 .contact-option:hover {
@@ -69,20 +69,20 @@
 .contact-option i {
     font-size: 2.5rem;
     color: var(--color-accent);
-    margin-bottom: 20px; /* Aumentado de 15px a 20px */
+    margin-bottom: 20px; 
 }
 
 .contact-option h2 {
     font-family: var(--font-logo);
     color: var(--color-text);
     font-size: 1.3rem;
-    margin: 0 0 20px 0; /* Aumentado de 15px a 20px */
+    margin: 0 0 20px 0; 
     line-height: 1.3;
 }
 
 .contact-option p {
     color: #666;
-    margin: 0 0 25px 0; /* Aumentado de 20px a 25px */
+    margin: 0 0 25px 0;
     font-size: 0.95rem;
     line-height: 1.5;
 }
@@ -90,12 +90,12 @@
 .option-contacts {
     text-align: left;
     border-top: 1px solid #eee;
-    padding-top: 20px; /* Aumentado de 15px a 20px */
+    padding-top: 20px;
     margin-top: auto;
 }
 
 .option-contacts p {
-    margin: 0 0 12px 0; /* Aumentado de 10px a 12px */
+    margin: 0 0 12px 0;
     display: flex;
     align-items: center;
 }
@@ -107,8 +107,8 @@
 .option-contacts p i {
     font-size: 1rem;
     color: var(--color-accent);
-    margin: 0 12px 0 0; /* Aumentado de 10px a 12px */
-    flex-shrink: 0; /* Evitar que el icono se comprima */
+    margin: 0 12px 0 0;
+    flex-shrink: 0;
 }
 
 .option-contacts p small {
@@ -120,8 +120,8 @@
 /* Locations Link */
 .locations-link {
     text-align: center;
-    padding: 40px; /* Aumentado de 30px a 40px */
-    margin-top: 30px; /* Aumentado de 20px a 30px */
+    padding: 40px; 
+    margin-top: 30px; 
     background-color: rgba(209, 160, 61, 0.1);
     border-radius: 10px;
 }
@@ -134,7 +134,7 @@
 }
 
 .locations-link p {
-    margin: 0 0 25px 0; /* Aumentado de 20px a 25px */
+    margin: 0 0 25px 0; 
     color: var(--color-text);
     max-width: 600px;
     margin-left: auto;
@@ -146,7 +146,7 @@
     background-color: var(--color-accent);
     color: white;
     text-decoration: none;
-    padding: 12px 25px; /* Aumentado de 10px 20px a 12px 25px */
+    padding: 12px 25px; 
     border-radius: 5px;
     font-weight: 600;
     transition: background-color 0.3s ease;
@@ -156,15 +156,15 @@
     background-color: var(--color-text);
 }
 
-/* Loading and error styles */
+/* Loading y error styles */
 .loading-error {
     color: #cc0000;
     background-color: #ffeeee;
-    padding: 12px; /* Aumentado de 10px a 12px */
+    padding: 12px; 
     border-radius: 5px;
     display: flex;
     align-items: center;
-    margin-bottom: 12px; /* Aumentado de 10px a 12px */
+    margin-bottom: 12px; 
 }
 
 .loading-error i {
@@ -173,7 +173,7 @@
     font-size: 1rem;
 }
 
-/* Spinner style for loading */
+/* Spinner style para carga */
 .fas.fa-spinner {
     animation: spin 1s linear infinite;
 }
@@ -183,7 +183,7 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Email/phone styles for better legibility */
+/* Email/phone styles para mejor legibilidad */
 .option-contacts a {
     color: var(--color-accent);
     text-decoration: none;
@@ -195,20 +195,20 @@
     color: var(--color-text);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1100px) { /* Punto de quiebre aumentado de 900px a 1100px */
+/* Ajistes del Responsive  */
+@media (max-width: 1100px) { 
     .contact-options {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 700px) { /* Punto de quiebre aumentado de 600px a 700px */
+@media (max-width: 700px) { 
     .contact-options {
         grid-template-columns: 1fr;
     }
     
     .contact-option {
         height: auto;
-        padding: 25px; /* Reducido para pantallas pequeñas */
+        padding: 25px;
     }
 }

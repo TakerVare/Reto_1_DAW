@@ -416,7 +416,7 @@
     background-color: var(--color-text);
 }
 
-/* Responsive Adjustments */
+/* Ajustes del responsive */
 @media (max-width: 900px) {
     .career-benefits {
         grid-template-columns: repeat(2, 1fr);
