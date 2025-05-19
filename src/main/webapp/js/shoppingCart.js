@@ -36,7 +36,7 @@ async function loadConfigData() {
         // Cargar impuestos
         try {
         
-            const taxesResponse = await fetch('Controller?ACTION=TAX.FIND_ALL', {
+            const taxesResponse = await fetch('api/Controller?ACTION=TAX.FIND_ALL', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'

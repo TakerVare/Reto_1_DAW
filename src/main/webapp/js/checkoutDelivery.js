@@ -49,7 +49,7 @@ async function initDeliveryOptions() {
 async function getDeliveryOptions() {
     try {
         // Hacer solicitud a la API del controlador para obtener los datos de entrega
-        const response = await fetch('Controller?ACTION=DELIVERY.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=DELIVERY.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'

@@ -9,7 +9,7 @@ async function getMenuItems() {
 
 async function getProducts() {
     try {
-        const response = await fetch('/Controller?ACTION=PRODUCT.FIND_ALL', {
+        const response = await fetch('/api/Controller?ACTION=PRODUCT.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -221,7 +221,7 @@ async function updateProduct(product) {
 //START CATEGORIES SECTION
 async function getCategories() {
     try {
-        const response = await fetch('Controller?ACTION=CATEGORY.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=CATEGORY.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -298,7 +298,7 @@ async function getRoles() { //todo
  */
 async function getEmployees() {
     try {
-        const response = await fetch('Controller?ACTION=EMPLOYEE.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=EMPLOYEE.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -369,7 +369,7 @@ async function verifyEmployeeCredentials(email, password) {
 async function getTaxes() {
     try {
         // Intentar obtener impuestos desde la base de datos
-        const response = await fetch('Controller?ACTION=TAX.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=TAX.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -432,7 +432,7 @@ async function getTaxes() {
  */
 async function getOffers() {
     try {
-        const response = await fetch('Controller?ACTION=OFFER.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=OFFER.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -492,7 +492,7 @@ async function getOffers() {
  */
 async function getCustomers() {
     try {
-        const response = await fetch('Controller?ACTION=CUSTOMER.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=CUSTOMER.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -618,7 +618,7 @@ async function verifyCustomerCredentials(email, password) {
  */
 async function getCustomerAddresses(customerId) {
     try {
-        const response = await fetch(`Controller?ACTION=ADDRESS.FIND_ALL&id_customer=${customerId}`, {
+        const response = await fetch(`api/Controller?ACTION=ADDRESS.FIND_ALL&id_customer=${customerId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -678,7 +678,7 @@ async function getCustomerAddresses(customerId) {
  */
 async function getCities() {
     try {
-        const response = await fetch('Controller?ACTION=CITY.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=CITY.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -793,7 +793,7 @@ async function updateAddress(addressId, addressData) {
 async function getOrders(customerId = null) {
     try {
         // Construir la URL de la petición, añadiendo el filtro de cliente si se proporciona
-        let url = 'Controller?ACTION=ORDER.FIND_ALL';
+        let url = 'api/Controller?ACTION=ORDER.FIND_ALL';
         if (customerId) {
             url += `&id_customer=${customerId}`;
         }
@@ -929,7 +929,7 @@ async function addOrder(orderData) {
  */
 async function getOrderDetail(orderId) {
     try {
-        const response = await fetch(`Controller?ACTION=ORDER_DETAIL.FIND_ALL&id_order=${orderId}`, {
+        const response = await fetch(`api/Controller?ACTION=ORDER_DETAIL.FIND_ALL&id_order=${orderId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -1103,7 +1103,7 @@ async function processOrder(orderData, cartItems) {
  */
 async function getJobOffers() {
     try {
-        const response = await fetch('Controller?ACTION=JOB_OFFER.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=JOB_OFFER.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -1160,7 +1160,7 @@ async function getJobOffers() {
  */
 async function getShops() {
     try {
-        const response = await fetch('Controller?ACTION=SHOP.FIND_ALL', {
+        const response = await fetch('api/Controller?ACTION=SHOP.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
