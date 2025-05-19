@@ -9,7 +9,7 @@ async function getMenuItems() {
 
 async function getProducts() {
     try {
-        const response = await fetch('/api/Controller?ACTION=PRODUCT.FIND_ALL', {
+        const response = await fetch('/Controller?ACTION=PRODUCT.FIND_ALL', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
