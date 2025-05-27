@@ -1,0 +1,434 @@
+[
+  {
+    "id_product": 1,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Torreznator Burger",
+    "description": "Juicy beef, cheddar, crispy pork cracklings, smoked bacon, fried egg, caramelized onions, and Smoky Torrezno sauce.",
+    "price": 10.5,
+    "image": "./images/MainFood/TORREZNATOR.png"
+  },
+  {
+    "id_product": 2,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "CocoBurweb Burger",
+    "description": "Spiced meat with coconut-curry sauce, sriracha, fresh veggies, fried rice chips, Gruyère, and blue cheese in a garlic black butter brioche bun.",
+    "price": 8.95,
+    "image": "./images/MainFood/CocoBurguer.png"
+  },
+  {
+    "id_product": 3,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Smashmelon Burger",
+    "description": "Beef and lamb with truffle Havarti, tahini-honey-tamarind sauce, watermelon radish, mint, and mango kimchi in a brioche bun with olive oil and orange zest.",
+    "price": 9.5,
+    "image": "./images/MainFood/SMASHMELON.png"
+  },
+  {
+    "id_product": 4,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Four Cheese Burweb Burger",
+    "description": "Beef with mozzarella, gorgonzola, parmesan, provolone, roasted garlic sauce, caramelized tomatoes, and pizza dough chips.",
+    "price": 10.95,
+    "image": "./images/MainFood/4Quesos.png"
+  },
+  {
+    "id_product": 5,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Kebab 2.0 Burger",
+    "description": "Beef-lamb patty with tzatziki, onion, tomato, feta, and zaatar pita chips in a garlic butter brioche bun.",
+    "price": 8.5,
+    "image": "./images/MainFood/Kebab_2.0.png"
+  },
+  {
+    "id_product": 6,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Police Fav. Burger",
+    "description": "Donut bun with beef, homemade bacon jam, caramelized onions, pickles, caramelized apple, and arugula.",
+    "price": 11.5,
+    "image": "./images/MainFood/Police_Fav._Burguer.png"
+  },
+  {
+    "id_product": 7,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Simply Burweb Burger",
+    "description": "Classic beef patty with cheddar, tomato, lettuce, onion, and pickles in a lightly toasted brioche bun.",
+    "price": 6.95,
+    "image": "./images/MainFood/Simply_Burweb.png"
+  },
+  {
+    "id_product": 8,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Simply ChickenBurweb Burger",
+    "description": "Ground chicken with mayo, lettuce, tomato, onion, pickles, and toasted bun.",
+    "price": 6.95,
+    "image": "./images/MainFood/Simply_Chikenburweb.png"
+  },
+  {
+    "id_product": 9,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Iberian Burweb Burger",
+    "description": "Beef and pork belly with acorn-fed Iberian ham, sun-dried tomato sauce, Manchego, caramelized onions, and piquillo peppers.",
+    "price": 9.95,
+    "image": "./images/MainFood/Iberian_Burweb.png"
+  },
+  {
+    "id_product": 10,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "HotBurweb Burger",
+    "description": "Spicy chicken with chipotle yogurt sauce, lime, pickled jalapeños, red onion, and tortilla chips in a toasted brioche bun.",
+    "price": 9.5,
+    "image": "./images/MainFood/HotBurWeb.png"
+  },
+  {
+    "id_product": 11,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Cheeseburweb Burger",
+    "description": "Beef with aged cheddar, mustard-honey-curry sauce, confit tomato, dill pickles, and caramelized pancetta in a butter-toasted bun.",
+    "price": 7.95,
+    "image": "./images/MainFood/Cheeseburweb.png"
+  },
+  {
+    "id_product": 12,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Golden Bliss Burweb Dessert Burger",
+    "description": "Banana bread \"bun\" with oat-honey patty, Greek yogurt cream, citrus-ginger sauce, fruits, and toasted almonds.",
+    "price": 10.95,
+    "image": "./images/Desserts/Golden_Bliss_Burweb.png"
+  },
+  {
+    "id_product": 13,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Sweet Smash Deluxe Dessert Burger",
+    "description": "Molten chocolate brownie patty, donuts as buns, mascarpone cream, salted caramel, coffee ganache, fruits, and marshmallows.",
+    "price": 12.95,
+    "image": "./images/Desserts/Burshake_Strawberry.png"
+  },
+  {
+    "id_product": 14,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "BurJunior Burger",
+    "description": "Mini beef patty with cheddar, mustard, ketchup, and soft toasted bun.",
+    "price": 3.45,
+    "image": "./images/MainFood/Burweb_Junior.png"
+  },
+  {
+    "id_product": 15,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "French Friesweb",
+    "description": "Thin, crispy fries, lightly salted.",
+    "price": 2.25,
+    "image": "./images/Sides/French_friesweb.png"
+  },
+  {
+    "id_product": 16,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "Potato Webges",
+    "description": "Thick-cut crispy wedges, lightly salted.",
+    "price": 2.45,
+    "image": "./images/Sides/Potato_webges.png"
+  },
+  {
+    "id_product": 17,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "Fries BaconCheese",
+    "description": "Crispy fries topped with melted cheddar and bacon bits.",
+    "price": 3.55,
+    "image": "./images/Sides/Fries_BaconCheese.png"
+  },
+  {
+    "id_product": 18,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burcream Lotus Ice Cream",
+    "description": "Creamy Lotus biscuit ice cream with crunchy bits and a caramelized touch.",
+    "price": 2.55,
+    "image": "./images/Desserts/Burcream_lotus.png"
+  },
+  {
+    "id_product": 19,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burcream Strawberry Ice Cream",
+    "description": "Smooth, fruity strawberry ice cream with creamy texture.",
+    "price": 2.55,
+    "image": "./images/Desserts/Burcream_Strawberry.png"
+  },
+  {
+    "id_product": 20,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burcream Chocolate Ice Cream",
+    "description": "Rich, creamy chocolate ice cream with a perfect balance of sweetness.",
+    "price": 2.55,
+    "image": "./images/Desserts/Burcream_Chocolate.png"
+  },
+  {
+    "id_product": 21,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burcream Oreo Ice Cream",
+    "description": "Creamy Oreo ice cream with real cookie crumbles.",
+    "price": 2.55,
+    "image": "./images/Desserts/Burcream_Oreo.png"
+  },
+  {
+    "id_product": 22,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burshake Strawberry Shake",
+    "description": "A refreshing, creamy shake made with strawberry ice cream, delivering fruity flavor and a smooth texture with a natural strawberry touch.",
+    "price": 4.55,
+    "image": "./images/Desserts/Burshake_Strawberry.png"
+  },
+  {
+    "id_product": 23,
+    "id_tax": 1,
+    "id_category": 3,
+    "name": "Burshake Chocolate Shake",
+    "description": "A rich and velvety shake made with chocolate ice cream, offering a perfect balance of sweetness and deep cocoa flavor.",
+    "price": 4.55,
+    "image": "./images/Desserts/Burshake_Chocholate.png"
+  },
+  {
+    "id_product": 24,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "Burweb Nachos",
+    "description": "Crunchy corn chips topped with melted cheddar cheese, spicy jalapeño sauce, and a dollop of sour cream.",
+    "price": 3.45,
+    "image": "./images/Sides/nachetes.png"
+  },
+  {
+    "id_product": 25,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "Burweb Nuggets",
+    "description": "Crispy, breaded chicken nuggets with a tender, juicy interior.",
+    "price": 3.45,
+    "image": "./images/Sides/Nuggets.png"
+  },
+  {
+    "id_product": 26,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Classic Burweb Salad",
+    "description": "Crisp romaine and baby spinach with fresh tomato, cucumber, carrots, feta, and toasted sesame seeds, dressed in olive oil and balsamic vinaigrette.",
+    "price": 4.55,
+    "image": "./images/Sides/Salad.png"
+  },
+  {
+    "id_product": 27,
+    "id_tax": 1,
+    "id_category": 4,
+    "name": "Burweb Onion Rings",
+    "description": "Crispy, golden-brown onion rings with a soft, juicy interior—perfect for any burger.",
+    "price": 2.95,
+    "image": "./images/Sides/Onion_Rings.png"
+  },
+  {
+    "id_product": 28,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Classic Coca-Cola - Can",
+    "description": "A refreshing, fizzy classic with a sweet and tangy flavor, perfect for pairing with any Burweb meal.",
+    "price": 2.15,
+    "image": "./images/Drinks/CocaCola_Original.png"
+  },
+  {
+    "id_product": 29,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Coca-Cola Zero Sugar - Can",
+    "description": "The classic Coca-Cola flavor, now sugar-free for a light, refreshing option.",
+    "price": 2.15,
+    "image": "./images/Drinks/CocaCola_Zero.png"
+  },
+  {
+    "id_product": 30,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Coca-Cola Zero Zero - Can",
+    "description": "Zero calories and zero sugar, delivering the same iconic Coca-Cola taste in a lighter formula.",
+    "price": 2.15,
+    "image": "./images/Drinks/CocaCola_Zero_Zero.png"
+  },
+  {
+    "id_product": 31,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Fanta Lemon - Can",
+    "description": "A zesty, lemon-flavored, fizzy drink that adds a citrusy twist to your Burweb meal.",
+    "price": 1.95,
+    "image": "./images/Drinks/Fanta_lemon.png"
+  },
+  {
+    "id_product": 32,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Fanta Lemon Zero - Can",
+    "description": "Sugar-free Fanta Lemon with all the citrusy freshness and none of the calories.",
+    "price": 1.95,
+    "image": "./images/Drinks/fanta_limon_zero.png"
+  },
+  {
+    "id_product": 33,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Fanta Orange - Can",
+    "description": "A fizzy, sweet orange soda that perfectly complements your Burweb burger or snack.",
+    "price": 1.95,
+    "image": "./images/Drinks/Fanta_orange.png"
+  },
+  {
+    "id_product": 34,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Fanta Orange Zero - Can",
+    "description": "Sugar-free Fanta Orange, with all the sweet, fruity flavor and zero calories.",
+    "price": 1.95,
+    "image": "./images/Drinks/Fanta_orange_zero.png"
+  },
+  {
+    "id_product": 35,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Sprite - Can",
+    "description": "A classic lemon-lime soda, perfectly refreshing and citrusy to pair with any Burweb dish.",
+    "price": 1.95,
+    "image": "./images/Drinks/Sprite.png"
+  },
+  {
+    "id_product": 36,
+    "id_tax": 1,
+    "id_category": 2,
+    "name": "Water - Bottle",
+    "description": "Fresh, purified water to balance your meal and keep you hydrated.",
+    "price": 1.2,
+    "image": "./images/Drinks/Water.png"
+  },
+  {
+    "id_product": 37,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Torreznator Menu Cocacola",
+    "description": "Burger with 250g beef, torreznos, fried egg, bacon, and Fries BaconCheese, served with CocaCola.",
+    "price": 13.95,
+    "image": "./images/Menus/Torreznator_Menu_Coca.png"
+  },
+  {
+    "id_product": 38,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Torreznator Menu Water",
+    "description": "Burger with 250g beef, torreznos, fried egg, bacon, and Fries BaconCheese, served with water.",
+    "price": 13.45,
+    "image": "./images/Menus/Torreznator_Menu_Water.png"
+  },
+  {
+    "id_product": 39,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Iberian Burweb Menu Cocacola",
+    "description": "Gourmet burger with beef, Iberian ham, Manchego cheese, caramelized onions, and Coca-Cola.",
+    "price": 11.95,
+    "image": "./images/Menus/Iberian_Menu_Coca.png"
+  },
+  {
+    "id_product": 40,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Iberian Burweb Menu Water",
+    "description": "Burger with beef, Iberian ham, Manchego cheese, caramelized onions, piquillos, and water.",
+    "price": 11.55,
+    "image": "./images/Menus/Iberian_Menu_Water.png"
+  },
+  {
+    "id_product": 41,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "HotBurweb Menu",
+    "description": "Spicy chicken burger with chipotle sauce, jalapeños, red peppers, BurNachos, and water.",
+    "price": 11.95,
+    "image": "./images/Menus/Hot_Menu.png"
+  },
+  {
+    "id_product": 42,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Bathroom Menu: Kebab 2.0",
+    "description": "Beef-lamb burger with tzatziki sauce, fried pita, and BurCream Oreo.",
+    "price": 12.55,
+    "image": "./images/Menus/Kebab_Menu.png"
+  },
+  {
+    "id_product": 43,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Junior Menu: BurJunior",
+    "description": "Classic burger with beef, cheddar, ketchup, mustard, fries, and chocolate ice cream.",
+    "price": 5.95,
+    "image": "./images/Menus/Junior_Menu.png"
+  },
+  {
+    "id_product": 44,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Police Fav. Burger Menu",
+    "description": "Burger with donut, bacon jam, caramelized apple, wedges, and chocolate milkshake.",
+    "price": 22.95,
+    "image": "./images/Menus/Police_Menu.png"
+  },
+  {
+    "id_product": 45,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Health Menu: Smashmelon",
+    "description": "Healthy burger with beef-lamb, Havarti cheese, tahini, mango kimchi, strawberry shake, and BurSalad.",
+    "price": 20.95,
+    "image": "./images/Menus/Health_Menu.png"
+  },
+  {
+    "id_product": 46,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "MegaCheesy Menu: Cheese Lovers Dream",
+    "description": "Burger with 4 cheeses, fries with cheese, pizza dough chips, and Fanta or Coca-Cola.",
+    "price": 20.95,
+    "image": "./images/Menus/MegaCheesy_Menu.png"
+  },
+  {
+    "id_product": 47,
+    "id_tax": 1,
+    "id_category": 5,
+    "name": "Double Burshake Menu: Classic Comfort x2",
+    "description": "Double burgers with cheddar, classic fries, Deluxe Fries, and chocolate and strawberry shakes.",
+    "price": 16.5,
+    "image": "./images/Menus/Double_Menu.png"
+  },
+  {
+    "id_product": 54,
+    "id_tax": 1,
+    "id_category": 1,
+    "name": "Demo",
+    "description": "Burger prueba",
+    "price": 15.0,
+    "image": "images/1747938797129.jpeg"
+  }
+]
