@@ -31,9 +31,9 @@ async function initNavMenu() {
     let numMenuItems = null;
     
     if (userRol === "employee") {
-        numMenuItems = 4;
+        numMenuItems = 5;
     } else {
-        numMenuItems = 3;
+        numMenuItems = 4;
     }
     
     for (let i = 0; i < numMenuItems; i++) {

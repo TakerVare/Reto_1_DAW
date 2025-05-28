@@ -10,6 +10,8 @@
     <link rel="icon" href="images/Logos/Logo_vertical_32.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/product_area.css">
+    <!--Añado hoja de estilos para la página del combo-->
+    <link rel="stylesheet" href="css/combo.css">
     <!--Añadimos esta fuente para el carrito-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Cargamos el script después del CSS pero antes del cierre del head -->
@@ -34,35 +36,49 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="nav_burger_menu">
-            <!-- El botón hamburguesa se generará dinámicamente aquí -->
-        </div>
-        <div class="nav_logo">
-            <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
-        </div>
-        <div class="nav_menu" id="nav_menu">
-            <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
-        </div>
-        <div class="nav_user" id="nav_user">
-            <!-- Este contenido se generará dinámicamente con JavaScript -->
-        </div>
-        <div class="nav_shopping_car">
-            <!-- El menú del carrito se generará dinámicamente con JavaScript -->
-        </div>
+<div class="header">
+    <div class="nav_burger_menu">
+        <!-- El botón hamburguesa se generará dinámicamente aquí -->
     </div>
-    <div class="main">
-        <button onclick="randomMenu()">Púslame</button>
-        <div class="product-menus-container">
-            <div class="burguer-random-container"></div>
-            <div class="drink-random-container"></div>
-            <div class="dessert-random-container"></div>
-        </div>
-        <div class="precio-total"></div>
+    <div class="nav_logo">
+        <a href="index.html"><img src="images/Logos/Logo_horizontal_400.png" alt="logo BurWeb.Sa"></a>
     </div>
-    <!-- Contenedor donde se cargarán dinámicamente los productos -->
-    <div id="product-menus-container"></div>
+    <div class="nav_menu" id="nav_menu">
+        <!-- Los elementos del menú se crearán dinámicamente con JavaScript -->
     </div>
+    <div class="nav_user" id="nav_user">
+        <!-- Este contenido se generará dinámicamente con JavaScript -->
+    </div>
+    <div class="nav_shopping_car">
+        <!-- El menú del carrito se generará dinámicamente con JavaScript -->
+    </div>
+</div>
+
+<div class="main">
+    <!-- Banner de la página -->
+    <div class="combo-banner">
+        <h1>Combo Sorpresa</h1>
+        <p>¡Descubre tu combo perfecto! Genera un menú aleatorio con hamburguesa, bebida y postre seleccionados especialmente para ti.</p>
+    </div>
+
+    <!-- Botón para generar combo -->
+    <div class="combo-generator">
+        <button class="generate-combo-btn" onclick="randomMenu()">
+            <i class="fas fa-dice"></i> Generar Combo Aleatorio
+        </button>
+    </div>
+
+    <!-- Contenedor de productos del combo -->
+    <div class="combo-container">
+        <div class="burguer-random-container"></div>
+        <div class="drink-random-container"></div>
+        <div class="dessert-random-container"></div>
+    </div>
+
+    <!-- Contenedor del precio total -->
+    <div class="precio-total"></div>
+    </div>
+
     <div class="footer">
         <!-- El contenido del footer se generará dinámicamente con JS -->
     </div>
