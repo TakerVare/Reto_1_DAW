@@ -12,6 +12,14 @@ target/
 *.iml
 *.ipr
 
+
+### Varios
+.idea/runConfigurations/
+.lib/activation-1.1.1.jar
+./lib/javax.mail-api-1.6.2-javadoc.jar
+./lib/javax.mail-api-1.6.2.jar
+
+
 ### Eclipse ###
 .apt_generated
 .classpath
