@@ -169,7 +169,7 @@ function calculateAndDisplayTotal() {
     if (totalPrice > 0) {
         precioTotalContainer.innerHTML = `
             <div class="combo-total new-total">
-                <h2><i class="fas fa-tags"></i> ¡Precio total del combo!</h2>
+                <h2>¡Precio total del combo!</h2>
                 <div class="price-display">
                     ${currentCombo.total.toFixed(2)}€
                 </div>
